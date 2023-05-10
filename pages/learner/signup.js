@@ -238,12 +238,12 @@ const Signup = () => {
 										</button>
 									</div>
 								)}
-							<button
-								className='theme-btn style-one mt-10 mb-50'
-								onClick={ActivateAccount}
-							>
-								Click to Verify
-							</button>
+								<button
+									className='theme-btn style-one mt-10 mb-50'
+									onClick={ActivateAccount}
+								>
+									Click to Verify
+								</button>
 							</div>
 						</div>
 					</div>

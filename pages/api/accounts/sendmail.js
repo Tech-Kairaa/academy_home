@@ -1,13 +1,14 @@
 // import ConnectDB from '@/config/ConnectDB';
-// const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 import ActivationLink from 'src/Templates/ActivationLink';
 
 export default async function handler(req, res) {
 	const { method } = req;
-	// const body = req.body;
+	const body = req.body;
 	// const db = await ConnectDB();
-	// const salt = bcrypt.genSaltSync(10);
+	const salt = bcrypt.genSaltSync(10);
+	const userId = bcrypt.hashSync(body.userId, salt);
 	// const collection = db.collection('learner');
 
 	switch (method) {
@@ -27,13 +28,14 @@ export default async function handler(req, res) {
 				to: 'kairaaservices@gmail.com',
 				subject: 'Message title',
 				text: 'Plaintext version of the message',
-				html: ActivationLink('hello world'),
+				html: ActivationLink(userId, body.userType),
 			};
 
 			transporter.sendMail(message, (err, info) => {
 				err && res.status(200).json({ success: 0, message: err });
 				info && res.status(200).json({ success: 1, data: info });
 			});
+
 			// try {
 			// 	const exist = await collection.findOne({ email: user.email });
 			// 	if (!exist) {
