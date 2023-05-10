@@ -10,7 +10,7 @@ export async function getStaticProps(context) {
 	const { params } = context;
 	return {
 		props: {
-			userId: params.leaner,
+			userId: params.learner,
 		},
 	};
 }
