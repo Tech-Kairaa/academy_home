@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import Head from 'next/head';
 import axios from 'axios';
 import Image from 'next/image';
+import { loadState, saveState } from '@/providers/storage';
 
 const Signup = () => {
 	const [registerFailed, setRegisterFailed] = useState(false);
@@ -17,18 +18,40 @@ const Signup = () => {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
+
 	const onSubmit = async (data) => {
 		setRegisterProcessing(true);
 		const response = (await axios.post('/api/accounts/learner', data)).data;
 		if (response.success) {
 			const result = response.success && response.data;
 			setRegisterProcessing(false);
+			saveState({ name: 'VERIFY', value: data.email });
 			setRegisterSucceed(result);
 		} else {
 			const error = !response.success && response.message;
 			setRegisterProcessing(false);
 			setRegisterFailed(error);
 		}
+	};
+
+	const ActivateAccount = async () => {
+		// setRegisterProcessing(true);
+		const data = {
+			userId: loadState('VERIFY'),
+			userType: 'learner',
+		};
+		const response = (await axios.post('/api/accounts/sendmail', data)).data;
+		console.log(response);
+		// if (response.success) {
+		// 	const result = response.success && response.data;
+		// 	setRegisterProcessing(false);
+		// 	saveState({ name: 'VERIFY', value: result.insertedId });
+		// 	setRegisterSucceed(result);
+		// } else {
+		// 	const error = !response.success && response.message;
+		// 	setRegisterProcessing(false);
+		// 	setRegisterFailed(error);
+		// }
 	};
 
 	useEffect(() => {
@@ -141,7 +164,6 @@ const Signup = () => {
 																/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
 														})}
 														aria-invalid={errors.password ? 'true' : 'false'}
-														value='gpraj888GPRAJ@'
 													/>
 													{errors.password && TestPassword(errors.password)}
 												</div>
@@ -195,17 +217,33 @@ const Signup = () => {
 
 								{registerSucceed && (
 									<div className='text-center'>
-										<div className='section-title mt-30'>
-											<span className='sub-title-three'>Congratulations!</span>
+										<div className='section-title mt-40'>
+											<span className='sub-title-three'>
+												You need to verify your account
+											</span>
 											<h2>
-												Registered <span>Successfully</span>
+												Proceed to <span>Verification</span>
 											</h2>
 										</div>
-										<Link href='#'>
-											<a className='theme-btn style-one mt-20'>Go to Login</a>
-										</Link>
+										<p className='lead mt-20 px-5'>
+											Click the following button to get verification link via
+											your email. After verification you can access your account
+											properly.
+										</p>
+										<button
+											className='theme-btn style-one mt-10 mb-50'
+											onClick={ActivateAccount}
+										>
+											Click to Verify
+										</button>
 									</div>
 								)}
+							<button
+								className='theme-btn style-one mt-10 mb-50'
+								onClick={ActivateAccount}
+							>
+								Click to Verify
+							</button>
 							</div>
 						</div>
 					</div>

@@ -3,28 +3,22 @@ const bcrypt = require('bcryptjs');
 
 export default async function handler(req, res) {
 	const { method } = req;
-	const query = req.body;
+	const body = req.body;
+	const query = req.query;
 	const db = await ConnectDB();
-
 	const salt = bcrypt.genSaltSync(10);
-	const hashedPassword = bcrypt.hashSync(
-		process.env.PASSWORD_SALT + query.password,
-		salt
-	);
-
-	const user = {
-		name: query.fullname,
-		email: query.email,
-		password: hashedPassword,
-		verified: 0,
-		registered: new Date(),
-	};
 
 	const collection = db.collection('learner');
-	// const data = await collection.find({}).toArray();
 
 	switch (method) {
 		case 'POST':
+			const user = {
+				name: body.fullname,
+				email: body.email,
+				password: bcrypt.hashSync(body.password, salt),
+				verified: 0,
+				registered: new Date(),
+			};
 			try {
 				const exist = await collection.findOne({ email: user.email });
 				if (!exist) {
@@ -34,18 +28,21 @@ export default async function handler(req, res) {
 					} else {
 						res.status(200).json({
 							success: 0,
+							type: 'FAILED_TO_REGISTER',
 							message: 'Account registration failed. ',
 						});
 					}
 				} else {
 					res.status(200).json({
 						success: 0,
+						type: 'ALREADY_EXIST',
 						message: 'Email id already exist!',
 					});
 				}
 			} catch (error) {
 				res.status(200).json({
 					success: 0,
+					type: 'DATABASE_ERROR',
 					message: 'Error found when connecting database',
 				});
 			}
@@ -54,31 +51,46 @@ export default async function handler(req, res) {
 		case 'GET':
 			try {
 				const exist = await collection.findOne({ email: query.email });
-				if (!exist || exist.password !== query.password) {
+				if (!exist) {
 					res.status(200).json({
 						success: 0,
-						message: 'Invalid email or password',
+						type: 'NOT_FOUND',
+						message: 'Account not found. Please register!',
 					});
 				} else {
-					if (!exist.isVerified) {
+					if (bcrypt.compareSync(query.password, exist.password)) {
+						if (!exist.verified) {
+							res.status(200).json({
+								success: 0,
+								type: 'NOT_VERIFIED',
+								message: 'Account not verified',
+							});
+						} else {
+							const user = await collection.find().toArray();
+							res.status(200).json({ success: 1, data: user });
+						}
+					} else {
 						res.status(200).json({
 							success: 0,
-							message: 'Account not verified',
+							type: 'WRONG_PASSWORD',
+							message: 'You entered wrong password.',
 						});
-					} else {
-						const user = await collection.find().toArray();
-						res.status(200).json({ success: true, data: user });
 					}
 				}
 			} catch (error) {
 				res.status(200).json({
-					success: false,
+					success: 0,
+					type: 'DATABASE_ERROR',
 					message: 'Error found when connecting database',
 				});
 			}
 			break;
 
 		default:
-			res.status(200).json({ data: 'server running..' });
+			res.status(200).json({
+				success: 0,
+				type: 'SERVER_ERROR',
+				message: 'Error found when connecting database',
+			});
 	}
 }

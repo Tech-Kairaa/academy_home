@@ -17,3 +17,11 @@ export const saveState = (state) => {
 		return undefined;
 	}
 };
+
+export const removeState = (stateName) => {
+	try {
+		localStorage.removeItem(stateName);
+	} catch (err) {
+		return undefined;
+	}
+};

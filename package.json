@@ -1,5 +1,5 @@
 {
-	"name": "kairaa-academy",
+	"name": "kairaa-academy-home",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -17,7 +17,7 @@
 		"isotope-layout": "^3.0.6",
 		"mongodb": "^5.4.0",
 		"next": "12.2.5",
-		"nodemailer": "^6.9.0",
+		"nodemailer": "^6.9.1",
 		"react": "18.2.0",
 		"react-bootstrap": "^1.6.1",
 		"react-dom": "18.2.0",
