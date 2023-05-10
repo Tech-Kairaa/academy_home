@@ -1,16 +1,10 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const Activate = ({ userId }) => {
+const Activate = () => {
+	const router = useRouter();
+	const userId = router.query.learner;
 	return <div>{userId}</div>;
 };
 
 export default Activate;
-
-export async function getStaticProps(context) {
-	const { params } = context;
-	return {
-		props: {
-			userId: params.learner,
-		},
-	};
-}
