@@ -6,7 +6,7 @@ let BottomContent = `" style="text-decoration:none;display:inline-block;color:#f
 
 const ActivationLink = (token, userType) => {
 	let type = userType === 'learner' ? 'learner' : 'instructor';
-	let activationLink = `localhost:3000/${type}/activate/${token}`;
+	let activationLink = `https://www.kairaaacademy.com/${type}/activate/${token}`;
 	let wholeContent = TopContent + activationLink + BottomContent;
 	return wholeContent;
 };
