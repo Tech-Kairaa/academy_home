@@ -28,8 +28,8 @@ const Signup = () => {
 		const response = (await axios.post('/api/accounts/learner', data)).data;
 		if (response.success) {
 			const result = response.data;
-			saveState({ name: 'VERIFY', value: data.email });
 			updateRegister('registered');
+			saveState({ name: 'VERIFY', value: data.email });
 		} else {
 			const error = response.message;
 			const type = response.type;

@@ -1,15 +1,12 @@
 import ConnectDB from '@/config/ConnectDB';
-// const bcrypt = require('bcryptjs');
+import ActivationLink from 'src/Templates/ActivationLink';
 const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
-import ActivationLink from 'src/Templates/ActivationLink';
 
 export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
 	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
-	// const salt = bcrypt.genSaltSync(10);
-	// const userId = bcrypt.hashSync(body.userId, salt);
 	const collection = db.collection(process.env.TABLE_FOR_LEARNER);
 	const token = JWT.sign({ userId: body.userId }, process.env.SALT_CODE, {
 		expiresIn: 60 * 20,
