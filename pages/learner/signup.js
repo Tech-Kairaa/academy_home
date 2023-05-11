@@ -7,11 +7,15 @@ import Head from 'next/head';
 import axios from 'axios';
 import Image from 'next/image';
 import { loadState, saveState } from '@/providers/storage';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateRegister } from '@/services/auth';
 
 const Signup = () => {
-	const [registerFailed, setRegisterFailed] = useState(false);
-	const [registerSucceed, setRegisterSucceed] = useState(false);
-	const [registerProcessing, setRegisterProcessing] = useState(false);
+	// const registerState = useSelector((state) => state.auth.registerState);
+	const dispatch = useDispatch();
+
+	const [registerState, updateRegister] = useState(null);
+	const [failed, setFailed] = useState(false);
 
 	const {
 		register,
@@ -20,38 +24,39 @@ const Signup = () => {
 	} = useForm();
 
 	const onSubmit = async (data) => {
-		setRegisterProcessing(true);
+		updateRegister('processing');
 		const response = (await axios.post('/api/accounts/learner', data)).data;
 		if (response.success) {
-			const result = response.success && response.data;
-			setRegisterProcessing(false);
+			const result = response.data;
 			saveState({ name: 'VERIFY', value: data.email });
-			setRegisterSucceed(result);
+			updateRegister('registered');
 		} else {
-			const error = !response.success && response.message;
-			setRegisterProcessing(false);
-			setRegisterFailed(error);
+			const error = response.message;
+			const type = response.type;
+			if (type === 'NOT_VERIFIED') {
+				updateRegister('registered');
+			} else {
+				updateRegister('failed');
+				setFailed(error);
+			}
 		}
 	};
 
 	const ActivateAccount = async () => {
-		// setRegisterProcessing(true);
+		updateRegister('processing');
 		const data = {
 			userId: loadState('VERIFY'),
 			userType: 'learner',
 		};
 		const response = (await axios.post('/api/accounts/sendmail', data)).data;
-		console.log(response);
-		// if (response.success) {
-		// 	const result = response.success && response.data;
-		// 	setRegisterProcessing(false);
-		// 	saveState({ name: 'VERIFY', value: result.insertedId });
-		// 	setRegisterSucceed(result);
-		// } else {
-		// 	const error = !response.success && response.message;
-		// 	setRegisterProcessing(false);
-		// 	setRegisterFailed(error);
-		// }
+		if (response.success) {
+			const result = response.data;
+			updateRegister('mailed');
+		} else {
+			const error = response.message;
+			updateRegister('!mailed');
+			setFailed(error);
+		}
 	};
 
 	useEffect(() => {
@@ -84,7 +89,7 @@ const Signup = () => {
 					<div className='container'>
 						<div className='row justify-content-center'>
 							<div className='col-lg-8 contact-form'>
-								{!registerSucceed && !registerProcessing && (
+								{(registerState === null || registerState === 'failed') && (
 									<form
 										onSubmit={handleSubmit(onSubmit)}
 										className='p-50 z-1 rel'
@@ -186,9 +191,10 @@ const Signup = () => {
 											Continue with Google
 										</button>
 									</div> */}
-											<p className='text-danger text-center'>
-												{registerFailed}
-											</p>
+											{registerState === 'failed' && (
+												<p className='text-danger text-center'>{failed}</p>
+											)}
+
 											<p className='text-center fw-normal'>
 												Can&apos;t remember your password?&nbsp;
 												<Link href='/account/forgot'>
@@ -203,7 +209,7 @@ const Signup = () => {
 									</form>
 								)}
 
-								{registerProcessing && (
+								{registerState === 'processing' && (
 									<div className='d-flex justify-content-center'>
 										<Image
 											src='/assets/images/shapes/loader.gif'
@@ -215,27 +221,45 @@ const Signup = () => {
 									</div>
 								)}
 
-								{registerSucceed && (
+								{(registerState === 'registered' ||
+									registerState === '!mailed') && (
 									<div className='text-center'>
 										<div className='section-title mt-40'>
 											<span className='sub-title-three'>
-												You need to verify your account
+												You need to activate your account
 											</span>
 											<h2>
-												Proceed to <span>Verification</span>
+												Proceed to <span>Activation</span>
 											</h2>
 										</div>
 										<p className='lead mt-20 px-5'>
-											Click the following button to get verification link via
-											your email. After verification you can access your account
+											Click the following button to get activation link via your
+											email. After activation you can access your account
 											properly.
 										</p>
+										{registerState === '!mailed' && (
+											<p className='text-danger'>{failed}</p>
+										)}
 										<button
 											className='theme-btn style-one mt-10 mb-50'
 											onClick={ActivateAccount}
 										>
-											Click to Verify
+											Click to activate
 										</button>
+									</div>
+								)}
+
+								{registerState === 'mailed' && (
+									<div className='text-center'>
+										<h3 className='mt-40'>Check your email</h3>
+										<p className='lead mt-10 px-5'>
+											Your activation link has been sent successfully. Please
+											check your email for further instructions.&nbsp;
+											<span className='fw-bold'>
+												Once you have activated your account, please go to login
+												page.
+											</span>
+										</p>
 									</div>
 								)}
 							</div>

@@ -1,68 +1,84 @@
-// import ConnectDB from '@/config/ConnectDB';
-const bcrypt = require('bcryptjs');
+import ConnectDB from '@/config/ConnectDB';
+// const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
+const JWT = require('jsonwebtoken');
 import ActivationLink from 'src/Templates/ActivationLink';
 
 export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
-	// const db = await ConnectDB();
-	const salt = bcrypt.genSaltSync(10);
-	const userId = bcrypt.hashSync(body.userId, salt);
-	// const collection = db.collection('learner');
+	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
+	// const salt = bcrypt.genSaltSync(10);
+	// const userId = bcrypt.hashSync(body.userId, salt);
+	const collection = db.collection(process.env.TABLE_FOR_LEARNER);
+	const token = JWT.sign({ userId: body.userId }, process.env.SALT_CODE, {
+		expiresIn: 60 * 20,
+	});
 
 	switch (method) {
 		case 'POST':
-			const transporter = nodemailer.createTransport({
-				host: 'smtp-relay.sendinblue.com',
-				port: 587,
-				secure: false,
-				auth: {
-					user: 'admin@kaitcrypto.com',
-					pass: '7DUI9X2npZ6jPqah',
-				},
-			});
+			try {
+				const exist = await collection.findOne({ email: body.userId });
+				if (exist) {
+					if (!exist.verified) {
+						const transporter = nodemailer.createTransport({
+							host: process.env.MAILER_HOST,
+							port: process.env.MAILER_PORT,
+							secure: false,
+							auth: {
+								user: process.env.MAILER_USER,
+								pass: process.env.MAILER_PASSWORD,
+							},
+						});
 
-			const message = {
-				from: 'team@kairaa.com',
-				to: 'kairaaservices@gmail.com',
-				subject: 'Message title',
-				text: 'Plaintext version of the message',
-				html: ActivationLink(userId, body.userType),
-			};
+						const message = {
+							from: `Team Kairaa Academy <${process.env.MAILER_EMAIL}>`,
+							to: body.userId,
+							subject: 'Received Link From Kairaa Academy',
+							html: ActivationLink(token, body.userType),
+							dsn: {
+								return: 'headers',
+								notify: ['failure', 'delay', 'success'],
+								recipient: 'work.gpraj@gmail.com',
+							},
+						};
 
-			transporter.sendMail(message, (err, info) => {
-				err && res.status(200).json({ success: 0, message: err });
-				info && res.status(200).json({ success: 1, data: info });
-			});
-
-			// try {
-			// 	const exist = await collection.findOne({ email: user.email });
-			// 	if (!exist) {
-			// 		const result = await collection.insertOne(user);
-			// 		if (result.acknowledged) {
-			// 			res.status(200).json({ success: 1, data: result });
-			// 		} else {
-			// 			res.status(200).json({
-			// 				success: 0,
-			// 				type: 'FAILED_TO_REGISTER',
-			// 				message: 'Account registration failed. ',
-			// 			});
-			// 		}
-			// 	} else {
-			// 		res.status(200).json({
-			// 			success: 0,
-			// 			type: 'ALREADY_EXIST',
-			// 			message: 'Email id already exist!',
-			// 		});
-			// 	}
-			// } catch (error) {
-			// 	res.status(200).json({
-			// 		success: 0,
-			// 		type: 'DATABASE_ERROR',
-			// 		message: 'Error found when connecting database',
-			// 	});
-			// }
+						transporter.sendMail(message, (err, info) => {
+							if (err) {
+								res.status(200).json({
+									success: 0,
+									type: 'MAIL_NOT_SEND',
+									message: 'Activation email not send.',
+								});
+							} else {
+								res.status(200).json({
+									success: 1,
+									type: 'MAILED_SUCCESSFULLY',
+									data: info,
+								});
+							}
+						});
+					} else {
+						res.status(200).json({
+							success: 0,
+							type: 'ALREADY_VERIFIED',
+							message: 'Account already verified. ',
+						});
+					}
+				} else {
+					res.status(200).json({
+						success: 0,
+						type: 'NOT_EXIST',
+						message: 'Email id not exist!',
+					});
+				}
+			} catch (error) {
+				res.status(200).json({
+					success: 0,
+					type: 'DATABASE_ERROR',
+					message: 'Error found when connecting database',
+				});
+			}
 			break;
 
 		default:

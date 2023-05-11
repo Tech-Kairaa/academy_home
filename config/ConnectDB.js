@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 
 let cachedDb = null;
 
-const ConnectDB = async () => {
+const ConnectDB = async (dbName) => {
 	if (cachedDb) {
 		return cachedDb;
 	}
@@ -12,7 +12,7 @@ const ConnectDB = async () => {
 		useUnifiedTopology: true,
 	});
 
-	const db = await client.db(process.env.MONGODB_DB);
+	const db = await client.db(dbName);
 
 	cachedDb = db;
 	return db;
