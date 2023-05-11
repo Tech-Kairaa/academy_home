@@ -52,10 +52,12 @@ const Signup = () => {
 		if (response.success) {
 			const result = response.data;
 			updateRegister('mailed');
+			console.log(response);
 		} else {
 			const error = response.message;
 			updateRegister('!mailed');
 			setFailed(error);
+			console.log(response);
 		}
 	};
 

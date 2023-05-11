@@ -36,11 +36,6 @@ export default async function handler(req, res) {
 							to: body.userId,
 							subject: 'Received Link From Kairaa Academy',
 							html: ActivationLink(token, body.userType),
-							dsn: {
-								return: 'headers',
-								notify: ['failure', 'delay', 'success'],
-								recipient: 'work.gpraj@gmail.com',
-							},
 						};
 
 						transporter.sendMail(message, (err, info) => {
