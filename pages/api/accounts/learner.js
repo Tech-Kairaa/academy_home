@@ -1,5 +1,6 @@
-import ConnectDB from '@/config/ConnectDB';
+import ConnectDB from 'lib/config/ConnectDB';
 const bcrypt = require('bcryptjs');
+const JWT = require('jsonwebtoken');
 
 export default async function handler(req, res) {
 	const { method } = req;
@@ -7,7 +8,6 @@ export default async function handler(req, res) {
 	const query = req.query;
 	const db = await ConnectDB('accounts');
 	const salt = bcrypt.genSaltSync(10);
-
 	const collection = db.collection('learner');
 
 	switch (method) {
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
 						res.status(200).json({
 							success: 0,
 							type: 'ALREADY_EXIST',
-							message: 'Email id already exist!',
+							message: 'Account id already exist!',
 						});
 					} else {
 						res.status(200).json({
@@ -63,19 +63,22 @@ export default async function handler(req, res) {
 					res.status(200).json({
 						success: 0,
 						type: 'NOT_FOUND',
-						message: 'Account not found. Please register!',
+						message: 'Account not found. Please signup!',
 					});
 				} else {
 					if (bcrypt.compareSync(query.password, exist.password)) {
-						if (!exist.verified) {
+						if (exist.verified) {
+							const user = await collection.find().toArray();
+							const token = JWT.sign({ user }, process.env.SALT_CODE, {
+								expiresIn: 60 * 5,
+							});
+							res.status(200).json({ success: 1, data: token });
+						} else {
 							res.status(200).json({
 								success: 0,
 								type: 'NOT_VERIFIED',
 								message: 'Account not verified',
 							});
-						} else {
-							const user = await collection.find().toArray();
-							res.status(200).json({ success: 1, data: user });
 						}
 					} else {
 						res.status(200).json({

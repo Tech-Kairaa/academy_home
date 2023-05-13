@@ -1,22 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
-import Slider from 'react-slick';
 import Advertise from '../src/components/Advertise';
-import Counter from '../src/components/Counter';
-import PageBanner from '../src/components/PageBanner';
-import Layout from '../src/layout/Layout';
-import { coachSlider } from '../src/sliderProps';
-import dynamic from 'next/dynamic';
 import Founder from '../src/components/Founder';
+import PageBanner from '../src/components/PageBanner';
 import Team from '../src/components/Team';
-const Index1Isotope = dynamic(
-	() => import('../src/components/isotope/Index1Isotope'),
-	{
-		ssr: false,
-	}
-);
+import Layout from '../src/layout/Layout';
+import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const About = () => {
+	const auth = useSelector((state) => state.auth.loginState);
 	return (
 		<Layout header footer newsletter={true}>
 			<PageBanner pageName={'about_us'} />
@@ -74,43 +66,19 @@ const About = () => {
 						<div className='col-lg-2'>
 							<div className='counter-wrap style-two wow fadeInRight delay-0-4s'>
 								<div className='success-item'>
-									<span
-										className='count-text plus'
-										data-speed={3000}
-										data-stop={166}
-									>
-										<Counter end={166} />
-									</span>
+									<span className='count-text plus'>166</span>
 									<span>Enrolled Learner</span>
 								</div>
 								<div className='success-item'>
-									<span
-										className='count-text plus'
-										data-speed={3000}
-										data-stop='2.36'
-									>
-										<Counter end={62} />
-									</span>
+									<span className='count-text plus'>62</span>
 									<span>Finished Session</span>
 								</div>
 								<div className='success-item'>
-									<span
-										className='count-text percent'
-										data-speed={3000}
-										data-stop={99}
-									>
-										<Counter end={99} />
-									</span>
-									<span>Saticfiction Rate</span>
+									<span className='count-text percent'>99</span>
+									<span>Satisfaction Rate</span>
 								</div>
 								<div className='success-item'>
-									<span
-										className='count-text plus'
-										data-speed={3000}
-										data-stop={83}
-									>
-										<Counter end={12} />
-									</span>
+									<span className='count-text plus'>4</span>
 									<span>New Courses</span>
 								</div>
 							</div>
@@ -198,7 +166,7 @@ const About = () => {
 			{/* Advertise Area Start */}
 			<section className='advertise-area pt-20 rpt-100 pb-50 rpb-60'>
 				<div className='container'>
-					<Advertise />
+					<Advertise loggedIn={auth} />
 				</div>
 			</section>
 			{/* Advertise Area End */}

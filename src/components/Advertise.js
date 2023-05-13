@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import advertise1 from '/public/assets/images/advertise/1.png';
 import advertise2 from '/public/assets/images/advertise/2.png';
-const Advertise = () => {
+const Advertise = ({ loggedIn }) => {
 	return (
 		<div className='row'>
 			<div className='col-lg-6'>
@@ -32,11 +32,19 @@ const Advertise = () => {
 							We offers a wide range of blockchain <br /> courses that are
 							designed to help <br /> students advance their education.
 						</p>
-						<Link href='/#contact'>
-							<a className='theme-btn style-two'>
-								Join with us <i className='fas fa-arrow-right' />
-							</a>
-						</Link>
+						{loggedIn === 'loggedIn' ? (
+							<Link href='/courses'>
+								<a className='theme-btn style-two'>
+									Buy Course <i className='fas fa-arrow-right' />
+								</a>
+							</Link>
+						) : (
+							<Link href='/#contact'>
+								<a className='theme-btn style-two'>
+									Join with us <i className='fas fa-arrow-right' />
+								</a>
+							</Link>
+						)}
 					</div>
 					<div className='image'>
 						<img src={advertise2.src} alt='Advertise' />

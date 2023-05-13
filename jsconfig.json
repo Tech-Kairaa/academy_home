@@ -4,10 +4,12 @@
 		"paths": {
 			"@/components/*": ["src/components/*"],
 			"@/layouts/*": ["src/layout/*"],
-			"@/providers/*": ["providers/*"],
-			"@/services/*": ["services/*"],
+			"@/src/*": ["src/*"],
+			"@/providers/*": ["lib/providers/*"],
+			"@/services/*": ["lib/services/*"],
 			"@/assets/*": ["public/assets/*"],
-			"@/config/*": ["config/*"]
+			"@/config/*": ["lib/config/*"],
+			"@/utils/*": ["lib/utils/*"]
 		}
 	}
 }

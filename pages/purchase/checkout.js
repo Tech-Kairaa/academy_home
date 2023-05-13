@@ -1,15 +1,12 @@
 import { useSelector } from 'react-redux';
-import PageBanner from '../../src/components/PageBanner';
-import Address from '../../src/components/purchase/Address';
-import Items from '../../src/components/purchase/Items';
-import Profile from '../../src/components/purchase/Profile';
-import Layout from '../../src/layout/Layout';
+import PageBanner from '@/components/PageBanner';
+import Address from '@/components/purchase/Address';
+import Items from '@/components/purchase/Items';
+import Profile from '@/components/purchase/Profile';
+import Layout from '@/layouts/Layout';
 
 const Checkout = () => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
-
-	console.log(cartItems);
-
 	return (
 		<Layout header footer>
 			<PageBanner pageName={'banner'} pageTitle={'Checkout'} />

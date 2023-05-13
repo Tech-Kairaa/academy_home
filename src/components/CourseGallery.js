@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import CourseList from '../../utils/Courses';
-
+import CourseList from '@/utils/Courses';
 import React from 'react';
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
 

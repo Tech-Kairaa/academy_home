@@ -204,3 +204,7 @@ textarea:focus::placeholder {
 	background-color: rgba(0, 0, 0, 0.6);
 	backdrop-filter: blur(1px);
 }
+
+.header-upper {
+	box-shadow: 0px 0px 30px 0px rgba(87, 95, 245, 0.1) !important;
+}

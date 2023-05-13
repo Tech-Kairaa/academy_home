@@ -2,13 +2,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../services/cart';
-import Pagination from '../../src/Pagination';
-import PageBanner from '../../src/components/PageBanner';
-import Cart from '../../src/components/courses/Cart';
-import Sidebar from '../../src/components/courses/Sidebar';
-import Layout from '../../src/layout/Layout';
-import CourseList from '../../utils/Courses';
+import { addItem } from '@/services/cart';
+import Pagination from '@/src/Pagination';
+import PageBanner from '@/components/PageBanner';
+import Cart from '@/components/courses/Cart';
+import Sidebar from '@/components/courses/Sidebar';
+import Layout from '@/layouts/Layout';
+import CourseList from '@/utils/Courses';
 import toast from 'react-hot-toast';
 
 const Courses = () => {

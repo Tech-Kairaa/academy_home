@@ -1,4 +1,4 @@
-import ConnectDB from '@/config/ConnectDB';
+import ConnectDB from 'lib/config/ConnectDB';
 import ActivationLink from 'src/Templates/ActivationLink';
 const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');

@@ -1,14 +1,16 @@
 import Layout from '../../src/layout/Layout';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
 import axios from 'axios';
+import { saveState, loadState, removeState } from 'lib/providers/storage';
+import { useRouter } from 'next/router';
 
-const SignIn = () => {
-	const [loginFailed, setLoginFailed] = useState(false);
-	const [loginSucceed, setLoginSucceed] = useState(false);
-	const [loginProcessing, setLoginProcessing] = useState(false);
+const LogIn = () => {
+	const [loginState, updateState] = useState(null);
+	const [failed, setFailed] = useState(false);
+	const router = useRouter();
 
 	const {
 		register,
@@ -16,7 +18,7 @@ const SignIn = () => {
 		handleSubmit,
 	} = useForm();
 	const onSubmit = async (data) => {
-		setLoginProcessing(true);
+		updateState('processing');
 		const response = (
 			await axios.get('/api/accounts/learner', {
 				params: data,
@@ -24,25 +26,38 @@ const SignIn = () => {
 		).data;
 
 		if (response.success) {
-			const result = response.success && response.data;
-			setLoginProcessing(false);
-			setLoginSucceed(result);
+			const token = response.data;
+			saveState({ name: 'AUTH', value: token });
+			router.reload('/');
+			// Cookies.set('auth', token, { expires: 1 });
 		} else {
-			const error = !response.success && response;
-			setLoginProcessing(false);
-			setLoginFailed(error);
-			console.log(error);
+			if (response.type === 'NOT_VERIFIED') {
+				updateState('activate');
+				saveState({ name: 'VERIFY', value: data.email });
+			} else {
+				updateState('failed');
+				setFailed(response.message);
+			}
 		}
 	};
 
-	useEffect(() => {
-		document
-			.querySelector('.header-upper')
-			.setAttribute(
-				'style',
-				'box-shadow:0px 0px 30px 0px rgba(87, 95, 245, 0.1)'
-			);
-	}, []);
+	const ActivateAccount = async () => {
+		updateState('processing');
+		const data = {
+			userId: loadState('VERIFY'),
+			userType: 'learner',
+		};
+		const response = (await axios.post('/api/accounts/sendmail', data)).data;
+		if (response.success) {
+			const result = response.data;
+			updateState('mailed');
+			removeState('VERIFY');
+		} else {
+			const error = response.message;
+			updateState('!mailed');
+			setFailed(error);
+		}
+	};
 
 	const TestPassword = (password) => {
 		return (
@@ -61,7 +76,7 @@ const SignIn = () => {
 				<div className='container'>
 					<div className='row justify-content-center'>
 						<div className='col-lg-8 contact-form'>
-							{!loginSucceed && !loginProcessing && !loginFailed && (
+							{(loginState === null || loginState === 'failed') && (
 								<form
 									onSubmit={handleSubmit(onSubmit)}
 									className='p-50 z-1 rel'
@@ -122,10 +137,7 @@ const SignIn = () => {
 												<a className='theme-btn style-three w-25'>Signup</a>
 											</Link>
 										</div>
-										<p className='text-danger text-center mt-30'>
-											{loginFailed.type !== 'NOT_VERIFIED' &&
-												loginFailed.message}
-										</p>
+										<p className='text-danger text-center mt-20'>{failed}</p>
 										<p className='text-center fw-normal'>
 											Can&apos;t remember your password?&nbsp;
 											<Link href='/account/forgot'>
@@ -137,7 +149,7 @@ const SignIn = () => {
 								</form>
 							)}
 
-							{loginProcessing && (
+							{loginState === 'processing' && (
 								<div className='d-flex justify-content-center'>
 									<Image
 										src='/assets/images/shapes/loader.gif'
@@ -149,19 +161,44 @@ const SignIn = () => {
 								</div>
 							)}
 
-							{loginFailed.type === 'NOT_VERIFIED' && (
+							{(loginState === 'activate' || loginState === '!mailed') && (
 								<div className='text-center'>
-									<div className='section-title mt-30'>
-										<h2 className='pt-10'>
-											Account not <span>Verified</span>
+									<div className='section-title mt-40'>
+										<span className='sub-title-three'>
+											You need to activate your account
+										</span>
+										<h2>
+											Proceed to <span>Activation</span>
 										</h2>
 									</div>
-									<p className='lead mt-20'>
-										Click the following button to get verification link via your registered email. After verification you can access your account properly.
+									<p className='lead mt-20 px-5'>
+										Click the following button to get activation link via your
+										email. After activation you can access your account
+										properly.
 									</p>
-									<Link href='#'>
-										<a className='theme-btn style-one mt-10 mb-50'>Click to Verify</a>
-									</Link>
+									{loginState === '!mailed' && (
+										<p className='text-danger'>{failed}</p>
+									)}
+									<button
+										className='theme-btn style-one mt-10 mb-50'
+										onClick={ActivateAccount}
+									>
+										Click to activate
+									</button>
+								</div>
+							)}
+
+							{loginState === 'mailed' && (
+								<div className='text-center'>
+									<h3 className='mt-40'>Check your email</h3>
+									<p className='lead mt-10 px-5'>
+										Your activation link has been sent successfully. Please
+										check your email for further instructions.&nbsp;
+										<span className='fw-bold'>
+											Once you have activated your account, please refresh and
+											login again.
+										</span>
+									</p>
 								</div>
 							)}
 						</div>
@@ -173,4 +210,4 @@ const SignIn = () => {
 	);
 };
 
-export default SignIn;
+export default LogIn;

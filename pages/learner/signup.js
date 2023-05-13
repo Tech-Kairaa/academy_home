@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import Head from 'next/head';
 import axios from 'axios';
 import Image from 'next/image';
-import { loadState, saveState } from '@/providers/storage';
+import { loadState, removeState, saveState } from 'lib/providers/storage';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRegister } from '@/services/auth';
 
@@ -35,6 +35,7 @@ const Signup = () => {
 			const type = response.type;
 			if (type === 'NOT_VERIFIED') {
 				updateRegister('registered');
+				saveState({ name: 'VERIFY', value: data.email });
 			} else {
 				updateRegister('failed');
 				setFailed(error);
@@ -52,23 +53,13 @@ const Signup = () => {
 		if (response.success) {
 			const result = response.data;
 			updateRegister('mailed');
-			console.log(response);
+			removeState('VERIFY');
 		} else {
 			const error = response.message;
 			updateRegister('!mailed');
 			setFailed(error);
-			console.log(response);
 		}
 	};
-
-	useEffect(() => {
-		document
-			.querySelector('.header-upper')
-			.setAttribute(
-				'style',
-				'box-shadow:0px 0px 30px 0px rgba(87, 95, 245, 0.1)'
-			);
-	}, []);
 
 	const TestPassword = (password) => {
 		return (

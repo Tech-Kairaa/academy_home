@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CourseList from '../../../utils/Courses';
+import CourseList from '@/utils/Courses';
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
-import { removeItem, clearCart } from '../../../services/cart';
+import { removeItem, clearCart } from '@/services/cart';
 
 const Cart = () => {
 	const cartItems = useSelector((state) => state.cart.cartItems);

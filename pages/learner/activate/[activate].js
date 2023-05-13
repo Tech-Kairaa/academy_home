@@ -12,7 +12,7 @@ const Activate = () => {
 
 	const activateAccount = async () => {
 		updateState('processing');
-		const response = (await axios.post('/api/tokens/validate', { token })).data;
+		const response = (await axios.post('/api/auth', { token })).data;
 		if (response.success) {
 			const userId = response.data.userId;
 			const updateResponse = await axios.put('/api/accounts/learner', {

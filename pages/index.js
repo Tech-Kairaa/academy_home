@@ -1,22 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import Advertise from '../src/components/Advertise';
-import Layout from '../src/layout/Layout';
+import Advertise from '@/components/Advertise';
+import Layout from '@/layouts/Layout';
 import dynamic from 'next/dynamic';
-import Founder from '../src/components/Founder';
-import Team from '../src/components/Team';
-import CourseGallery from '../src/components/CourseGallery';
-import { useEffect } from 'react';
+import Founder from '@/components/Founder';
+import Team from '@/components/Team';
+import CourseGallery from '@/components/CourseGallery';
 import Head from 'next/head';
-
-const Index1Isotope = dynamic(
-	() => import('../src/components/isotope/Index1Isotope'),
-	{
-		ssr: false,
-	}
-);
+import { useSelector } from 'react-redux';
 
 const Index = () => {
+	const auth = useSelector((state) => state.auth.loginState);
 	return (
 		<>
 			<Head>
@@ -66,16 +60,35 @@ const Index = () => {
 										<li>20+ Blockchain Courses</li>
 									</ul>
 									<div className='hero-btns mt-10 wow fadeInUp delay-0-8s'>
-										<Link href='/#enroll'>
-											<a className='theme-btn mt-10 me-2'>
-												Enroll now <i className='fas fa-arrow-right' />
-											</a>
-										</Link>
-										<Link href='/#career'>
-											<a className='theme-btn style-two mt-10 ms-2'>
-												Start Career <i className='fas fa-arrow-right' />
-											</a>
-										</Link>
+										{!auth && (
+											<>
+												<Link href='/#enroll'>
+													<a className='theme-btn mt-10 me-2'>
+														Enroll now <i className='fas fa-arrow-right' />
+													</a>
+												</Link>
+												<Link href='/#career'>
+													<a className='theme-btn style-two mt-10 ms-2'>
+														Start Career <i className='fas fa-arrow-right' />
+													</a>
+												</Link>
+											</>
+										)}
+
+										{auth === 'loggedIn' && (
+											<>
+												<Link href='/#enroll'>
+													<a className='theme-btn mt-10 me-2'>
+														Latest courses <i className='fas fa-arrow-right' />
+													</a>
+												</Link>
+												<Link href='/#career'>
+													<a className='theme-btn style-two mt-10 ms-2'>
+														Top courses <i className='fas fa-arrow-right' />
+													</a>
+												</Link>
+											</>
+										)}
 									</div>
 								</div>
 							</div>
@@ -543,7 +556,7 @@ const Index = () => {
 				{/* Advertise Area Start */}
 				<section className='advertise-area pb-90 pt-100 rpb-70'>
 					<div className='container'>
-						<Advertise />
+						<Advertise loggedIn={auth} />
 					</div>
 				</section>
 				{/* Advertise Area End */}
