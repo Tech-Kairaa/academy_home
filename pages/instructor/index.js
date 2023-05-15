@@ -2,18 +2,11 @@
 import Link from 'next/link';
 import PageBanner from '@/components/PageBanner';
 import Layout from '@/layouts/Layout';
-import { useForm } from 'react-hook-form';
+import WorkSteps from '@/components/slider/WorkSteps';
 
 const BecomeAnInstructor = () => {
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-	} = useForm();
-	const onSubmit = (data) => console.log(data);
-
 	return (
-		<Layout header footer newsletter={true} topbar={false}>
+		<Layout header footer newsletter={false} topbar={false}>
 			<PageBanner pageName={'banner'} pageTitle={'Become An Instructor'} />
 			<section className='join-our-team-area pt-120 rpt-90'>
 				<div className='container'>
@@ -41,7 +34,7 @@ const BecomeAnInstructor = () => {
 									passionate about the potential of this groundbreaking
 									technology.
 								</p>
-								<Link href='#apply'>
+								<Link href='/instructor/signup'>
 									<a className='theme-btn mt-10'>
 										become an instructor <i className='fas fa-arrow-right' />
 									</a>
@@ -122,208 +115,14 @@ const BecomeAnInstructor = () => {
 					</div>
 				</div>
 			</section>
-			<section className=' pb-195' id='apply'>
+			{/* Work Process Section Start */}
+			<section className='work-process-section bg-white rel z-1 pt-60 rpt-100 pb-100 rpb-70'>
 				<div className='container'>
-					<div className='row justify-content-center'>
-						<div className='col-lg-8'>
-							<form
-								onSubmit={handleSubmit(onSubmit)}
-								className='contact-form p-50 z-1 rel'
-							>
-								<div className='section-title text-center mb-50 mt-25'>
-									<h2>
-										Join Our <span>Team</span>
-									</h2>
-								</div>
-								<div className='row py-25 justify-content-center'>
-									<div className='col-md-6'>
-										<div className='form-group'>
-											<input
-												type='text'
-												placeholder='Full Name'
-												{...register('fullName', {
-													required: true,
-													minLength: 3,
-													pattern: /^[A-Za-z]+$/i,
-												})}
-												aria-invalid={errors.fullName ? 'true' : 'false'}
-											/>
-											{errors.fullName &&
-												errors.fullName.type === 'pattern' && (
-													<p className='text-danger mt-1'>Name not valid</p>
-												)}
-											{errors.fullName &&
-												errors.fullName.type === 'minLength' && (
-													<p className='text-danger mt-1'>
-														Enter at least 3 characters
-													</p>
-												)}
-											{errors.fullName &&
-												errors.fullName.type === 'required' && (
-													<p className='text-danger mt-1'>Name is empty</p>
-												)}
-										</div>
-									</div>
-									<div className='col-md-6'>
-										<div className='form-group'>
-											<input
-												type='email'
-												placeholder='Email Id'
-												{...register('email', {
-													required: true,
-													pattern: /^\S+@\S+\.\S+$/,
-												})}
-												aria-invalid={errors.email ? 'true' : 'false'}
-											/>
-
-											{errors.email && errors.email.type === 'pattern' && (
-												<p className='text-danger mt-1'>Email not valid</p>
-											)}
-											{errors.email && errors.email.type === 'required' && (
-												<p className='text-danger mt-1'>Email is empty</p>
-											)}
-										</div>
-									</div>
-									<div className='col-md-5'>
-										<div className='form-group'>
-											<input
-												type='tel'
-												placeholder='Mobile number'
-												{...register('mobileNumber', {
-													required: true,
-													minLength: 10,
-													maxLength: 10,
-													pattern: /^(\+\d{1,3}[- ]?)?\d{10}$/,
-												})}
-												aria-invalid={errors.mobileNumber ? 'true' : 'false'}
-											/>
-											{errors.mobileNumber &&
-												errors.mobileNumber.type === 'pattern' && (
-													<p className='text-danger mt-1'>Number not valid</p>
-												)}
-											{errors.mobileNumber &&
-												errors.mobileNumber.type === 'minLength' &&
-												errors.mobileNumber.type ===
-													'maxLength'(
-														<p className='text-danger mt-1'>
-															Number is invalid length
-														</p>
-													)}
-											{errors.mobileNumber &&
-												errors.mobileNumber.type === 'required' && (
-													<p className='text-danger mt-1'>Name is empty</p>
-												)}
-										</div>
-									</div>
-									<div className='col-md-7'>
-										<div className='form-group'>
-											<input
-												type='text'
-												placeholder='Experience'
-												{...register('experience', {
-													required: true,
-												})}
-												aria-invalid={errors.experience ? 'true' : 'false'}
-											/>
-											{errors.experience &&
-												errors.experience.type === 'required' && (
-													<p className='text-danger mt-1'>
-														Experience is empty
-													</p>
-												)}
-										</div>
-									</div>
-									<div className='col-md-6'>
-										<div className='form-group'>
-											<div className='dropdown'>
-												<select
-													name='position'
-													{...register('position', {
-														required: 'Position is empty',
-													})}
-													aria-invalid={errors.position ? 'true' : 'false'}
-												>
-													<option value='' disabled>
-														Position
-													</option>
-													<option value='Ethereum'>Ethereum</option>
-													<option value='DeFi'>DeFi</option>
-												</select>
-												{errors.position && (
-													<p className='text-danger mt-1'>
-														{errors.position.message}
-													</p>
-												)}
-											</div>
-										</div>
-									</div>
-									<div className='col-md-6'>
-										<div className='position-relative'>
-											<input
-												type='file'
-												accept='.pdf,.doc,.docx'
-												className='custom-file-input position-absolute file-input'
-												{...register('resume', {
-													required: true,
-												})}
-												aria-invalid={errors.resume ? 'true' : 'false'}
-											/>
-											<div className='file-label'>Upload Resume</div>
-										</div>
-										{errors.resume && errors.resume.type === 'required' && (
-											<p className='text-danger mt-1'>Please upload resume</p>
-										)}
-									</div>
-									<div className='col-md-12'>
-										<div className='form-group'>
-											<textarea
-												cols='30'
-												rows='2'
-												placeholder='want to say anything?'
-												{...register('message', {
-													required: true,
-												})}
-												aria-invalid={errors.message ? 'true' : 'false'}
-											></textarea>
-											{errors.message && errors.message.type === 'required' && (
-												<p className='text-danger mt-1'>Message is empty</p>
-											)}
-										</div>
-									</div>
-									<div className='col-md-6'>
-										<div className='form-group'>
-											<input
-												type='text'
-												placeholder='Expected Salary'
-												{...register('salaryExp')}
-											/>
-										</div>
-									</div>
-									<div className='col-md-6'>
-										<div className='form-group text-right'>
-											<button type='submit' className='theme-btn'>
-												Submit
-											</button>
-										</div>
-									</div>
-									<p className='mt-30'>
-										Can&apos;t remember your password?&nbsp;
-										<Link href='/account/forgot'>
-											<a className='text-primary'>Forgot</a>
-										</Link>
-										&nbsp;password or want to&nbsp;
-										<Link href='/account/signin'>
-											<a className='text-primary'>signIn</a>
-										</Link>
-									</p>
-								</div>
-							</form>
-						</div>
-					</div>
+					<WorkSteps />
 				</div>
 			</section>
+			{/* Work Process Section End */}
 			{/* Benefit Work Process End */}
-			<div className='py-100'></div>
 		</Layout>
 	);
 };

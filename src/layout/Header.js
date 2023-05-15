@@ -154,6 +154,7 @@ const Header = ({ header, topbar }) => {
 export default Header;
 
 const Menus = () => {
+	const auth = useSelector((state) => state.auth.loginState);
 	const router = useRouter();
 	const [activeItem, setActiveItem] = useState(router.asPath);
 	return (
@@ -173,11 +174,14 @@ const Menus = () => {
 					<a>Courses</a>
 				</Link>
 			</li>
-			<li className={activeItem === '/become-instructor' ? 'current' : ''}>
-				<Link href='/instructor'>
-					<a>Became a instructor</a>
-				</Link>
-			</li>
+			{!auth && (
+				<li className={activeItem === '/become-instructor' ? 'current' : ''}>
+					<Link href='/instructor'>
+						<a>Become an instructor</a>
+					</Link>
+				</li>
+			)}
+
 			<li className={activeItem === '/contact' ? 'current' : ''}>
 				<Link href='/contact'>
 					<a>Contact</a>

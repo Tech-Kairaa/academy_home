@@ -6,9 +6,9 @@ export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
 	const query = req.query;
-	const db = await ConnectDB('accounts');
+	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
 	const salt = bcrypt.genSaltSync(10);
-	const collection = db.collection('learner');
+	const collection = db.collection(process.env.TABLE_FOR_LEARNER);
 
 	switch (method) {
 		case 'POST':

@@ -7,7 +7,14 @@ export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
 	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
-	const collection = db.collection(process.env.TABLE_FOR_LEARNER);
+	let collection = null;
+
+	if (body.userType === 'instructor') {
+		collection = db.collection(process.env.TABLE_FOR_INSTRUCTOR);
+	} else {
+		collection = db.collection(process.env.TABLE_FOR_LEARNER);
+	}
+
 	const token = JWT.sign({ userId: body.userId }, process.env.SALT_CODE, {
 		expiresIn: 60 * 20,
 	});
@@ -55,6 +62,7 @@ export default async function handler(req, res) {
 							success: 0,
 							type: 'ALREADY_VERIFIED',
 							message: 'Account already verified. ',
+							data: exist,
 						});
 					}
 				} else {

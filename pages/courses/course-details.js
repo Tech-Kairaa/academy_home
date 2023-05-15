@@ -2,14 +2,12 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Accordion } from 'react-bootstrap';
-import PageBanner from '../../src/components/PageBanner';
-import WellernAccordion from '../../src/components/WellernAccordion';
-import Layout from '../../src/layout/Layout';
-import CourseList from '../../utils/Courses';
+import PageBanner from '@/components/PageBanner';
+import WellernAccordion from '@/components/WellernAccordion';
+import Layout from '@/layouts/Layout';
+import CourseList from '@/utils/Courses';
 
-// const CourseDetails = ({ courseId }) => {
-const CourseDetails = () => {
-	let courseId = false;
+const CourseDetails = ({ courseId }) => {
 	const [active, setActive] = useState(false);
 	const onClick = (value) => {
 		setActive(value === active ? '' : value);
@@ -389,11 +387,11 @@ const CourseDetails = () => {
 };
 export default CourseDetails;
 
-// export async function getServerSideProps(context) {
-// 	let { cid } = context.query;
-// 	return {
-// 		props: {
-// 			courseId: cid,
-// 		},
-// 	};
-// }
+export async function getServerSideProps(context) {
+	let { cid } = context.query;
+	return {
+		props: {
+			courseId: cid,
+		},
+	};
+}

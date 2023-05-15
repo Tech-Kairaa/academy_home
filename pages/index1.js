@@ -4,7 +4,7 @@ import Layout from '../src/layout/Layout';
 
 import dynamic from 'next/dynamic';
 import Slider from 'react-slick';
-import Index1WorkStepSlider from '../src/components/slider/Index1WorkStepSlider';
+import Index1WorkStepSlider from '../src/components/slider/WorkSteps';
 import { index1EventWrap, index1Testimonial } from '../src/sliderProps';
 
 const Index1Isotope = dynamic(
