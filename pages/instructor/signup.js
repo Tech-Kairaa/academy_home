@@ -54,6 +54,7 @@ const Signup = () => {
 			const error = response.message;
 			updateRegister('!mailed');
 			setFailed(error);
+			console.log(response);
 		}
 	};
 
