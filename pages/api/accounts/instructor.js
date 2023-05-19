@@ -1,12 +1,13 @@
-import ConnectDB from 'lib/config/ConnectDB';
+import config from '@/config/dbConfig';
+import ConnectDB from '@/config/dbConnect';
 const bcrypt = require('bcryptjs');
 
 export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
-	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
+	const db = await ConnectDB(config.instructor._db);
 	const salt = bcrypt.genSaltSync(10);
-	const collection = db.collection(process.env.TABLE_FOR_INSTRUCTOR);
+	const collection = db.collection(config.instructor.users);
 
 	switch (method) {
 		case 'POST':
@@ -15,7 +16,6 @@ export default async function handler(req, res) {
 				email: body.email,
 				password: bcrypt.hashSync(body.password, salt),
 				verified: 0,
-				registered: Date.now(),
 			};
 			try {
 				const exist = await collection.findOne({ email: user.email });

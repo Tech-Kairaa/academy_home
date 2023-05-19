@@ -177,7 +177,7 @@ const Menus = () => {
 			{!auth && (
 				<li className={activeItem === '/become-instructor' ? 'current' : ''}>
 					<Link href='/instructor'>
-						<a>Become an instructor</a>
+						<a>Instructor</a>
 					</Link>
 				</li>
 			)}

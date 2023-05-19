@@ -1,4 +1,5 @@
-import ConnectDB from 'lib/config/ConnectDB';
+import config from '@/config/dbConfig';
+import ConnectDB from '@/config/dbConnect';
 import ActivationLink from 'src/Templates/ActivationLink';
 const nodemailer = require('nodemailer');
 const JWT = require('jsonwebtoken');
@@ -6,13 +7,14 @@ const JWT = require('jsonwebtoken');
 export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
-	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
-	let collection = null;
+	let [db, collection] = [null, null];
 
 	if (body.userType === 'instructor') {
-		collection = db.collection(process.env.TABLE_FOR_INSTRUCTOR);
+		db = await ConnectDB(config.instructor._db);
+		collection = db.collection(config.instructor.users);
 	} else {
-		collection = db.collection(process.env.TABLE_FOR_LEARNER);
+		db = await ConnectDB(config.learner._db);
+		collection = db.collection(config.learner.users);
 	}
 
 	const token = JWT.sign({ userId: body.userId }, process.env.SALT_CODE, {

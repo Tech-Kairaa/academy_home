@@ -74,7 +74,8 @@ const Signup = () => {
 	return (
 		<>
 			<Head>
-				<title>Create Account | Kairaa Blockchain Academy</title>
+				<title>Signup | Kairaa Blockchain Academy</title>
+				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer newsletter={false} topbar={false}>
 				<div className='pt-100'></div>

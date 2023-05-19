@@ -26,9 +26,14 @@ export default class WorkSteps extends Component {
 						</div>
 					</div>
 					<div className='col-lg-4 text-end'>
-						<Link href='/instructor/signup' className='theme-btn'>
-							Register now
-						</Link>
+						<div className='slider-arrow-btns text-lg-right mt-10'>
+							<button onClick={this.previous} className='work-prev'>
+								<i className='fas fa-angle-left' />
+							</button>
+							<button onClick={this.next} className='work-next'>
+								<i className='fas fa-angle-right' />
+							</button>
+						</div>
 					</div>
 				</div>
 				<Slider
@@ -77,14 +82,6 @@ export default class WorkSteps extends Component {
 						</div>
 					</div>
 				</Slider>
-				<div className='slider-arrow-btns text-lg-right mt-10'>
-					<button onClick={this.previous} className='work-prev'>
-						<i className='fas fa-angle-left' />
-					</button>
-					<button onClick={this.next} className='work-next'>
-						<i className='fas fa-angle-right' />
-					</button>
-				</div>
 			</Fragment>
 		);
 	}

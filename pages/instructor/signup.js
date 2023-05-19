@@ -6,7 +6,9 @@ import { useForm } from 'react-hook-form';
 import Head from 'next/head';
 import axios from 'axios';
 import Image from 'next/image';
+import WorkSteps from '@/components/slider/WorkSteps';
 import { loadState, removeState, saveState } from 'lib/providers/storage';
+import PageBanner from '@/components/PageBanner';
 
 const Signup = () => {
 	const [registerState, updateRegister] = useState(null);
@@ -71,20 +73,77 @@ const Signup = () => {
 	return (
 		<>
 			<Head>
-				<title>Create Account | Kairaa Blockchain Academy</title>
+				<title>Become An Instructor | Kairaa Blockchain Academy</title>
 			</Head>
 			<Layout header footer newsletter={false} topbar={false}>
-				<div className='pt-100'></div>
-				<div className=' py-100 mb-100'>
+				<PageBanner pageName={'banner'} pageTitle={'Become An Instructor'} />
+				{/* Benefit Work Process Start */}
+				<section className='benefit-work-process rel z-2 pt-120 rpt-90 pb-70'>
+					<div className='container'>
+						<div className='section-title text-center mb-50'>
+							<span className='sub-title-two'>
+								Passionate Blockchain Instructor
+							</span>
+							<h2> for Innovative Education</h2>
+						</div>
+						<div className='row align-items-center justify-content-center'>
+							<div className='col-lg-5'>
+								<div className='benefit-image rmb-75 wow fadeInRight delay-0-2s'>
+									<img src='/assets/images/about/benefit.jpg' alt='benefit' />
+								</div>
+							</div>
+							<div className='col-lg-6'>
+								<div className='benefit-work-steps wow fadeInLeft delay-0-2s'>
+									<div className='work-step-item'>
+										<span className='number'>01</span>
+										<div className='content'>
+											<p className='lead'>
+												Blockchain Expert with In-Depth Knowledge of Technology
+												and Applications
+											</p>
+										</div>
+									</div>
+									<div className='work-step-item'>
+										<span className='number'>02</span>
+										<div className='content'>
+											<p className='lead'>
+												Experience developing and delivering online courses or
+												workshops
+											</p>
+										</div>
+									</div>
+									<div className='work-step-item'>
+										<span className='number'>03</span>
+										<div className='content'>
+											<p className='lead'>
+												Strong communication skills and the ability to explain
+												complex concepts in simple terms
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				{/* Benefit Work Process End */}
+				{/* Work Process Section Start */}
+				<section className='work-process-section bg-white rel z-1 pt-60 rpt-100 pb-100'>
+					<div className='container'>
+						<WorkSteps />
+					</div>
+				</section>
+				{/* Work Process Section End */}
+				<div className='pb-100 mb-100'>
 					<div className='container'>
 						<div className='row justify-content-center'>
-							<div className='col-lg-8 contact-form'>
+							<div className='col-lg-12 contact-form'>
 								{(registerState === null || registerState === 'failed') && (
 									<form
 										onSubmit={handleSubmit(onSubmit)}
 										className='p-50 z-1 rel'
 									>
-										<div className='section-title text-center mb-30'>
+										<div className='section-title text-center my-30'>
 											<span className='sub-title-two'>
 												Register your account to
 											</span>
@@ -92,8 +151,8 @@ const Signup = () => {
 												Become an <span> Instructor</span>
 											</h2>
 										</div>
-										<div className='row pt-25 justify-content-center'>
-											<div className='col-md-6'>
+										<div className='row p-30 justify-content-center'>
+											<div className='col-md-6 col-lg-5'>
 												<div className='form-group'>
 													<input
 														type='text'
@@ -124,7 +183,7 @@ const Signup = () => {
 														)}
 												</div>
 											</div>
-											<div className='col-md-6'>
+											<div className='col-md-6 col-lg-5'>
 												<div className='form-group'>
 													<input
 														type='email'
@@ -149,7 +208,7 @@ const Signup = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-md-6'>
+											<div className='col-md-6 col-lg-5'>
 												<div className='form-group'>
 													<input
 														type='password'

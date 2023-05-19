@@ -1,4 +1,5 @@
-import ConnectDB from 'lib/config/ConnectDB';
+import config from '@/config/dbConfig';
+import ConnectDB from '@/config/dbConnect';
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
 
@@ -6,9 +7,9 @@ export default async function handler(req, res) {
 	const { method } = req;
 	const body = req.body;
 	const query = req.query;
-	const db = await ConnectDB(process.env.DB_FOR_ACCOUNTS);
+	const db = await ConnectDB(config.learner._db);
 	const salt = bcrypt.genSaltSync(10);
-	const collection = db.collection(process.env.TABLE_FOR_LEARNER);
+	const collection = db.collection(config.learner.users);
 
 	switch (method) {
 		case 'POST':
@@ -17,7 +18,6 @@ export default async function handler(req, res) {
 				email: body.email,
 				password: bcrypt.hashSync(body.password, salt),
 				verified: 0,
-				registered: Date.now(),
 			};
 			try {
 				const exist = await collection.findOne({ email: user.email });

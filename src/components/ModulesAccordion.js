@@ -1,5 +1,5 @@
 import { Accordion } from "react-bootstrap";
-const WellernAccordion = ({ title, eventName, children, active, onClick }) => {
+const ModulesAccordion = ({ title, eventName, children, active, onClick }) => {
   return (
     <div className="card">
       <Accordion.Toggle
@@ -15,4 +15,4 @@ const WellernAccordion = ({ title, eventName, children, active, onClick }) => {
     </div>
   );
 };
-export default WellernAccordion;
+export default ModulesAccordion;

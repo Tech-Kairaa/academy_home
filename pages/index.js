@@ -14,7 +14,8 @@ const Index = () => {
 	return (
 		<>
 			<Head>
-				<title>Kairaa Blockchain Academy</title>
+				<title>Learn Blockchain in Kairaa Blockchain Academy</title>
+				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer newsletter={true} topbar={true}>
 				<section className='hero-section-three bg-lighter rel z-1 pt-150 rpt-150'>
