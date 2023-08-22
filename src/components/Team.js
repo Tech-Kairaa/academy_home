@@ -15,7 +15,7 @@ const Team = () => {
 				</div>
 				<div className='row text-center'>
 					<div className='col-xl-3 col-sm-6 mb-5'>
-						<div className='bg-white rounded shadow-lg py-40 px-4'>
+						<div className='bg-white border-thin rounded shadow-sm hover-shadow-md py-40 px-4'>
 							<img
 								src='https://bootdey.com/img/Content/avatar/avatar8.png'
 								alt=''
@@ -46,7 +46,7 @@ const Team = () => {
 						</div>
 					</div>
 					<div className='col-xl-3 col-sm-6 mb-5'>
-						<div className='bg-white rounded shadow-lg py-40 px-4 '>
+						<div className='bg-white border-thin rounded shadow-sm hover-shadow-md py-40 px-4 '>
 							<img
 								src='https://bootdey.com/img/Content/avatar/avatar6.png'
 								alt=''
@@ -77,7 +77,7 @@ const Team = () => {
 						</div>
 					</div>
 					<div className='col-xl-3 col-sm-6 mb-5'>
-						<div className='bg-white rounded shadow-lg py-40 px-4'>
+						<div className='bg-white border-thin rounded shadow-sm hover-shadow-md py-40 px-4'>
 							<img
 								src='https://bootdey.com/img/Content/avatar/avatar7.png'
 								alt=''
@@ -108,7 +108,7 @@ const Team = () => {
 						</div>
 					</div>
 					<div className='col-xl-3 col-sm-6 mb-5'>
-						<div className='bg-white rounded shadow-lg py-40 px-4'>
+						<div className='bg-white border-thin rounded shadow-sm hover-shadow-md py-40 px-4'>
 							<img
 								src='https://bootdey.com/img/Content/avatar/avatar2.png'
 								alt=''

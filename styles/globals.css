@@ -32,6 +32,10 @@
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1) !important;
 }
 
+.border-thin {
+	border: 0.2px solid #0001;
+}
+
 .navigation li.dropdown:hover > ul {
 	display: block;
 }
@@ -147,11 +151,29 @@ select {
 	padding: 11px 30px;
 }
 
-.contact-form,
-.checkout-form input:focus::placeholder,
-select:focus::placeholder,
-textarea:focus::placeholder {
-	color: #0004;
+input:focus::-webkit-input-placeholder {
+	color: #0003;
+}
+
+.otp-input {
+	display: block;
+	text-align: center;
+	font-size: 4rem;
+	border: 2px solid #0003;
+	border-style: dashed;
+	outline: none;
+	transition: border-color 0.2s;
+	letter-spacing: 20px;
+	padding: 0 !important;
+	color: #0008;
+	font-family: auto;
+}
+
+.otp-input:focus {
+	border-color: #007bff;
+}
+.otp-input::-webkit-input-placeholder {
+	color: #0003;
 }
 
 .contact-form,

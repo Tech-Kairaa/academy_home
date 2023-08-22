@@ -1,18 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
+import server from '@/providers/server';
+import { loadState } from '@/providers/storage';
+import { updateProfile } from '@/services/auth';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { stickyNav } from '../utils';
 import MobileHeader from './MobileHeader';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { loadState } from '@/providers/storage';
 
 const Header = ({ header, topbar }) => {
+	const dispatch = useDispatch();
 	useEffect(() => stickyNav(), []);
 	const [navToggle, setNavToggle] = useState(false);
-	const auth = useSelector((state) => state.auth.loginState);
 	const user = useSelector((state) => state.auth.userProfile);
 	const [profileCard, showCard] = useState(false);
+
+	const logout = async () => {
+		const isTrue = confirm('Do you want to logout?');
+		if (!isTrue) return;
+		try {
+			await server.get('/auth/logout/learner');
+			toast.success('Logged out safely');
+			router.push('/');
+		} catch (error) {
+			console.log(error);
+			toast.error(error?.response?.data?.message);
+		}
+	};
 
 	return (
 		<>
@@ -77,7 +93,7 @@ const Header = ({ header, topbar }) => {
 								</div>
 								{/* Menu Button */}
 								<div className='menu-btn-sidebar d-none d-md-flex align-items-center'>
-									{!auth && (
+									{!user && (
 										<>
 											<Link href='/learner/login'>
 												<a className='theme-btn style-one py-2 me-2'>LogIn</a>
@@ -88,7 +104,7 @@ const Header = ({ header, topbar }) => {
 										</>
 									)}
 
-									{auth === 'loggedIn' && (
+									{user && (
 										<>
 											<button
 												className='theme-btn style-one px-3'
@@ -136,9 +152,12 @@ const Header = ({ header, topbar }) => {
 												Dashboard
 											</a>
 										</Link>
-										<Link href='/learner/logout'>
-											<a className='theme-btn style-three w-100'>Logout</a>
-										</Link>
+										<button
+											onClick={logout}
+											className='theme-btn style-three mt-10 w-100'
+										>
+											Logout
+										</button>
 									</div>
 								</div>
 							)}

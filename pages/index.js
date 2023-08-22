@@ -8,11 +8,12 @@ import Team from '@/components/Team';
 import CourseGallery from '@/components/CourseGallery';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const Index = () => {
 	const auth = useSelector((state) => state.auth.loginState);
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>Learn Blockchain in Kairaa Blockchain Academy</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -384,10 +385,10 @@ const Index = () => {
 							</div>
 						</div>
 						<div className='row align-items-center'>
-							<div className='col-md-8'>
-								<div className='row mb-2'>
-									<div className='col-6'>
-										<div className='card px-4 pb-3 pt-3'>
+							<div className='col-12'>
+								<div className='row'>
+									<div className='col-4'>
+										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
 											<h2 className='sub-title-three my-1'>KAIT CRYPTO</h2>
 											<p className='mb-1'>
 												Kairaa has its own cryptocurrency, Name of KAIT. KAIT
@@ -401,8 +402,8 @@ const Index = () => {
 											</Link>
 										</div>
 									</div>
-									<div className='col-6'>
-										<div className='card px-4 pb-3 pt-3 shadow-lg'>
+									<div className='col-4'>
+										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
 											<h2 className='sub-title-three my-1'>KARAA EXCHANGE</h2>
 											<p className='mb-1'>
 												The Kairaa exchange is a trading platform. You can buy
@@ -415,10 +416,8 @@ const Index = () => {
 											</Link>
 										</div>
 									</div>
-								</div>
-								<div className='row mt-4'>
-									<div className='col-6'>
-										<div className='card px-4 pb-3 pt-3 shadow-lg'>
+									<div className='col-4'>
+										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
 											<h2 className='sub-title-three my-1'>KAIT APP</h2>
 											<p className='mb-1'>
 												KAIT App is a new and exciting staking app that allows
@@ -432,26 +431,11 @@ const Index = () => {
 											</Link>
 										</div>
 									</div>
-									<div className='col-6'>
-										<div className='card px-4 pb-3 pt-3'>
-											<h2 className='sub-title-three my-1'>KAIRAA NFT</h2>
-											<p className='mb-1'>
-												Get ready to unlock the transformative global potential
-												of digital art with NFT Kairaa! Marketplace.
-											</p>
-											<Link href='https://nftkairaa.com/'>
-												<a className='read-more'>
-													Buy assets <i className='fas fa-arrow-right' />
-												</a>
-											</Link>
-										</div>
-									</div>
 								</div>
 							</div>
-							<div className='col-md-4'>
+							<div className='col-12 mt-50'>
 								<div className='d-block d-lg-none mt-50'></div>
-								<div className='content'>
-									<h4>What is Kairaa?</h4>
+								<div className='content text-center'>
 									<p>
 										Kairaa provides blockchain-based and web 3.0-based services
 										to customers. It offers several blockchain-based products,
@@ -493,12 +477,12 @@ const Index = () => {
 										Kairaa offers a wide range of services to meet the needs of
 										its customers businesses.
 									</p>
+									<Link href='/#about'>
+										<a className='theme-btn my-15'>
+											Learn more <i className='fas fa-arrow-right' />
+										</a>
+									</Link>
 								</div>
-								<Link href='/#about'>
-									<a className='theme-btn my-15'>
-										Learn more <i className='fas fa-arrow-right' />
-									</a>
-								</Link>
 							</div>
 						</div>
 					</div>
@@ -678,7 +662,7 @@ const Index = () => {
 				</section>
 				{/* Blog Section End */}
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default Index;

@@ -8,30 +8,15 @@ import '@/assets/css/slick.min.css';
 import '@/assets/css/style.css';
 import { Provider } from 'react-redux';
 import store from '@/providers/store';
-import { Toaster } from 'react-hot-toast';
-import Authenticate from '@/components/Authenticate';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }) {
 	return (
 		<Fragment>
 			<Provider store={store}>
-				<Authenticate>
-					<Component {...pageProps} />
-				</Authenticate>
-				<Toaster
-					position='bottom-right'
-					toastOptions={{
-						duration: 2500,
-
-						success: {
-							className: 'text-bg-success',
-						},
-						error: {
-							className: 'text-bg-danger',
-						},
-					}}
-					containerClassName='mb-100 me-4'
-				/>
+				<Component {...pageProps} />
+				<ToastContainer position='bottom-left' />
 			</Provider>
 		</Fragment>
 	);

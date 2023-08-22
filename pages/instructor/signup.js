@@ -286,7 +286,7 @@ const Signup = () => {
 										</div>
 										<p className='lead mt-20 px-5'>
 											Click the following button to get activation link via your
-											email. After activation you can access your account
+											email. <br /> After activation you can access your account
 											properly.
 										</p>
 										{registerState === '!mailed' && (

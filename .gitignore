@@ -6,4 +6,4 @@ node_modules
 kairaa_acadamy.code-workspace
 package-lock.json
 .vscode/settings.json
-.env.local
+.env
