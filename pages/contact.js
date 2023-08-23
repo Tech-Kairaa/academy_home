@@ -6,7 +6,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import { useSelector } from 'react-redux';
 
 const ContactUs = () => {
-	const { name, email } = useSelector((state) => state.auth.userProfile);
+	const user = useSelector((state) => state.auth.userProfile);
 	return (
 		<ProtectedRoute>
 			<Head>
@@ -98,7 +98,7 @@ const ContactUs = () => {
 											id='full-name'
 											name='full-name'
 											className='form-control'
-											defaultValue={(name && name) || ''}
+											defaultValue={user?.name || ''}
 											placeholder='Full Name'
 											required
 										/>
@@ -111,7 +111,7 @@ const ContactUs = () => {
 											id='email-address'
 											name='email'
 											className='form-control'
-											defaultValue={(email && email) || ''}
+											defaultValue={user?.email || ''}
 											placeholder='Email Address'
 											required
 										/>
