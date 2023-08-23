@@ -9,8 +9,9 @@ import Cart from '@/components/courses/Cart';
 import Sidebar from '@/components/courses/Sidebar';
 import Layout from '@/layouts/Layout';
 import CourseList from '@/utils/Courses';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import Head from 'next/head';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const Courses = () => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
@@ -25,7 +26,7 @@ const Courses = () => {
 	const [cartEmpty, setCartEmpty] = useState(true);
 	const [showCart, setShowCart] = useState(false);
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>Courses | Kairaa Blockchain Academy</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -219,7 +220,7 @@ const Courses = () => {
 					</div>
 				)}
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default Courses;

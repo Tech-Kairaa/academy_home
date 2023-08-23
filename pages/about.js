@@ -7,11 +7,12 @@ import Layout from '../src/layout/Layout';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Head from 'next/head';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const About = () => {
 	const auth = useSelector((state) => state.auth.loginState);
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>About | Kairaa Blockchain Academy</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -187,7 +188,7 @@ const About = () => {
 				</section>
 				{/* Advertise Area End */}
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default About;

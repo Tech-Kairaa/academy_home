@@ -3,10 +3,11 @@ import Link from 'next/link';
 import PageBanner from '@/components/PageBanner';
 import Layout from '@/layouts/Layout';
 import Head from 'next/head';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const BecomeAnInstructor = () => {
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>Instructor | Kairaa Blockchain Academy</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -117,7 +118,7 @@ const BecomeAnInstructor = () => {
 					</div>
 				</section>
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default BecomeAnInstructor;

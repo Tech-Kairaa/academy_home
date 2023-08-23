@@ -2,9 +2,13 @@
 import PageBanner from '../src/components/PageBanner';
 import Layout from '../src/layout/Layout';
 import Head from 'next/head';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { useSelector } from 'react-redux';
+
 const ContactUs = () => {
+	const { name, email } = useSelector((state) => state.auth.userProfile);
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>Contact | Kairaa Blockchain Academy</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -94,9 +98,9 @@ const ContactUs = () => {
 											id='full-name'
 											name='full-name'
 											className='form-control'
-											defaultValue=''
+											defaultValue={(name && name) || ''}
 											placeholder='Full Name'
-											required=''
+											required
 										/>
 									</div>
 								</div>
@@ -107,9 +111,9 @@ const ContactUs = () => {
 											id='email-address'
 											name='email'
 											className='form-control'
-											defaultValue=''
+											defaultValue={(email && email) || ''}
 											placeholder='Email Address'
-											required=''
+											required
 										/>
 									</div>
 								</div>
@@ -165,7 +169,7 @@ const ContactUs = () => {
 					</div>
 				</div>
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default ContactUs;

@@ -7,6 +7,7 @@ import ModulesAccordion from '@/components/ModulesAccordion';
 import Layout from '@/layouts/Layout';
 import Head from 'next/head';
 import CourseList from '@/utils/Courses';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const CourseDetails = ({ courseId }) => {
 	const [active, setActive] = useState(false);
@@ -17,7 +18,7 @@ const CourseDetails = ({ courseId }) => {
 	let course = CourseList.find((id) => id.cid === courseId);
 
 	return (
-		<>
+		<ProtectedRoute>
 			<Head>
 				<title>{course.title}</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
@@ -389,7 +390,7 @@ const CourseDetails = ({ courseId }) => {
 					</section>
 				)}
 			</Layout>
-		</>
+		</ProtectedRoute>
 	);
 };
 export default CourseDetails;

@@ -1,4 +1,8 @@
+import { useSelector } from 'react-redux';
+
 const Newsletters = () => {
+	const user = useSelector((state) => state.auth.userProfile);
+
 	return (
 		<div className='footer-newsletter br-10 bg-lighter'>
 			<div className='row'>
@@ -33,8 +37,7 @@ const Newsletters = () => {
 									<input
 										type='radio'
 										className='custom-control-input'
-										id='hero-wekly'
-										name='example1'
+										name='daily'
 										defaultChecked
 									/>
 									&nbsp; Regular Updates
@@ -43,8 +46,7 @@ const Newsletters = () => {
 									<input
 										type='radio'
 										className='custom-control-input'
-										id='hero-monthly'
-										name='example1'
+										name='weekly'
 									/>
 									&nbsp; Weekly Updates
 								</div>
@@ -57,7 +59,8 @@ const Newsletters = () => {
 									id='email'
 									type='email'
 									placeholder='Enter Email'
-									required=''
+									defaultValue={user?.email || ''}
+									required
 								/>
 								<div className='d-sm-block d-lg-none mt-20'></div>
 								<button type='submit' className='theme-btn style-two'>
