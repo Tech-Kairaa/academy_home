@@ -53,7 +53,7 @@ const Checkout = () => {
 											<input
 												type='text'
 												className='form-control'
-												value={userProfile.name}
+												value={userProfile?.name || ''}
 												disabled
 											/>
 										</div>
@@ -64,7 +64,7 @@ const Checkout = () => {
 											<input
 												type='email'
 												className='form-control'
-												value={userProfile.email}
+												value={userProfile?.email  || ''}
 												disabled
 											/>
 										</div>
