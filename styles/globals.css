@@ -1,22 +1,15 @@
 @import 'https: //fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&family=Oswald:wght@300;400;500;600;700&display=swap';
 
-.alert-message {
-	position: fixed;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: #333;
-	color: #fff;
-	padding: 10px;
-	border-radius: 5px;
-}
-
 .text-theme-green {
 	color: #00cc83 !important;
 }
 
 .text-theme-blue {
 	color: #204ecf !important;
+}
+
+.overflow-y-scroll {
+	overflow-y: scroll !important;
 }
 
 .shadow-md {
@@ -99,10 +92,6 @@ img.mfp-img {
 	color: #ff344f !important;
 }
 
-/* span.current {
-  color: unset !important;
-} */
-
 /* Slidert */
 .main-slider .slider-item {
 	opacity: 0;
@@ -152,27 +141,6 @@ select {
 }
 
 input:focus::-webkit-input-placeholder {
-	color: #0003;
-}
-
-.otp-input {
-	display: block;
-	text-align: center;
-	font-size: 4rem;
-	border: 2px solid #0003;
-	border-style: dashed;
-	outline: none;
-	transition: border-color 0.2s;
-	letter-spacing: 20px;
-	padding: 0 !important;
-	color: #0008;
-	font-family: auto;
-}
-
-.otp-input:focus {
-	border-color: #007bff;
-}
-.otp-input::-webkit-input-placeholder {
 	color: #0003;
 }
 
@@ -229,4 +197,60 @@ input:focus::-webkit-input-placeholder {
 
 .header-upper {
 	box-shadow: 0px 0px 30px 0px rgba(87, 95, 245, 0.1) !important;
+}
+
+.loader {
+	width: 215px;
+	height: 220px;
+	background: linear-gradient(0.25turn, transparent, #fff, transparent),
+		linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+		linear-gradient(#ddd, #ddd);
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-size: 215px 220px, 215px 130px, 100px 15px, 150px 15px;
+	background-position: -215px 0, 0 0, 15px 150px, 15px 180px;
+	animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+	to {
+		background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+	}
+}
+
+.course-description h2,
+h1,
+h3 {
+	font-size: 2rem !important;
+	color: #0009;
+}
+
+.course-description p,
+li {
+	font-size: 1.2rem !important;
+	color: #0009;
+}
+
+.badge {
+	padding: 6px 15px !important;
+}
+
+.accordion-button:not(.collapsed) {
+	background-color: #fafafa !important;
+	color: #0009 !important;
+	font-size: 1.3rem !important;
+}
+
+.accordion-button {
+	color: #0009 !important;
+	font-size: 1.3rem !important;
+	outline: none !important;
+}
+
+.accordion-button:focus {
+	outline: none !important;
+}
+
+.bi-currency-rupee {
+	font-size: 2rem;
 }

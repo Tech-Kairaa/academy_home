@@ -19,20 +19,22 @@ const LogIn = () => {
 			const response = await server.post('/auth/login', {
 				email,
 				password,
+				role: 'learner',
 			});
 
 			const verified = response?.data?.verified;
 
-			if (!verified) {
+			if (verified === false || verified === 'false') {
 				toast.warning('Account not activated');
 				router.push('/learner/activate');
+			} else {
+				toast.success('Successfully logged in');
+				router.push('/');
 			}
-
-			toast.success('Successfully logged in');
-			router.push('/');
+			
 		} catch (error) {
 			console.log(error);
-			setError(error?.response?.data?.message);
+			toast.error(error?.response?.data?.message);
 		}
 	};
 

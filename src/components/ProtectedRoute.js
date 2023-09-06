@@ -1,17 +1,28 @@
-import useUser from 'lib/hooks/useUser';
 import { useDispatch } from 'react-redux';
+import useUser from '@/hooks/useUser';
 import { updateProfile } from '@/services/auth';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = ({ children, redirectOnLogout }) => {
+	const router = useRouter();
 	const dispatch = useDispatch();
 	const { data: user, error } = useUser();
 
-	if (error) console.log(error?.response?.data?.message);
+	useEffect(() => {
+		try {
+			if (error) {
+				console.log(error?.response?.data?.message);
+				redirectOnLogout && router.push('/');
+			}
 
-	if (user) dispatch(updateProfile(user));
+			if (user) {
+				dispatch(updateProfile(user));
+			}
+		} catch (error) {}
+	}, [error, user, router, dispatch, redirectOnLogout]);
 
-	return props.children;
+	return children;
 };
 
 export default ProtectedRoute;

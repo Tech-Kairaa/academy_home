@@ -1,115 +1,129 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
-import { useState } from 'react';
-import { Accordion } from 'react-bootstrap';
-import PageBanner from '@/components/PageBanner';
-import ModulesAccordion from '@/components/ModulesAccordion';
+import { useEffect, useState } from 'react';
 import Layout from '@/layouts/Layout';
 import Head from 'next/head';
-import CourseList from '@/utils/Courses';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import { useCoursesById } from '@/hooks/useCourses';
+import { useRouter } from 'next/router';
+import Accordion from '@/components/elements/Accordion';
+import UseImage from '@/components/courses/UseImage';
+import moment from 'moment';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
-const CourseDetails = ({ courseId }) => {
-	const [active, setActive] = useState(false);
-	const onClick = (value) => {
-		setActive(value === active ? '' : value);
+export async function getServerSideProps(context) {
+	const { ref } = context.query;
+	return { props: { cid: ref } };
+}
+
+const CourseDetails = ({ cid }) => {
+	const router = useRouter();
+	const { data: course, error } = useCoursesById(cid);
+	const userProfile = useSelector((state) => state.auth.userProfile);
+
+	if (error) router.push('/courses');
+
+	const handlePlayButton = () => {
+		toast.info('Play after purchased!');
 	};
 
-	let course = CourseList.find((id) => id.cid === courseId);
+	const [scrollY, setScrollY] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setScrollY(window.scrollY);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	const countVideos = (data) => {
+		let videoCount = 0;
+
+		data.forEach((item) => {
+			if (item.videos) {
+				videoCount += item.videos.length;
+			}
+
+			if (item.sections) {
+				videoCount += countVideos(item.sections);
+			}
+		});
+
+		return videoCount;
+	};
 
 	return (
 		<ProtectedRoute>
 			<Head>
-				<title>{course.title}</title>
+				<title>{course?.title}</title>
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer>
-				<PageBanner pageName='course_details' pageTitle={'Course Details'} />
+				{/* <PageBanner pageName='course_details' pageTitle={course?.title} /> */}
 				{course && (
-					<section className='course-details-area pt-130 rpt-100 pb-75'>
+					<section className='mt-150 pb-100 position-relative'>
 						<div className='container'>
 							<div className='row large-gap'>
-								<div className='col-lg-8'>
+								<div className='col-8'>
 									<div className='course-details-content'>
-										<div className='course-header'>
-											<span className='category'>
-												<em className='fa fa-tag mr-2'></em>
-												{course.tag}
+										<UseImage
+											cid={cid}
+											filename={course?.images.banner}
+											className='w-100 mb-30 rounded-3'
+										/>
+										<div className='d-inline-flex gap-3 mb-30'>
+											<span className='badge rounded-pill text-bg-secondary'>
+												Last updated {moment(course?.updatedAt).fromNow()}
 											</span>
-											<span className='off'>30% off</span>
-											<div className='ratting'>
-												<i className='fas fa-star' />
-												<i className='fas fa-star' />
-												<i className='fas fa-star' />
-												<i className='fas fa-star' />
-												<i className='fas fa-star-half' />
-												<span>(50)</span>
-											</div>
+											<span className='badge rounded-pill text-bg-primary'>
+												40% OFF
+											</span>
 										</div>
-										<h2>{course.title}</h2>
-										{/* <ul className='author-date-enroll'>
-										<li>
-											<img
-												src='/assets/images/coachs/couse-author.jpg'
-												alt='Authro'
-											/>
-											<h6>Donald J. Miller</h6>
-										</li>
-										<li>
-											<i className='fas fa-cloud-upload-alt' /> Last Update
-											February 15, 2022
-										</li>
-										<li>
-											<i className='far fa-user' /> 25 Enrolled
-										</li>
-									</ul> */}
+										<h2>{course?.title}</h2>
+										<h4 className='text-secondary fw-normal'>
+											{course?.subtitle}
+										</h4>
 										<div
 											dangerouslySetInnerHTML={{ __html: course.description }}
+											className='pt-50 course-description'
 										/>
-										{/*<h3 className='mt-40'>Requirements</h3>
-									 <ul className='list-style-two mb-45'>
-										<li>
-											DevTools Debugging Tips And Shortcuts (Chrome, Firefox,
-											Edge)
-										</li>
-										<li>
-											Front-End Performance Checklist 2021 (PDF, Apple Pages, MS
-											Word)
-										</li>
-										<li>
-											A Smashing Guide To The World Of Search Engine
-											Optimization
-										</li>
-									</ul> */}
 
-										<h3 className='mt-4'>Detailed Course Content</h3>
-										<Accordion
-											className='faq-accordion pt-10 pb-50 wow fadeInUp delay-0-2s'
-											id='course-faq'
-											// defaultActiveKey='collapse0'
-										>
-											{course.modules.map((item, index) => (
-												<ModulesAccordion
-													eventName={`collapse${index}`}
-													title={item.title}
-													active={active}
-													onClick={() => onClick(`collapse${index}`)}
-													key={index}
-												>
-													<ul className='course-video-list'>
-														{item.topics.map((topic, index) => (
-															<li
-																className='mfp-iframe course-video-play'
-																key={index}
-															>
-																<span className='far fa-play-circle mr-4' />
-																<span className='title'>{topic}</span>
-															</li>
+										<h3 className='mt-4'>Course content</h3>
+										<div className='mt-30'>
+											<div className='d-inline-flex gap-3 mb-30'>
+												<span className='badge rounded-pill text-bg-secondary'>
+													Sections : {course?.content.length}
+												</span>
+												<span className='badge rounded-pill text-bg-secondary'>
+													Videos : {countVideos(course?.content)}
+												</span>
+											</div>
+											<Accordion>
+												{course?.content.map((section, index) => (
+													<Accordion.Item title={section.title} key={index}>
+														{section?.videos.map((video, index) => (
+															<ul key={index}>
+																<li className='d-flex justify-content-between align-items-center py-2'>
+																	{video.title}
+																	<button
+																		className='bg-transparent'
+																		onClick={handlePlayButton}
+																	>
+																		<em className='bi bi-play-circle'></em>
+																	</button>
+																</li>
+															</ul>
 														))}
-													</ul>
-												</ModulesAccordion>
-											))}
-										</Accordion>
+													</Accordion.Item>
+												))}
+											</Accordion>
+										</div>
 
 										{/* <h3>Student Feedback</h3>
 									<div className='student-feedback pt-10 wow fadeInUp delay-0-2s'>
@@ -219,169 +233,70 @@ const CourseDetails = ({ courseId }) => {
 									</div>*/}
 									</div>
 								</div>
-								<div className='col-lg-4'>
-									<div className='course-sidebar rmt-75'>
-										<div className='widget widget-course-details wow fadeInUp delay-0-2s'>
-											<div className='widget-video'>
-												<img
-													src={`/assets/images/courses/${course.image}`}
-													alt='Course Details'
-												/>
-												<a href='#' className='mfp-iframe youtube-video-play'>
-													<i className='fas fa-play' />
-												</a>
-											</div>
-											<div className='price-off'>
-												<span className='price'>13,000</span>
-												<span className='off'>30% off</span>
-											</div>
-											<ul className='course-details-list mb-25'>
-												<li>
-													<i className='far fa-file-alt' />
-													<span>Course Level</span> <b>Beginner</b>
-												</li>
-												<li>
-													<i className='far fa-clock' /> <span>Duration</span>
-													<b>{course.duration}</b>
-												</li>
-												<li>
-													<i className='far fa-play-circle' />
-													<span>Lectures</span> <b>{course.totalModules}</b>
-												</li>
-												<li>
-													<i className='fas fa-globe' /> <span>Language</span>
-													<b>English</b>
-												</li>
-											</ul>
-											<Link href='/contact'>
-												<a className='theme-btn'>
-													add to cart <i className='fas fa-arrow-right' />
-												</a>
-											</Link>
+								<div className='col-4'>
+									<div
+										className='card position-fixed border-light'
+										style={
+											scrollY > 1900 ? { bottom: '32rem' } : { top: '9.2rem' }
+										}
+									>
+										<div className='position-relative'>
+											<UseImage
+												cid={cid}
+												filename={course?.images.thumbnail}
+												className='img-fluid rounded-top-3 w-100'
+											/>
+											<button
+												className='bi bi-play-circle-fill fs- bg-transparent rounded-circle text-white position-absolute start-0 end-0 top-0 bottom-0 display-2'
+												onClick={handlePlayButton}
+											></button>
 										</div>
-										<div className='widget widget-menu wow fadeInUp delay-0-2s'>
-											<h4 className='widget-title'>Category</h4>
-											<ul>
-												<li>
-													<Link href='/course-list'>
-														<a>Business Coach </a>
-													</Link>{' '}
-													<span>(25)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>Life Coach </a>
-													</Link>{' '}
-													<span>(07)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>Health Coach </a>
-													</Link>{' '}
-													<span>(12)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>Web Design </a>
-													</Link>{' '}
-													<span>(55)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>Web Development </a>
-													</Link>{' '}
-													<span>(14)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>SEO Optimizations </a>
-													</Link>{' '}
-													<span>(30)</span>
-												</li>
-												<li>
-													<Link href='/course-list'>
-														<a>Digital Analysis </a>
-													</Link>{' '}
-													<span>(18)</span>
-												</li>
-											</ul>
-										</div>
-										<div className='widget widget-recent-courses wow fadeInUp delay-0-2s'>
-											<h4 className='widget-title'>Recent Courses</h4>
-											<ul>
-												<li>
-													<div className='image'>
-														<img
-															src='/assets/images/widgets/course1.jpg'
-															alt='Course'
-														/>
-													</div>
-													<div className='content'>
-														<h6>
-															<Link href='/course-details'>
-																How to Learn Basic Web (UI) Design
-															</Link>
-														</h6>
-														<span>
-															By <Link href='/course-grid'>Williams</Link>
-														</span>
-													</div>
-												</li>
-												<li>
-													<div className='image'>
-														<img
-															src='/assets/images/widgets/course2.jpg'
-															alt='Course'
-														/>
-													</div>
-													<div className='content'>
-														<h6>
-															<Link href='/course-details'>
-																How to Learn Basic Web Development
-															</Link>
-														</h6>
-														<span>
-															By <Link href='/course-grid'>Somalia</Link>
-														</span>
-													</div>
-												</li>
-												<li>
-													<div className='image'>
-														<img
-															src='/assets/images/widgets/course3.jpg'
-															alt='Course'
-														/>
-													</div>
-													<div className='content'>
-														<h6>
-															<Link href='/course-details'>
-																How to Learn Basic (SEO) Marketing
-															</Link>
-														</h6>
-														<span>
-															By <Link href='/course-grid'>Blanchard</Link>
-														</span>
-													</div>
-												</li>
-												<li>
-													<div className='image'>
-														<img
-															src='/assets/images/widgets/course4.jpg'
-															alt='Course'
-														/>
-													</div>
-													<div className='content'>
-														<h6>
-															<Link href='/course-details'>
-																Business Strategy Managements
-															</Link>
-														</h6>
-														<span>
-															By <Link href='/course-grid'>Johnson</Link>
-														</span>
-													</div>
-												</li>
-											</ul>
+										<div className='card-body shadow rounded-3'>
+											<div className='d-flex justify-content-between align-items-center'>
+												<h5 className='card-title text-theme-green fs-1 d-flex flex-column'>
+													<span>
+														<em className='bi bi-currency-rupee'></em>
+														{(
+															course?.pricing.price -
+															course?.pricing.price *
+																(40 / 100).toLocaleString('en-US')
+														).toFixed(0)}
+													</span>
+												</h5>
+												<span className='text-secondary fs-5'>
+													<em className='bi bi-currency-rupee fs-6'></em>
+													<strike>
+														{course?.pricing.price.toLocaleString('en-US')}
+													</strike>{' '}
+													40% off
+												</span>
+											</div>
+											<div className='mb-20'>
+												<ul className='text-capitalize list-group list-group-flush'>
+													<li className='list-group-item d-flex justify-content-between align-items-center'>
+														Level <span>{course?.level}</span>
+													</li>
+													<li className='list-group-item d-flex justify-content-between align-items-center'>
+														Language <span>{course?.language}</span>
+													</li>
+													<li className='list-group-item d-flex justify-content-between align-items-center'>
+														Sections <span>{course?.content.length}</span>
+													</li>
+												</ul>
+											</div>
+											{userProfile ? (
+												<Link href={`/purchase/checkout?ref=${course?.id}`}>
+													<a className='theme-btn style-two py-3 w-100'>
+														Proceed to checkout
+													</a>
+												</Link>
+											) : (
+												<Link href='/learner/login'>
+													<a className='theme-btn style-two py-3 w-100'>
+														Proceed to checkout
+													</a>
+												</Link>
+											)}
 										</div>
 									</div>
 								</div>
@@ -394,12 +309,3 @@ const CourseDetails = ({ courseId }) => {
 	);
 };
 export default CourseDetails;
-
-export async function getServerSideProps(context) {
-	let { cid } = context.query;
-	return {
-		props: {
-			courseId: cid,
-		},
-	};
-}

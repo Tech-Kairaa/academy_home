@@ -6778,6 +6778,7 @@ h6,
 
 .coach-image img {
 	width: 100%;
+	padding: 1px;
 }
 
 .coach-image .category {
@@ -6791,6 +6792,7 @@ h6,
 	padding: 3px 15px 1px;
 	text-transform: uppercase;
 	background: #204ecf;
+	border: 1px solid #0001;
 }
 
 .coach-content {
@@ -6798,6 +6800,12 @@ h6,
 	position: relative;
 	padding: 25px 30px;
 	margin: -50px 0 0;
+	transition-duration: 0.5s;
+	border: 1px solid;
+	border: 1px solid #0001;
+}
+
+.coach-content:hover {
 	-webkit-box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 	box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 }
@@ -7639,6 +7647,7 @@ h6,
 
 .coach-item-three .image img {
 	width: 100%;
+	border-radius: 0.6rem;
 }
 
 .coach-item-three .image .price {
@@ -7663,6 +7672,7 @@ h6,
 	transition: 0.5s;
 	background: white;
 	padding: 25px 30px 30px;
+	border-radius: 0.6rem;
 }
 
 @media only screen and (max-width: 375px) {
@@ -7850,7 +7860,7 @@ h6,
 	padding-bottom: 8px;
 }
 
-.benefit-image img{
+.benefit-image img {
 	border-radius: 10px;
 }
 
@@ -7883,19 +7893,15 @@ h6,
 } */
 
 @media only screen and (max-width: 991px) {
-	
 }
 
 @media only screen and (max-width: 991px) and (max-width: 575px) {
-	
 }
 
 @media only screen and (max-width: 575px) {
-	
 }
 
 @media only screen and (max-width: 575px) {
-	
 }
 
 /*******************************************************/
@@ -13673,8 +13679,6 @@ blockquote .blockquote-footer:before {
 	transition: all 0.3s;
 	font-size: 0.9rem;
 }
-
-
 
 .social-link:hover {
 	color: #204ecf;

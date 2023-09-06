@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import server from '@/providers/server';
 import { loadState } from '@/providers/storage';
-import { updateProfile } from '@/services/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { stickyNav } from '../utils';
 import MobileHeader from './MobileHeader';
 
 const Header = ({ header, topbar }) => {
-	const dispatch = useDispatch();
+	const router = useRouter();
 	useEffect(() => stickyNav(), []);
 	const [navToggle, setNavToggle] = useState(false);
 	const user = useSelector((state) => state.auth.userProfile);
@@ -23,7 +22,7 @@ const Header = ({ header, topbar }) => {
 		try {
 			await server.get('/auth/logout/learner');
 			toast.success('Logged out safely');
-			router.push('/');
+			router.reload();
 		} catch (error) {
 			console.log(error);
 			toast.error(error?.response?.data?.message);
@@ -173,7 +172,6 @@ const Header = ({ header, topbar }) => {
 export default Header;
 
 const Menus = () => {
-	const auth = useSelector((state) => state.auth.loginState);
 	const router = useRouter();
 	const [activeItem, setActiveItem] = useState(router.asPath);
 	return (
@@ -193,13 +191,6 @@ const Menus = () => {
 					<a>Courses</a>
 				</Link>
 			</li>
-			{!auth && (
-				<li className={activeItem === '/become-instructor' ? 'current' : ''}>
-					<Link href='/instructor'>
-						<a>Instructor</a>
-					</Link>
-				</li>
-			)}
 
 			<li className={activeItem === '/contact' ? 'current' : ''}>
 				<Link href='/contact'>

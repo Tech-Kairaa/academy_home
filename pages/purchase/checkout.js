@@ -1,69 +1,35 @@
+/* eslint-disable @next/next/no-img-element */
 import { useSelector } from 'react-redux';
 import PageBanner from '@/components/PageBanner';
-import Address from '@/components/purchase/Address';
-// import Items from '@/components/purchase/Items';
-import Profile from '@/components/purchase/Profile';
+import Items from '@/components/purchase/Items';
 import Layout from '@/layouts/Layout';
+import { useCourseList } from '@/hooks/useCourses';
 import Head from 'next/head';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
+const BillingCard = dynamic(() => import('@/components/purchase/Billing'), {
+	ssr: false,
+});
 
 const Checkout = () => {
+	const userProfile = useSelector((state) => state.auth.userProfile);
 	const cartItems = useSelector((state) => state.cart.cartItems);
-	const [amount, setAmount] = useState(1);
+	const { data: courses } = useCourseList();
 
-	const initializeRazorpay = () => {
-		return new Promise((resolve) => {
-			const script = document.createElement('script');
-			script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+	const [country, setCountry] = useState('');
+	const [region, setRegion] = useState('');
 
-			script.onload = () => {
-				resolve(true);
-			};
-			script.onerror = () => {
-				resolve(false);
-			};
-
-			document.body.appendChild(script);
-		});
+	const handleCountryChange = (val) => {
+		setCountry(val);
+		setRegion('');
 	};
 
-	const makePayment = async () => {
-		const res = await initializeRazorpay();
-
-		if (!res) {
-			alert('Razorpay SDK Failed to load');
-			return;
-		}
-
-		// Make API call to the serverless API
-		const data = await fetch('/api/payment', { method: 'POST' }).then((t) =>
-			t.json()
-		);
-		console.log(data);
-		var options = {
-			key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-			name: 'Manu Arora Pvt Ltd',
-			currency: data.currency,
-			amount: data.amount,
-			order_id: data.id,
-			description: 'Thankyou for your test donation',
-			image: 'https://manuarora.in/logo.png',
-			handler: function (response) {
-				// Validate payment at server - using webhooks is a better idea.
-				alert(response.razorpay_payment_id);
-				alert(response.razorpay_order_id);
-				alert(response.razorpay_signature);
-			},
-			prefill: {
-				name: 'Manu Arora',
-				email: 'manuarorawork@gmail.com',
-				contact: '9999999999',
-			},
-		};
-
-		const paymentObject = new window.Razorpay(options);
-		paymentObject.open();
+	const handleRegionChange = (val) => {
+		setRegion(val);
 	};
+
+	const address = userProfile?.address;
 
 	return (
 		<>
@@ -73,79 +39,89 @@ const Checkout = () => {
 			</Head>
 			<Layout header footer>
 				<PageBanner pageName={'banner'} pageTitle={'Checkout'} />
-				<section className='checkout-area pt-130 rpt-95 pb-100 rpb-70'>
+				<section className='checkout-area my-100'>
 					<div className='container'>
-						{/* <Items /> */}
-						<div className='row'>
-							<div className='col-lg-8'>
-								<Address />
-								<Profile />
-							</div>
-							<div className='col-lg-4'>
-								{/* <form
-									onSubmit={handlePayment}
-									className='checkout-form mb-30'
-									method='POST'
-								> */}
-								<h3 className='from-title mb-25'>Order Summary</h3>
-								<div className='package-summary mb-25'>
-									<table>
-										<tbody>
-											<tr>
-												<td>
-													PSD Book Mockup <strong>× 2</strong>
-												</td>
-												<td>$303.00</td>
-											</tr>
-											<tr>
-												<td>
-													Historical Book <strong>× 2</strong>
-												</td>
-												<td>$70.00</td>
-											</tr>
-											<tr>
-												<td>
-													Medical Equipment <strong>× 1</strong>
-												</td>
-												<td>$50.00</td>
-											</tr>
-											<tr>
-												<td>Shipping Fee</td>
-												<td>$10.00</td>
-											</tr>
-											<tr>
-												<td>Vat</td>
-												<td>$5.00</td>
-											</tr>
-											<tr>
-												<td>
-													<strong>Order Total</strong>
-												</td>
-												<td>
-													<strong>$438.00</strong>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+						<Items cartItems={cartItems} courses={courses} />
+						<div className='row px-3'>
+							<BillingCard totalItems={cartItems.length} />
+							<div className='col-12 border p-50 rounded-3'>
+								<h3 className='lead mb-40'>Billing Details</h3>
+								<div className='row align-items-center'>
+									<div className='col-md-4'>
+										<div className='form-group'>
+											<label className='form-label'>Name </label>
+											<input
+												type='text'
+												className='form-control'
+												value={userProfile.name}
+												disabled
+											/>
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='form-group'>
+											<label className='form-label'>Email </label>
+											<input
+												type='email'
+												className='form-control'
+												value={userProfile.email}
+												disabled
+											/>
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='form-group'>
+											<label className='form-label'>Select Country </label>
+											<CountryDropdown
+												value={country}
+												onChange={handleCountryChange}
+											/>
+										</div>
+									</div>
 								</div>
-								<input
-									className='coupon-code'
-									type='text'
-									placeholder='Coupon Code'
-								/>
-								<h5 className='title mt-20 mb-15'>Payment Method</h5>
-								<div className='form-group'>
-									<select name='payment' id='payment'>
-										<option value='default'>Choose an Option</option>
-										<option value='payment1'>chash on delivey</option>
-										<option value='payment2'>Bank Transfer</option>
-										<option value='payment3'>Paypal</option>
-									</select>
+								<div className='row align-items-center'>
+									<div className='col-md-4'>
+										<div className='form-group mb-4'>
+											<label className='form-label'>Select State </label>
+											<RegionDropdown
+												country={country}
+												value={region}
+												onChange={handleRegionChange}
+											/>
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='form-group'>
+											<label className='form-label'>Enter Pin-code </label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='6-digit'
+												maxLength={6}
+												minLength={6}
+											/>
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='form-group'>
+											<label className='form-label'>Mobile (optional) </label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='10-digit'
+												maxLength={10}
+												minLength={10}
+											/>
+										</div>
+									</div>
 								</div>
-								<button className='theme-btn mt-30 w-100' onClick={makePayment}>
-									Proceed to Payment
-								</button>
-								{/* </form> */}
+								<div className='col-md-4'>
+									<div className='form-group'>
+										<button className='theme-btn form-control mt-20 py-3'>
+											Checkout
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import Advertise from '@/components/Advertise';
 import Layout from '@/layouts/Layout';
-import dynamic from 'next/dynamic';
 import Founder from '@/components/Founder';
 import Team from '@/components/Team';
 import CourseGallery from '@/components/CourseGallery';

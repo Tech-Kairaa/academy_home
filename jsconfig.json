@@ -9,7 +9,8 @@
 			"@/services/*": ["lib/services/*"],
 			"@/assets/*": ["public/assets/*"],
 			"@/config/*": ["lib/config/*"],
-			"@/utils/*": ["lib/utils/*"]
+			"@/utils/*": ["lib/utils/*"],
+			"@/hooks/*": ["lib/hooks/*"]
 		}
 	}
 }

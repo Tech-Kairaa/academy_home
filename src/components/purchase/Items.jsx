@@ -1,16 +1,11 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import CourseList from '@/utils/Courses';
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
 import { removeItem, clearCart } from '@/services/cart';
+import { useDispatch } from 'react-redux';
 
-const Items = () => {
-	const cartItems = useSelector((state) => state.cart.cartItems);
+const Items = ({ cartItems, courses }) => {
 	const dispatch = useDispatch();
-
-	const getCourse = (courseId) => {
-		return CourseList.find((id) => id.cid === courseId);
-	};
 
 	const handleRemoveItem = (item) => {
 		dispatch(removeItem(item));
@@ -21,44 +16,39 @@ const Items = () => {
 	};
 
 	return (
-		<div className='row mb-50'>
-			{cartItems.map((item, index) => (
-				<div key={index}>
-					<div className='px-3 py-2 mb-3 rounded-1 hover-shadow-md border'>
-						<div className='d-flex justify-content-between'>
-							<EllipsisText text={getCourse(item).title} length={40} />
-							<button
-								className='bg-transparent text-black-50 '
-								title='Remove from cart'
-								onClick={() => handleRemoveItem(getCourse(item).cid)}
+		<div className='container mb-50'>
+			{courses &&
+				courses.map(
+					(item, index) =>
+						cartItems.includes(item.id) && (
+							<div
+								key={index}
+								className='row justify-content-between align-items-center border px-4 py-3 rounded-2'
 							>
-								<em className='fas fa-trash'></em>
-							</button>
-						</div>
-						<div className='d-flex justify-content-between'>
-							<p className='m-0'>
-								<strong>PRICE : </strong>
-								<span className='lead fw-bold text-theme-green'>$240</span>
-							</p>
-							<button
-								className='bg-transparent text-black-50'
-								title='Save for later'
-							>
-								<em className='far fa-heart text-primary'></em>
-							</button>
-						</div>
-					</div>
-				</div>
-			))}
+								<div className='col-auto'>
+									<span className='fs-4 text-secondary'>{index + 1}</span>
+								</div>
+								<div className='col-8'>
+									<p className='mb-0'>{item.title}</p>
 
-			{cartItems.length > 1 && (
-				<button
-					className='btn btn-outline-secondary w-100 border-opacity-50 border py-2'
-					onClick={handleClearCart}
-				>
-					<em className='fas fa-trash me-2'></em> Remove All
-				</button>
-			)}
+									<p className='m-0'>
+										<strong>PRICE : </strong>
+										<span className='lead fw-bold text-theme-green ms-2'>
+											₹{item.price}
+										</span>
+									</p>
+								</div>
+								<div className='col-3 text-end'>
+									<button
+										className='bg-transparent text-black-50 fs-5'
+										onClick={() => handleRemoveItem(item.id, item.price)}
+									>
+										<em className='fas fa-trash'></em>
+									</button>
+								</div>
+							</div>
+						)
+				)}
 		</div>
 	);
 };

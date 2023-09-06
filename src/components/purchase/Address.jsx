@@ -1,12 +1,36 @@
 import React from 'react';
 
-const Address = () => {
+const Address = ({ addr }) => {
+	console.log(addr);
 	return (
 		<>
 			<form onSubmit={(e) => e.preventDefault()} className='checkout-form'>
 				<h3 className='from-title'>Address Details</h3>
 				<hr />
+
 				<div className='row mt-30'>
+					<div className='col-md-6'>
+						<div className='form-group'>
+							<label className='form-label'>Name </label>
+							<input
+								type='text'
+								className='form-control'
+								value={'Kairaa'}
+								disabled
+							/>
+						</div>
+					</div>
+					<div className='col-md-6'>
+						<div className='form-group'>
+							<label className='form-label'>Email </label>
+							<input
+								type='text'
+								className='form-control'
+								value={'support@kairaa.in'}
+								disabled
+							/>
+						</div>
+					</div>
 					<div className='col-md-6'>
 						<div className='form-group mb-4'>
 							<select name='country' id='country'>
