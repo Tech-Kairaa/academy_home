@@ -1,65 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
-import { Accordion, Nav, Tab } from 'react-bootstrap';
+import Accordion from '@/components/elements/Accordion';
 import PageBanner from '@/components/PageBanner';
-import ModulesAccordion from '@/components/ModulesAccordion';
 import Layout from '../src/layout/Layout';
 
 const Faq = () => {
-	const faqsLeft = [
-		{ title: 'What is Web Design ?' },
-		{ title: 'Diffent Between UX and UI Design ?' },
-		{ title: 'Importance Of Typography ?' },
-		{ title: 'What is Warframe ?' },
-		{ title: 'evelopers Need To Know About Figma ?' },
-	];
-	const faqsRight = [
-		{ title: 'What is Web Design ?' },
-		{ title: 'Search Engine Optimization ?' },
-		{ title: 'Improve User Interview Questions ?' },
-		{ title: 'Complete Guide To Mechanical Keyboards ?' },
-		{ title: 'Headless WordPress Site On The JAMstack ?' },
-		{ title: 'Online Environments Older Users ?' },
-	];
-	const [active, setActive] = useState(`a1`);
-	const onClick = (value) => {
-		setActive(value === active ? '' : value);
-	};
 	return (
 		<div className='row'>
 			<div className='col-lg-6'>
-				{faqsLeft.map((faq, i) => (
-					<ModulesAccordion
-						title={faq.title}
-						onClick={() => onClick(`a${i + 1}`)}
-						active={active}
-						eventName={`a${i + 1}`}
-						key={i}
-					>
-						<p>
-							Sit amet consectetur adipiscing elit sed do eiusmod tempor
-							incididunt ut labore et dolore magna aliqua. Quis ipsum suspendise
-							ultre gravida. risus commodo viverra maecenas accumsan lacus.{' '}
-						</p>
-					</ModulesAccordion>
-				))}
-			</div>
-			<div className='col-lg-6'>
-				{faqsRight.map((faq, i) => (
-					<ModulesAccordion
-						key={i}
-						title={faq.title}
-						onClick={() => onClick(`b${i + 1}`)}
-						active={active}
-						eventName={`b${i + 1}`}
-					>
-						<p>
-							Sit amet consectetur adipiscing elit sed do eiusmod tempor
-							incididunt ut labore et dolore magna aliqua. Quis ipsum suspendise
-							ultre gravida. risus commodo viverra maecenas accumsan lacus.{' '}
-						</p>
-					</ModulesAccordion>
-				))}
+				<Accordion>
+					<Accordion.Item title='What is Web Design ?'>
+						Sit amet consectetur adipiscing elit sed do eiusmod tempor
+						incididunt ut labore et dolore magna aliqua. Quis ipsum suspendise
+						ultre gravida. risus commodo viverra maecenas accumsan lacus.
+					</Accordion.Item>
+				</Accordion>
 			</div>
 		</div>
 	);
@@ -75,62 +29,7 @@ const Faqs = () => {
 						<span className='sub-title-two'>Have Any Questions?</span>
 						<h2>Frequently Asked Questions</h2>
 					</div>
-					<Tab.Container defaultActiveKey={'tabContent1'}>
-						<Nav className='nav faqs-tab mb-40'>
-							<li>
-								<Nav.Link eventKey={'tabContent1'} href='#tabContent1'>
-									Course Requirments
-								</Nav.Link>
-							</li>
-							<li>
-								<Nav.Link eventKey={'tabContent2'} href='#tabContent2'>
-									About
-								</Nav.Link>
-							</li>
-							<li>
-								<Nav.Link eventKey={'tabContent3'} href='#tabContent3'>
-									Instructors
-								</Nav.Link>
-							</li>
-							<li>
-								<Nav.Link eventKey={'tabContent4'} href='#tabContent4'>
-									Pricing Package
-								</Nav.Link>
-							</li>
-							<li>
-								<Nav.Link eventKey={'tabContent5'} href='#tabContent5'>
-									Setting &amp; Privacy
-								</Nav.Link>
-							</li>
-						</Nav>
-						<Tab.Content className='tab-content faq-accordion'>
-							<Tab.Pane className='tab-pane fade' eventKey='tabContent1'>
-								<Accordion defaultActiveKey='a1'>
-									<Faq />
-								</Accordion>
-							</Tab.Pane>
-							<Tab.Pane className='tab-pane fade' eventKey='tabContent2'>
-								<Accordion defaultActiveKey='a1'>
-									<Faq />
-								</Accordion>
-							</Tab.Pane>
-							<Tab.Pane className='tab-pane fade' eventKey='tabContent3'>
-								<Accordion defaultActiveKey='a1'>
-									<Faq />
-								</Accordion>
-							</Tab.Pane>
-							<Tab.Pane className='tab-pane fade' eventKey='tabContent4'>
-								<Accordion defaultActiveKey='a1'>
-									<Faq />
-								</Accordion>
-							</Tab.Pane>
-							<Tab.Pane className='tab-pane fade' eventKey='tabContent5'>
-								<Accordion defaultActiveKey='a1'>
-									<Faq />
-								</Accordion>
-							</Tab.Pane>
-						</Tab.Content>
-					</Tab.Container>
+					<Faq />
 				</div>
 			</section>
 			{/* FAQ's Section End */}
