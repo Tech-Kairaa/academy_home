@@ -8,12 +8,12 @@ const Advertise = ({ loggedIn }) => {
 			<div className='col-lg-6'>
 				<div className='advertise-item wow fadeInUp delay-0-2s'>
 					<div className='content'>
-						<h4>Become An Instructor?</h4>
+						<h4>Start Your Career</h4>
 						<p>
-							If you have expertise in a particular subject and are interested
-							in sharing your knowledge with others, becoming an instructor.
+							Kairaa is a great place to start your career in the IT industry.
+							The company offers a variety of opportunities for growth.
 						</p>
-						<Link href='/#contact'>
+						<Link href='/career'>
 							<a className='theme-btn'>
 								Join with us <i className='fas fa-arrow-right' />
 							</a>
@@ -32,19 +32,11 @@ const Advertise = ({ loggedIn }) => {
 							We offers a wide range of blockchain <br /> courses that are
 							designed to help <br /> students advance their education.
 						</p>
-						{loggedIn === 'loggedIn' ? (
-							<Link href='/courses'>
-								<a className='theme-btn style-two'>
-									Buy Course <i className='fas fa-arrow-right' />
-								</a>
-							</Link>
-						) : (
-							<Link href='/#contact'>
-								<a className='theme-btn style-two'>
-									Join with us <i className='fas fa-arrow-right' />
-								</a>
-							</Link>
-						)}
+						<Link href='/courses'>
+							<a className='theme-btn style-two'>
+								Buy Course <i className='fas fa-arrow-right' />
+							</a>
+						</Link>
 					</div>
 					<div className='image'>
 						<img src={advertise2.src} alt='Advertise' />

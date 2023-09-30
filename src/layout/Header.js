@@ -191,6 +191,11 @@ const Menus = () => {
 					<a>Courses</a>
 				</Link>
 			</li>
+			<li className={activeItem === '/career' ? 'current' : ''}>
+				<Link href='/career'>
+					<a>Career</a>
+				</Link>
+			</li>
 
 			<li className={activeItem === '/contact' ? 'current' : ''}>
 				<Link href='/contact'>

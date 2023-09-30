@@ -39,55 +39,32 @@ const FollowIcon = () => (
 	Courses = () => (
 		<Fragment>
 			<li>
-				<Link href='/course-details'>Home</Link>
+				<Link href='/'>Home</Link>
 			</li>
 			<li>
-				<Link href='/course-details'>About Us</Link>
-			</li>
-
-			<li>
-				<Link href='/course-details'>Career</Link>
+				<Link href='/about'>About Us</Link>
 			</li>
 			<li>
-				<Link href='/course-details'>Enroll</Link>
+				<Link href='/courses'>Courses</Link>
 			</li>
 			<li>
-				<Link href='/course-details'>Contact</Link>
+				<Link href='/contact'>Contact</Link>
 			</li>
 		</Fragment>
 	),
 	Resources = () => (
 		<Fragment>
 			<li>
-				<Link href='/contact'>Community</Link>
+				<Link href='/blog'>Latest Blogs</Link>
 			</li>
 			<li>
-				<Link href='/contact'>Support</Link>
+				<Link href='/faq'>FAQ&apos;s</Link>
 			</li>
 			<li>
-				<Link href='/contact'>Video Guides</Link>
+				<Link href='/privacy-policy'>Privacy Policy</Link>
 			</li>
 			<li>
-				<Link href='/contact'>Documentation</Link>
-			</li>
-			<li>
-				<Link href='/contact'>Latest Blogs</Link>
-			</li>
-		</Fragment>
-	),
-	FooterBottom = () => (
-		<Fragment>
-			<li>
-				<Link href='/'>Home</Link>
-			</li>
-			<li>
-				<Link href='/#about'>About</Link>
-			</li>
-			<li>
-				<Link href='/#courses'>Enroll</Link>
-			</li>
-			<li>
-				<Link href='/#contact'>Contact</Link>
+				<Link href='/terms-condition'>Our Terms</Link>
 			</li>
 		</Fragment>
 	),
@@ -105,13 +82,12 @@ const FollowIcon = () => (
 						<div className='footer-widget about-widget pb-6'>
 							<h5 className='footer-title'>About Us</h5>
 							<p>
-								Kairaa Blockchain Academy is a top-notch online learning center that offers
-								a wide range of courses.
+								Kairaa Blockchain Academy is a top-notch online learning center
+								that offers a wide range of courses.
 							</p>
-							<h5 className='pt-5'>Follow Us</h5>
-							<div className='social-style-one'>
-								<FollowIcon />
-							</div>
+							<Link href='/about'>
+								<a className='theme-btn style-two'>Learn More</a>
+							</Link>
 						</div>
 					</div>
 					<div className='col-lg-2 col-md-3 col-sm-4'>
@@ -137,40 +113,29 @@ const FollowIcon = () => (
 									<h5 className='footer-title'>Get In Touch</h5>
 									<ul>
 										<li>
-											<i className='far fa-envelope' />{' '}
-											<a href='mailto:support@kairaaacademy.com'>
-												Support@
-												<br />
-												kairaaacademy.com
-											</a>
+											<i className='bi bi-envelope-fill mt-0' />
+											support@kairaa.in
 										</li>
 										<li>
-											<i className='fas fa-phone' />{' '}
-											<a href='callto:+0123456789'>+91-7092774077</a>
+											<i className='bi bi-telephone-fill mt-0' />
+											<a href='callto:+0123456789'>+91-709-277-4077</a>
 										</li>
 										<li>
-											<i className='far fa-clock' /> Monday - Saturday,
-											<br /> 09 am - 09 pm
+											<i className='bi bi-geo-alt-fill mt-0' /> No 10, Eswari
+											Nagar, Gowrivakkam, Chennai - 73.
 										</li>
 									</ul>
 								</div>
 							</div>
 							<div className='col-sm-6'>
 								<div className='footer-widget video-widget pb-6'>
-									<h5 className='footer-title'>Interview Preparation</h5>
-									<div className='video-widget overlay my-20'>
-										<img src='/assets/images/footer/video.jpg' alt='Video' />
-										<a
-											href='https://www.youtube.com/watch?v=9Y7ma241N8k'
-											className='mfp-iframe video-play'
-										>
-											<i className='fas fa-play' />
-										</a>
-									</div>
-									<Link href='/about'>
-										<a className='read-more'>
-											view more <i className='fas fa-arrow-right' />
-										</a>
+									<p>
+										Join our Blockchain Academy today and embark on a journey of
+										endless possibilities. Don&apos;t miss out on the chance to
+										enhance your blockchain knowledge.
+									</p>
+									<Link href='/signup'>
+										<a className='theme-btn style-two'>Signup</a>
 									</Link>
 								</div>
 							</div>
@@ -182,9 +147,9 @@ const FollowIcon = () => (
 				<div className='container'>
 					<div className='copyright-inner'>
 						<CopyRight />
-						<ul className='footer-menu'>
-							<FooterBottom />
-						</ul>
+						<div className='social-style-one'>
+							<FollowIcon />
+						</div>
 					</div>
 				</div>
 				{/* Scroll Top Button */}

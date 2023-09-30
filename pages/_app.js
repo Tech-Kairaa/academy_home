@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import store from '@/providers/store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-loading-skeleton/dist/skeleton.css'
 
 function MyApp({ Component, pageProps }) {
 	return (

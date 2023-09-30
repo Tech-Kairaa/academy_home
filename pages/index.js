@@ -8,6 +8,7 @@ import CourseGallery from '@/components/CourseGallery';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import ProtectedRoute from '@/components/ProtectedRoute';
+import { toast } from 'react-toastify';
 
 const Index = () => {
 	const auth = useSelector((state) => state.auth.loginState);
@@ -27,7 +28,7 @@ const Index = () => {
 										src='/assets/images/hero/hero-three-man.png'
 										alt='Hero'
 									/>
-									<div className='hero-chart wow fadeInUp delay-0-2s'>
+									{/* <div className='hero-chart wow fadeInUp delay-0-2s'>
 										<img src='/assets/images/hero/hero-chart.png' alt='Chart' />
 										<h5>95% Success Results</h5>
 									</div>
@@ -40,7 +41,7 @@ const Index = () => {
 											<img src='/assets/images/about/icon2.png' alt='Icon' />
 											<h5>Quality Video Tutorials</h5>
 										</div>
-									</div>
+									</div> */}
 									<img
 										className='hero-circle'
 										src='/assets/images/shapes/circle-dots-two.png'
@@ -51,24 +52,31 @@ const Index = () => {
 							<div className='col-lg-6 align-self-center'>
 								<div className='hero-content-three pt-10 pb-100 rpt-40'>
 									<span className='hero-sub-title mb-10 wow fadeInUp delay-0-2s'>
-										<span>563+</span> Students
+										Master blockchain skills for success
 									</span>
 									<h1 className='mb-25 wow fadeInUp delay-0-4s'>
-										Learn <span>Blockchain</span> Technology And Web 3.0
+										Discover Blockchain Technology with{' '}
+										<span>Kairaa Academy&apos;s</span> Online Courses.
 									</h1>
+									<p className='lead'>
+										Kairaa Academy is the leading provider of online blockchain
+										courses. We offer a wide range of courses to meet the needs
+										of students of all levels of experience, from beginners to
+										advanced learners.
+									</p>
 									<ul className='list-style-one wow fadeInUp delay-0-6s'>
-										<li>Experts Advisors</li>
-										<li>20+ Blockchain Courses</li>
+										<li>Comprehensive blockchain courses</li>
+										<li>Online video tutorials and best practices </li>
 									</ul>
 									<div className='hero-btns mt-10 wow fadeInUp delay-0-8s'>
 										{!auth && (
 											<>
-												<Link href='/#enroll'>
+												<Link href='/courses'>
 													<a className='theme-btn mt-10 me-2'>
-														Enroll now <i className='fas fa-arrow-right' />
+														Buy Courses <i className='fas fa-arrow-right' />
 													</a>
 												</Link>
-												<Link href='/#career'>
+												<Link href='/career'>
 													<a className='theme-btn style-two mt-10 ms-2'>
 														Start Career <i className='fas fa-arrow-right' />
 													</a>
@@ -78,14 +86,9 @@ const Index = () => {
 
 										{auth === 'loggedIn' && (
 											<>
-												<Link href='/#enroll'>
+												<Link href='/courses'>
 													<a className='theme-btn mt-10 me-2'>
 														Latest courses <i className='fas fa-arrow-right' />
-													</a>
-												</Link>
-												<Link href='/#career'>
-													<a className='theme-btn style-two mt-10 ms-2'>
-														Top courses <i className='fas fa-arrow-right' />
 													</a>
 												</Link>
 											</>
@@ -107,50 +110,50 @@ const Index = () => {
 				{/* Feature Section Start */}
 				<section className='feature-section-six pt-120 rpt-90 pb-70 rpb-60'>
 					<div className='container'>
-						<div className='row large-gap mb-30'>
+						<div className='row large-gap mb-30 align-items-center'>
 							<div className='col-lg-6'>
 								<div className='feature-six-left wow fadeInUp delay-0-2s'>
-									<div className='section-title mb-30'>
+									<div className='section-title'>
 										<span className='sub-title-three'>Why Learn Here?</span>
 										<h2>
-											We Provides <span>Innovative</span> Classroom to learn
+											We offer innovative <span>online</span> classroom
 										</h2>
 									</div>
 								</div>
 							</div>
 							<div className='col-lg-5'>
-								<div className='feature-six-right pt-55 rpt-0 wow fadeInUp delay-0-4s'>
+								<div className='feature-six-right rpt-0 wow fadeInUp delay-0-4s'>
 									<p>
-										The extensive course materials offered by Kairaa Blockchain
-										Academy are one of its best qualities. Students have access
-										to a variety of learning resources that are intended to aid
-										in their comprehension and retention of the subject, from
-										interactive exercises and quizzes to video lectures.
+										Kairaa Blockchain Academy&apos;s outstanding feature is its
+										wide range of educational materials, designed to assist
+										students in understanding and retaining the subject by
+										offering a diverse collection of learning resources.
 									</p>
 								</div>
 							</div>
 						</div>
-						<div className='row'>
+						<div className='row mt-50'>
 							<div className='col-lg-3 col-sm-6'>
 								<div className='feature-six-item mt-30 wow fadeInUp delay-0-2s'>
 									<div className='content'>
 										<div className='icon'>
 											<img
-												src='/assets/images/features/feature-five-icon1.png'
+												src='/assets/images/features/reading.png'
 												alt='Icon'
+												className='w-25'
 											/>
 										</div>
 										<h5>Exclusive Courses</h5>
 										<p>
-											Kairaa Blockchain Academy carefully selects
-											industry-recognized courses in the newest technologies.
+											Kairaa blockchain academy: Learn blockchain online at your
+											own pace, with courses for all levels.
 										</p>
 									</div>
-									<Link href='/#about'>
+									{/* <Link href='/#about'>
 										<a className='read-more color-two'>
 											read more <i className='fas fa-arrow-right' />
 										</a>
-									</Link>
+									</Link> */}
 								</div>
 							</div>
 							<div className='col-lg-3 col-sm-6'>
@@ -158,21 +161,17 @@ const Index = () => {
 									<div className='content'>
 										<div className='icon'>
 											<img
-												src='/assets/images/features/feature-five-icon2.png'
+												src='/assets/images/features/video.png'
 												alt='Icon'
+												className='w-25'
 											/>
 										</div>
-										<h5>Creative Instructors</h5>
+										<h5>Video Tutorials</h5>
 										<p>
-											Our instructors engage in their abilities to convey
-											complex ideas in a valid and understandable manner.
+											Learn blockchain at your own pace and on your own schedule
+											with our online video tutorials.
 										</p>
 									</div>
-									<Link href='/#about'>
-										<a className='read-more color-two'>
-											read more <i className='fas fa-arrow-right' />
-										</a>
-									</Link>
 								</div>
 							</div>
 							<div className='col-lg-3 col-sm-6'>
@@ -180,21 +179,17 @@ const Index = () => {
 									<div className='content'>
 										<div className='icon'>
 											<img
-												src='/assets/images/features/feature-five-icon3.png'
+												src='/assets/images/features/social-media.png'
 												alt='Icon'
+												className='w-25'
 											/>
 										</div>
-										<h5>Certifications</h5>
+										<h5>Flexibility</h5>
 										<p>
-											Kairaa Blockchain Academy&lsquo;s certifications are
-											highly respected and sought-after within the industry.
+											Learn blockchain from anywhere in the world, at any time
+											of day or night, with flexible online video tutorials.
 										</p>
 									</div>
-									<Link href='/#about'>
-										<a className='read-more color-two'>
-											read more <i className='fas fa-arrow-right' />
-										</a>
-									</Link>
 								</div>
 							</div>
 							<div className='col-lg-3 col-sm-6'>
@@ -202,21 +197,17 @@ const Index = () => {
 									<div className='content'>
 										<div className='icon'>
 											<img
-												src='/assets/images/features/feature-five-icon4.png'
+												src='/assets/images/features/money-bag.png'
 												alt='Icon'
+												className='w-25'
 											/>
 										</div>
-										<h5>Video Tutorials</h5>
+										<h5>Cost Efficiency</h5>
 										<p>
-											Our video tutorials are well organized and easy to follow.
-											Each tutorial is structured around a specific topic.
+											Save money on blockchain education with Kairaa blockchain
+											academy&apos;s cost-effective online courses.
 										</p>
 									</div>
-									<Link href='/#about'>
-										<a className='read-more color-two'>
-											read more <i className='fas fa-arrow-right' />
-										</a>
-									</Link>
 								</div>
 							</div>
 						</div>
@@ -239,7 +230,7 @@ const Index = () => {
 											alt='About'
 										/>
 									</div>
-									<div className='about-image-over'>
+									{/* <div className='about-image-over'>
 										<div className='about-image-over-item'>
 											<img src='/assets/images/about/icon3.png' alt='Icon' />
 											<h5>Wide Range Support</h5>
@@ -248,15 +239,13 @@ const Index = () => {
 											<img src='/assets/images/about/icon4.png' alt='Icon' />
 											<h5>Updated Materials</h5>
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 							<div className='col-lg-6'>
 								<div className='about-content-two wow fadeInRight delay-0-2s'>
 									<div className='section-title mb-30'>
-										<span className='sub-title-two'>
-											About Kairaa Blockchain Academy
-										</span>
+										<span className='sub-title-two'>About Kairaa Academy</span>
 										<h2>
 											We Are <span>Excellent</span> Choice to Learning
 											Blockchain
@@ -271,18 +260,18 @@ const Index = () => {
 										education or learn the new technology.
 									</p>
 									<div className='about-btns'>
-										<Link href='/#about'>
+										<Link href='/about'>
 											<a className='theme-btn my-15'>
 												Learn more <i className='fas fa-arrow-right' />
 											</a>
 										</Link>
-										<Link href='/#about'>
-											<a className='read-more'>
+										<Link href='https://www.kairaatechserve.com'>
+											<a className='read-more' target='_blank'>
 												What is Kairaa <i className='fas fa-arrow-right' />
 											</a>
 										</Link>
 									</div>
-									<div className='counter-wrap'>
+									{/* <div className='counter-wrap'>
 										<div className='success-item'>
 											<span className='count-text plus'>166</span>
 											<span>Enrolled Learner</span>
@@ -295,7 +284,7 @@ const Index = () => {
 											<span className='count-text percent'>99</span>
 											<span>Satisfaction Rate</span>
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</div>
@@ -310,7 +299,11 @@ const Index = () => {
 							<div className='col-lg-4 col-md-6'>
 								<div className='feature-item wow fadeInUp delay-0-2s'>
 									<div className='image'>
-										<img src='/assets/images/features/icon1.png' alt='Icon' />
+										<img
+											src='/assets/images/features/verified.png'
+											className='w-50'
+											alt='Icon'
+										/>
 									</div>
 									<div className='content'>
 										<h4>Learn technologies From Experts</h4>
@@ -324,13 +317,17 @@ const Index = () => {
 							<div className='col-lg-4 col-md-6'>
 								<div className='feature-item wow fadeInUp delay-0-4s'>
 									<div className='image'>
-										<img src='/assets/images/features/icon2.png' alt='Icon' />
+										<img
+											src='/assets/images/features/open-book.png'
+											alt='Icon'
+											className='w-50'
+										/>
 									</div>
 									<div className='content'>
-										<h4>Over 300+ High Quality Topics</h4>
+										<h4>Over 30+ High Quality Topics</h4>
 										<p>
-											Topics cover a wide range of subjects, from data science
-											and and much more.
+											Topics cover a wide range of subjects, from blockchain and
+											and much more.
 										</p>
 									</div>
 								</div>
@@ -338,7 +335,11 @@ const Index = () => {
 							<div className='col-lg-4 col-md-6'>
 								<div className='feature-item wow fadeInUp delay-0-6s'>
 									<div className='image'>
-										<img src='/assets/images/features/icon1.png' alt='Icon' />
+										<img
+											src='/assets/images/features/video-player.png'
+											className='w-50'
+											alt='Icon'
+										/>
 									</div>
 									<div className='content'>
 										<h4>Event &amp; Program Video Update</h4>
@@ -387,52 +388,73 @@ const Index = () => {
 							<div className='col-12'>
 								<div className='row'>
 									<div className='col-4'>
-										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
-											<h2 className='sub-title-three my-1'>KAIT CRYPTO</h2>
-											<p className='mb-1'>
-												Kairaa has its own cryptocurrency, Name of KAIT. KAIT
-												was created with the help of amazing blockchain
-												technology.
-											</p>
-											<Link href='https://kaitcrypto.com/'>
-												<a className='read-more'>
-													About Kait <i className='fas fa-arrow-right' />
-												</a>
-											</Link>
+										<div className='coach-item-three wow fadeInUp delay-0-2s animated animated border rounded-2'>
+											<div className='content'>
+												<h4 className='pb-0 mb-2'>
+													KAIT Coin - A fastest growing cryptocurrency{' '}
+												</h4>
+												<p>
+													Kairaa has its own cryptocurrency, Name of KAIT. KAIT
+													was created with the help of amazing blockchain
+													technology.
+												</p>
+												<div className='author'>
+													<Link href='https://kaitcoin.com/'>
+														<a className='theme-btn' target='_blank'>
+															Buy kaitcoin
+															<i className='fas fa-arrow-right'></i>
+														</a>
+													</Link>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div className='col-4'>
-										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
-											<h2 className='sub-title-three my-1'>KARAA EXCHANGE</h2>
-											<p className='mb-1'>
-												The Kairaa exchange is a trading platform. You can buy
-												and sell KAIT coins and other cryptocurrencies also.
-											</p>
-											<Link href='https://kairaaexchange.com/'>
-												<a className='read-more'>
-													Buy and sell <i className='fas fa-arrow-right' />
-												</a>
-											</Link>
+										<div className='coach-item-three wow fadeInUp delay-0-2s animated animated border rounded-2'>
+											<div className='content'>
+												<h4 className='pb-0 mb-2'>
+													Kairaa Exchange - Crypto exchange for trade
+												</h4>
+												<p>
+													The Kairaa exchange is a trading platform. You can buy
+													and sell KAIT coins and other cryptocurrencies also.
+												</p>
+												<div className='author'>
+													<Link href='https://kairaaexchange.com/'>
+														<a className='theme-btn' target='_blank'>
+															Trade cryptos
+															<i className='fas fa-arrow-right'></i>
+														</a>
+													</Link>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div className='col-4'>
-										<div className='px-4 pb-3 pt-3 border-thin shadow-sm hover-shadow-md rounded-3'>
-											<h2 className='sub-title-three my-1'>KAIT APP</h2>
-											<p className='mb-1'>
-												KAIT App is a new and exciting staking app that allows
-												users to earn rewards for holding and staking their
-												cryptocurrency.
-											</p>
-											<Link href='https://net.kaitcrypto.com/account/'>
-												<a className='read-more'>
-													Stack Kait <i className='fas fa-arrow-right' />
-												</a>
-											</Link>
+										<div className='coach-item-three wow fadeInUp delay-0-2s animated animated border rounded-2'>
+											<div className='content'>
+												<h4 className='pb-0 mb-2'>
+													KAIT Stack - A Crytocurrency stacking application
+												</h4>
+												<p>
+													KAIT App is a new and exciting staking app that allows
+													users to earn rewards for holding and staking their
+													cryptocurrency.
+												</p>
+												<div className='author'>
+													<Link href='https://play.google.com/store/apps/details?id=com.Kaitstaking.kait&pcampaignid=web_share'>
+														<a className='theme-btn' target='_blank'>
+															Download App
+															<i className='fas fa-arrow-right'></i>
+														</a>
+													</Link>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div className='col-12 mt-50'>
+							<div className='col-12 mt-20'>
 								<div className='d-block d-lg-none mt-50'></div>
 								<div className='content text-center'>
 									<p>
@@ -442,6 +464,8 @@ const Index = () => {
 										<a
 											href='https://kairaaexchange.com/'
 											className='text-primary mx-1'
+											target='_blank'
+											rel='noreferrer'
 										>
 											cryptocurrency exchange
 										</a>
@@ -449,13 +473,17 @@ const Index = () => {
 										<a
 											href='https://nftkairaa.com/'
 											className='text-primary mx-1'
+											target='_blank'
+											rel='noreferrer'
 										>
 											NFT marketplace
 										</a>
 										, and its own
 										<a
-											href='https://kaitcrypto.com/'
+											href='https://kaitcoin.com/'
 											className='text-primary mx-1'
+											target='_blank'
+											rel='noreferrer'
 										>
 											cryptocurrency
 										</a>
@@ -463,6 +491,8 @@ const Index = () => {
 										<a
 											href='https://coincore.in/'
 											className='text-primary mx-1'
+											target='_blank'
+											rel='noreferrer'
 										>
 											crypto price listing
 										</a>
@@ -470,14 +500,16 @@ const Index = () => {
 										<a
 											href='http://kairaaacademy.com/'
 											className='text-primary mx-1'
+											target='_blank'
+											rel='noreferrer'
 										>
 											blockchain academy.
 										</a>
 										Kairaa offers a wide range of services to meet the needs of
 										its customers businesses.
 									</p>
-									<Link href='/#about'>
-										<a className='theme-btn my-15'>
+									<Link href='http://www.kairaatechserve.com'>
+										<a className='theme-btn style-two my-15' target='_blank'>
 											Learn more <i className='fas fa-arrow-right' />
 										</a>
 									</Link>
@@ -492,10 +524,18 @@ const Index = () => {
 				<Founder />
 				{/*Founder Section End*/}
 
-				<Team />
+				{/* <Team /> */}
+
+				{/* Advertise Area Start */}
+				<section className='advertise-area pb-50 pt-100 rpb-70'>
+					<div className='container'>
+						<Advertise loggedIn={auth} />
+					</div>
+				</section>
+				{/* Advertise Area End */}
 
 				{/* Newsletter Section Start */}
-				<section className='newsletter-section rpb-100 wow fadeInUp delay-0-2s'>
+				<section className='newsletter-section mb-100 rpb-100 wow fadeInUp delay-0-2s'>
 					<div className='container'>
 						<div className='row align-items-center'>
 							<div className='col-lg-6'>
@@ -515,7 +555,7 @@ const Index = () => {
 										for the blockchain overview session as soon as possible
 										(worth of 1,000 Rupees).
 									</p>
-									<div className='newsletter-radios mb-25'>
+									<div className='newsletter-radios mb-25 gap-3'>
 										<span className='custom-control pl-0 pr-5'>
 											<i className='far fa-check-circle mx-2 text-success'></i>
 											Free Demo
@@ -525,28 +565,16 @@ const Index = () => {
 											Worth of 1,000 Rs
 										</span>
 									</div>
-									<Link href='/free-session' legacyBehavior>
-										<a className='theme-btn'>
-											Take part <i className='fas fa-arrow-right' />
-										</a>
-									</Link>
+									<button className='btn theme-btn' onClick={() => toast.info('Will preparing for you!')}>
+										Coming soon! <i className='fas fa-arrow-right' />
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
-				{/* Newsletter Section End */}
-
-				{/* Advertise Area Start */}
-				<section className='advertise-area pb-90 pt-100 rpb-70'>
-					<div className='container'>
-						<Advertise loggedIn={auth} />
-					</div>
-				</section>
-				{/* Advertise Area End */}
-				{/* Event Section Start */}
-
-				{/*Event Section End */}
+				{/* Newsletter Section End */ }
+				
 				{/* Blog Section Start */}
 				<section className='blog-section pb-100'>
 					<div className='container'>

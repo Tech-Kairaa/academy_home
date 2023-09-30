@@ -3,10 +3,41 @@ import PageBanner from '../src/components/PageBanner';
 import Layout from '../src/layout/Layout';
 import Head from 'next/head';
 import ProtectedRoute from '@/components/ProtectedRoute';
-import { useSelector } from 'react-redux';
+import server from '@/providers/server';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const ContactUs = () => {
-	const user = useSelector((state) => state.auth.userProfile);
+	const initialValues = {
+		name: '',
+		email: '',
+		mobile: '',
+		message: '',
+	};
+
+	const [values, setValues] = useState(initialValues);
+
+	const handleInputs = (e) => {
+		setValues({
+			...values,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			await server.post('/public/contact', values);
+			toast.success('Will contact you soon!');
+		} catch (error) {
+			console.log(error);
+			toast.error(error?.response?.data?.message);
+		}
+
+		setValues({ ...values, message: '' });
+	};
+
 	return (
 		<ProtectedRoute>
 			<Head>
@@ -14,7 +45,7 @@ const ContactUs = () => {
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer newsletter={true}>
-				<PageBanner pageName={'banner3'} pageTitle={'Contact Us'} />
+				<PageBanner pageName={'contact'} pageTitle={'Contact Us'} />
 				<section className='contact-info-area rel z-1 pb-130 pt-70 rpb-100'>
 					<div className='container'>
 						<div className='row align-items-center justify-content-center'>
@@ -33,17 +64,17 @@ const ContactUs = () => {
 								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
 									<div className='row mt-50'>
 										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box'>
-												<i className='fas fa-map-marker-alt' />
-												<h4>Address</h4>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt-fill' />
+												<h4>Head Office</h4>
 												<span>
 													No 10, Eswari Nagar, Gowrivakkam, Chennai - 73.
 												</span>
 											</div>
 										</div>
 										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box'>
-												<i className='far fa-envelope' />
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-envelope-fill' />
 												<h4>Email Us</h4>
 												<span>
 													<a href='mailto:support@kairaaacademy.com'>
@@ -57,13 +88,64 @@ const ContactUs = () => {
 											</div>
 										</div>
 										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box'>
-												<i className='fas fa-phone-volume' />
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-telephone-fill' />
 												<h4>Helpline</h4>
+												<span>+91 7092 771133</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
+									<div className='row mt-50'>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt' />
+												<h4>Trichy Branch</h4>
 												<span>
-													<a href='callto:+896(321)4600'>+91 7092 771133</a>
-													<br />
-													<br />
+													No 76-O, Sri jothi complex, 3rd floor, N.E.E Complex,
+													Thillai nagar.
+												</span>
+											</div>
+										</div>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt' />
+												<h4>Coimbatore Branch</h4>
+												<span>No 131, 2nd floor, DB Road, RS Puram.</span>
+											</div>
+										</div>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt' />
+												<h4>Tirunelveli Branch</h4>
+												<span>
+													No 12, Shanthi complex, Near new bus stand, Vasanth
+													nagar.
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
+									<div className='row mt-50'>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt' />
+												<h4>Ranipet Branch</h4>
+												<span>
+													No 117, Annadhanachatram road,Amaravathi nagar,
+													Kondapalayam, Sholinghur.
+												</span>
+											</div>
+										</div>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-geo-alt' />
+												<h4>Salem Branch</h4>
+												<span>
+													Sairam complex, Veeranganur main road, Mummadi,
+													Thalaivasal.
 												</span>
 											</div>
 										</div>
@@ -78,14 +160,7 @@ const ContactUs = () => {
 				{/* Contact Form Start */}
 				<section className='contact-form-area wow fadeInUp delay-0-2s'>
 					<div className='container'>
-						<form
-							onSubmit={(e) => e.preventDefault()}
-							id='contact-form'
-							className='contact-form p-50 z-1 rel'
-							name='contact-form'
-							action='#'
-							method='post'
-						>
+						<form onSubmit={handleSubmit} className='contact-form p-50 z-1 rel'>
 							<div className='section-title text-center mb-50'>
 								<span className='sub-title-two'>Send Us Message</span>
 								<h2>Have Any Questions! Say Hello</h2>
@@ -95,11 +170,12 @@ const ContactUs = () => {
 									<div className='form-group'>
 										<input
 											type='text'
-											id='full-name'
-											name='full-name'
+											name='name'
 											className='form-control'
-											defaultValue={user?.name || ''}
 											placeholder='Full Name'
+											value={values.name}
+											autoComplete='off'
+											onChange={handleInputs}
 											required
 										/>
 									</div>
@@ -108,11 +184,12 @@ const ContactUs = () => {
 									<div className='form-group'>
 										<input
 											type='email'
-											id='email-address'
 											name='email'
 											className='form-control'
-											defaultValue={user?.email || ''}
 											placeholder='Email Address'
+											value={values.email}
+											onChange={handleInputs}
+											autoComplete='off'
 											required
 										/>
 									</div>
@@ -121,12 +198,12 @@ const ContactUs = () => {
 									<div className='form-group'>
 										<input
 											type='text'
-											id='phone'
-											name='phone'
+											name='mobile'
 											className='form-control'
-											defaultValue=''
-											placeholder='Phone Number'
-											required=''
+											placeholder='Mobile Number'
+											value={values.mobile}
+											onChange={handleInputs}
+											autoComplete='off'
 										/>
 									</div>
 								</div>
@@ -134,12 +211,12 @@ const ContactUs = () => {
 									<div className='form-group'>
 										<textarea
 											name='message'
-											id='message'
 											className='form-control'
 											rows={4}
 											placeholder='Write Message'
-											required=''
-											defaultValue={''}
+											value={values.message}
+											onChange={handleInputs}
+											autoComplete='off'
 										/>
 									</div>
 								</div>

@@ -18,14 +18,8 @@ export default class WorkSteps extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className='row justify-content-between align-items-center pb-30 wow fadeInUp delay-0-2s'>
-					<div className='col-lg-8'>
-						<div className='section-title'>
-							<span className='sub-title mb-15'>Aru you interested to</span>
-							<h2>Steps to Become an instructor</h2>
-						</div>
-					</div>
-					<div className='col-lg-4 text-end'>
+				<div className='row justify-content-between align-items-center pb-5 wow fadeInUp delay-0-2s'>
+					<div className='col-lg-4'>
 						<div className='slider-arrow-btns text-lg-right mt-10'>
 							<button onClick={this.previous} className='work-prev'>
 								<i className='fas fa-angle-left' />
@@ -33,6 +27,12 @@ export default class WorkSteps extends Component {
 							<button onClick={this.next} className='work-next'>
 								<i className='fas fa-angle-right' />
 							</button>
+						</div>
+					</div>
+					<div className='col-lg-8 text-end'>
+						<div className='section-title'>
+							<span className='sub-title mb-15'>Openings</span>
+							<h2>Immediate joiners preferred</h2>
 						</div>
 					</div>
 				</div>
@@ -44,40 +44,40 @@ export default class WorkSteps extends Component {
 					<div className='work-step-item'>
 						<span className='number'>01</span>
 						<div className='content'>
-							<h4>Setup instructor account</h4>
+							<h4>Full Stack Developer</h4>
 							<p>
-								Create your account in just a few easy steps and start exploring
-								our platform!
+								Experienced Fullstack Developer (2+ years) proficient in React,
+								MongoDB, Node, Express and REST API integration.
 							</p>
 						</div>
 					</div>
 					<div className='work-step-item'>
 						<span className='number'>02</span>
 						<div className='content'>
-							<h4>Choose a topic</h4>
+							<h4>Laravel Developer</h4>
 							<p>
-								What will you cover in your course? What are the learning
-								objectives? etc..
+								Experienced Laravel Developer (2+ years) proficient in Laravel,
+								MySQL, and REST API integration.
 							</p>
 						</div>
 					</div>
 					<div className='work-step-item'>
 						<span className='number'>03</span>
 						<div className='content'>
-							<h4>Develop your course content</h4>
+							<h4>Backend Developer</h4>
 							<p>
-								This could include videos, lectures, and other interactive
-								elements. Make sure your content is clear.
+								Experienced Nodejs Developer (1+ years) proficient in Nodejs,
+								MongoDB, MySQL, and REST API integration.
 							</p>
 						</div>
 					</div>
 					<div className='work-step-item'>
 						<span className='number'>04</span>
 						<div className='content'>
-							<h4>Choose your basic plan</h4>
+							<h4>Customer Support</h4>
 							<p>
-								Choose from one of our basic pricing plans to fit your
-								requirements, and unlock a world of possibilities.
+								Experienced Candidate (1+ years) with good communication,
+								Freshers also welcome.
 							</p>
 						</div>
 					</div>

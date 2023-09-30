@@ -1,81 +1,102 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { addItem, addPrice, removePrice } from '@/services/cart';
+import { addItem } from '@/services/cart';
 import { useDispatch, useSelector } from 'react-redux';
-import Skeleton from 'react-loading-skeleton';
 import UseImage from './UseImage';
-import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
+import Link from 'next/link';
+import { NumericFormat } from 'react-number-format';
 
 const CourseCard = ({ courses }) => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
 	const dispatch = useDispatch();
 
-	const handleAddItem = (cid, price) => {
+	const handleAddItem = (cid) => {
 		if (cartItems.includes(cid)) {
 			toast.warning('Already added into cart');
 			return;
 		}
 
 		dispatch(addItem(cid));
-		dispatch(addPrice(price));
 		toast.success('Added into cart');
 	};
 
 	return (
 		<>
-			{courses &&
-				courses?.map((item, index) => (
-					<div className='col-md-4' key={index}>
-						<div className='coach-item wow fadeInUp delay-0-4s'>
-							<div className='coach-image'>
-								<span className='category'>₹ {item.price}</span>
-								<UseImage
-									cid={item.id}
-									filename={item.image}
-									className='rounded-top'
-								/>
+			{courses?.map((item, index) => (
+				<div className='col-md-4' key={index}>
+					<div
+						className='coach-item wow fadeInUp delay-0-4s'
+						style={{ visibility: 'visible' }}
+					>
+						<div className='coach-image'>
+							<span className='category'>Blockchain</span>
+							<UseImage
+								cid={item.id}
+								filename={item.image}
+								className='rounded-top'
+							/>
+						</div>
+						<div className='coach-content p-4 rounded-bottom-3'>
+							<span className='label text-capitalize'>{item.level}</span>
+							<h4>
+								<Link href={`/courses/course-details?ref=${item.id}`}>
+									<a>{item.title}</a>
+								</Link>
+							</h4>
+							<div className='ratting-price'>
+								{item.price.discount ? (
+									<>
+										<span className='text-theme-green fw-bold fs-5'>
+											<NumericFormat
+												value={item.price.discountPrice}
+												displayType='text'
+												thousandSeparator
+												decimalScale={0}
+												prefix='₹'
+											/>
+											<strike className='text-secondary fw-normal ms-2 fs-7'>
+												<NumericFormat
+													value={item.price.currentPrice}
+													displayType='text'
+													thousandSeparator
+													decimalScale={0}
+													prefix='₹'
+												/>
+											</strike>
+										</span>
+										<span className='badge text-bg-primary'>
+											{item.price.discount}% OFF
+										</span>
+									</>
+								) : (
+									<>
+										<span className='text-theme-green fw-bold fs-5'>
+											<NumericFormat
+												value={item.price.currentPrice}
+												displayType='text'
+												thousandSeparator
+												decimalScale={0}
+												prefix='₹'
+											/>
+										</span>
+									</>
+								)}
 							</div>
-							<div className='coach-content rounded-bottom'>
-								<div className='d-flex justify-content-between'>
-									<span className='text-capitalize'>{item.level} Level</span>
-									<span className=''>{item.sections} Sections</span>
-								</div>
-								<h4 className='mt-10'>
-									<Link href={`/courses/course-details?ref=${item.id}`}>
-										<a className='text-theme-blue lead'>
-											<EllipsisText text={item.title} length={58} />
-										</a>
-									</Link>
-								</h4>
-								<p className='mt-5 mb-4'>
-									<EllipsisText text={item.subtitle} length={100} />
-								</p>
-								<ul className='coach-footer pb-2'>
-									<li>
-										<Link href={`/courses/course-details?ref=${item.id}`}>
-											<a>
-												<i className='fas fa-external-link-alt' />
-												<span> Details</span>
-											</a>
-										</Link>
-									</li>
-									<li>
-										<button
-											className='theme-btn style-one py-2 px-4 text-center'
-											onClick={() => handleAddItem(item.id, item.price)}
-										>
-											<span>
-												<em className='fas fa-shopping-bag me-2' />
-												Add to cart
-											</span>
-										</button>
-									</li>
-								</ul>
+							<div className='d-flex justify-content-between'>
+								<button
+									className='btn theme-btn'
+									onClick={() => handleAddItem(item.id)}
+								>
+									Add to cart
+								</button>
+								<Link href={`/courses/course-details?ref=${item.id}`}>
+									<a className='btn theme-btn style-three'>View</a>
+								</Link>
 							</div>
 						</div>
 					</div>
-				))}
+				</div>
+			))}
 
 			{!courses && (
 				<div className='d-flex justify-content-between align-items-center'>

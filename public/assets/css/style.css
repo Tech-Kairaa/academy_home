@@ -464,6 +464,7 @@ a.theme-btn:hover,
 a.theme-btn:focus,
 a.theme-btn.style-two:not(:hover) {
 	background: #204ecf;
+	color: #fff;
 }
 
 .theme-btn:not(:hover),
@@ -6082,7 +6083,7 @@ h6,
 }
 
 .feature-three-item:hover {
-	border-color: white;
+	border-color: #204ecf;
 	-webkit-box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 	box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 }
@@ -6269,6 +6270,7 @@ h6,
 	background: white;
 	margin-bottom: 30px;
 	border: 1px solid #e9eaeb;
+	border-radius: 10px;
 }
 
 .feature-six-item .content {
@@ -6290,7 +6292,6 @@ h6,
 }
 
 .feature-six-item:hover {
-	border-color: white;
 	-webkit-box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 	box-shadow: 10px 0 60px rgba(76, 76, 76, 0.1);
 }
@@ -6894,7 +6895,7 @@ h6,
 }
 
 .coach-content .price:before {
-	content: '$';
+	content: '₹';
 }
 
 .coach-footer {
@@ -11223,7 +11224,7 @@ blockquote .blockquote-footer:before {
 }
 
 .product-item .product-content .price del:before {
-	content: '$';
+	content: '₹';
 }
 
 .product-item .product-content .price span {
@@ -11232,7 +11233,7 @@ blockquote .blockquote-footer:before {
 }
 
 .product-item .product-content .price span:before {
-	content: '$';
+	content: '₹';
 }
 
 .product-item:hover .product-image:before {
@@ -11346,7 +11347,7 @@ blockquote .blockquote-footer:before {
 }
 
 .product-details-content .ratting-price .price:before {
-	content: '$';
+	content: '₹';
 }
 
 .product-details-content .category-tags li {
@@ -11559,7 +11560,7 @@ blockquote .blockquote-footer:before {
 }
 
 .pricin-item .price:before {
-	content: '$';
+	content: '₹';
 	font-size: 24px;
 }
 
@@ -12696,7 +12697,7 @@ blockquote .blockquote-footer:before {
 }
 
 .widget-price-filter .price span:before {
-	content: '$';
+	content: '₹';
 }
 
 .widget-price-filter #price {
@@ -13683,4 +13684,9 @@ blockquote .blockquote-footer:before {
 .social-link:hover {
 	color: #204ecf;
 	border-color: #204ecf;
+}
+
+.career-form input::placeholder {
+	color: #0002;
+	font-weight: 100;
 }

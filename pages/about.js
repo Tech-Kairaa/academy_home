@@ -24,7 +24,7 @@ const About = () => {
 				<section className='about-page-section pt-120 rpt-90'>
 					<div className='container'>
 						<div className='row align-items-center large-gap'>
-							<div className='col-lg-5'>
+							<div className='col-lg-6'>
 								<div className='about-page-content wow fadeInLeft delay-0-2s'>
 									<div className='section-title mb-30'>
 										<span className='sub-title-two'>
@@ -48,7 +48,7 @@ const About = () => {
 									<div className='about-btns pt-25'>
 										<Link href='/about'>
 											<a className='theme-btn my-15'>
-												Enrol Now <i className='fas fa-arrow-right' />
+												Signup Now <i className='fas fa-arrow-right' />
 											</a>
 										</Link>
 										<Link href='/faqs'>
@@ -59,19 +59,12 @@ const About = () => {
 									</div>
 								</div>
 							</div>
-							<div className='col-lg-5'>
+							<div className='col-lg-6'>
 								<div className='about-page-middle rpt-55 rpb-30 wow fadeInRight delay-0-2s'>
-									<img src='/assets/images/about/about-page.png' alt='About' />
-									<div className='circle-content bg-light px-2 py-1'>
-										<img
-											src='/assets/images/about/about-four1.jpg'
-											className='rounded-circle'
-											alt=''
-										/>
-									</div>
+									<img src='/assets/images/about/about.jpg' alt='About' />
 								</div>
 							</div>
-							<div className='col-lg-2'>
+							{/* <div className='col-lg-2'>
 								<div className='counter-wrap style-two wow fadeInRight delay-0-4s'>
 									<div className='success-item'>
 										<span className='count-text plus'>166</span>
@@ -90,7 +83,7 @@ const About = () => {
 										<span>New Courses</span>
 									</div>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</section>
@@ -173,15 +166,179 @@ const About = () => {
 					</div>
 				</section>
 				{/* About Section End */}
+				{/* Rules & Conditions Area Start */}
+				<section className='rules-condition-area pt-50 pb-100 rpt-90'>
+					<div className='container'>
+						<div className='row align-items-center large-gap'>
+							<div className='col-lg-5'>
+								<div className='rules-condition-content rmb-50 wow fadeInLeft delay-0-2s'>
+									<div className='section-title'>
+										<span className='sub-title-two'>Who is Kairaa?</span>
+										<h2>Kairaa is a tech company</h2>
+									</div>
+									<p>
+										Kairaa is the best company for serving tech solutions.
+										We&apos;ll develop enterprise solutions using web 3.0
+										technologies. Our solutions will aid in our clients
+										management and business optimization. To assist our clients
+										in achieving their business objectives, we can offer the
+										best technological solutions.
+									</p>
+									<p>
+										Kairaa is ready to find a solution for your innovative
+										idea&apos;s. Our team of engineers is experienced in a wide
+										range of technologies and can help you turn your vision into
+										a reality. Our solutions are custom-tailored to your
+										industry, so we make it easy to implement the right solution
+										for your business.
+									</p>
+
+									<Link href='https://www.kairaatechserve.com'>
+										<a className='theme-btn mt-3' target='_blank'>
+											Learn About Kairaa
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-7'>
+								<div className='rules-condition-image-part wow fadeInRight delay-0-2s'>
+									<div className='row align-items-center'>
+										<div className='col-5'>
+											<img
+												src='assets/images/about/rules-condition2.jpg'
+												alt='Rules'
+											/>
+										</div>
+										<div className='col-7'>
+											<img
+												src='assets/images/about/rules-condition1.jpg'
+												alt='Rules'
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				{/* Rules & Conditions Area End */}
+				{/* Features Section Start */}
+				<section className='features-section-three rel z-1 pt-50 rpt-85 pb-100 rpb-70'>
+					<div className='container'>
+						<div className='section-title text-center mb-55'>
+							<span className='sub-title-two'>Our other products</span>
+							<h2>Discover our innovative idea&apos;s</h2>
+						</div>
+						<div className='row justify-content-center'>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-2s'>
+									<h4>KAIT Coin</h4>
+									<p>
+										Consider KAIT Coin as a promising cryptocurrency for your
+										investment portfolio
+									</p>
+									<Link href='https://kaitcoin.com/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-4s'>
+									<h4>Kairaa Exchange</h4>
+									<p>
+										Explore the features of Kairaa Exchange for seamless
+										cryptocurrency trading.
+									</p>
+									<Link href='https://kairaaexchange.com/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-6s'>
+									<h4>KAIT Stacking</h4>
+									<p>
+										Grow your KAIT holdings with KAIT Stacking, the premier
+										platform for stacking.
+									</p>
+									<Link href='https://play.google.com/store/apps/details?id=com.Kaitstaking.kait&pcampaignid=web_share'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-8s'>
+									<h4>Kairaachain</h4>
+									<p>
+										Our Innovative Blockchain Ecosystem, Pioneering the Future
+										of Decentralization.
+									</p>
+									<Link href='https://kairaachain.io/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-8s'>
+									<h4>VPay</h4>
+									<p>
+										Simplify your payments with VPay, the best payment app for
+										seamless transactions.
+									</p>
+									<Link href='https://vairaapay.com/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-8s'>
+									<h4>NFT Kairaa</h4>
+									<p>
+										Stay tuned for NFT Kairaa, the upcoming NFT platform for the
+										digital art world.
+									</p>
+									<Link href='https://nftkairaa.com/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+							<div className='col-lg-3 col-sm-6'>
+								<div className='feature-three-item wow fadeInUp delay-0-8s'>
+									<h4>Coincore</h4>
+									<p>
+										Get ready for CoinCore, the upcoming cryptocurrency listing
+										platform.
+									</p>
+									<Link href='https://coincore.in/'>
+										<a className='details-btn' target='_blank'>
+											<i className='fas fa-long-arrow-alt-right' />
+										</a>
+									</Link>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				{/* Features Section End */}
 
 				{/*Founder Section Start*/}
 				<Founder />
 				{/*Founder Section End*/}
-
-				<Team />
-
+				
 				{/* Advertise Area Start */}
-				<section className='advertise-area pt-20 rpt-100 pb-50 rpb-60'>
+				<section className='advertise-area pt-75 rpt-100 pb-50 rpb-60'>
 					<div className='container'>
 						<Advertise loggedIn={auth} />
 					</div>

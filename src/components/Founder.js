@@ -5,20 +5,20 @@ const Founder = () => {
 	return (
 		<section className='bg-lighter py-100'>
 			<div className='container'>
-				<div className='row shadow-lg align-content-center'>
+				<div className='row shadow-lg align-content-center rounded-3'>
 					<div className='col-md-4 p-0'>
 						<div className='position-relative'>
 							<img
 								src='/assets/images/teams/founder.jpg'
-								className='founder-image'
+								className='founder-image rounded-start-3'
 								alt='Kairaa Blockchain Academy Founder'
 							/>
 						</div>
 					</div>
-					<div className='col-md-8 bg-light py-30 px-5'>
-						<h2 className='text-uppercase mt-1 mb-0'>Mr Agilan</h2>
+					<div className='col-md-8 bg-light my-auto px-5'>
+						<h2 className='mt-1 mb-2'>Mr.Agilan</h2>
 						<h4
-							className='mt-0 mb-1 font-weight-lighter font-italic'
+							className='m-0 font-weight-lighter text-secondary font-italic'
 							style={{ fontFamily: 'initial' }}
 						>
 							Founder and CEO of Kairaa
@@ -33,7 +33,7 @@ const Founder = () => {
 							training to help professionals thrive in the rapidly evolving
 							blockchain industry. With our expertise, we equip individuals and
 							teams with the skills and expertise needed to stay ahead of the
-							curve and succeed in the fast-growing blockchain industry.
+							curve and succeed in the blockchain industry.
 						</p>
 						<div className='social-style-two'>
 							<a href='#'>
