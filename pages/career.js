@@ -47,7 +47,7 @@ const Career = () => {
 		}
 
 		try {
-			await server.post('/public/career', formDataToSubmit);
+			await server.post('/public/career/apply', formDataToSubmit);
 			toast.success('Applied successfully');
 		} catch (error) {
 			console.log(error);
