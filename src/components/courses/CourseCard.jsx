@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UseImage from './UseImage';
 import Link from 'next/link';
 import { NumericFormat } from 'react-number-format';
+import EllipsisText from 'react-ellipsis-text';
 
 const CourseCard = ({ courses }) => {
 	const cartItems = useSelector((state) => state.cart.cartItems);
@@ -40,9 +41,12 @@ const CourseCard = ({ courses }) => {
 							<span className='label text-capitalize'>{item.level}</span>
 							<h4>
 								<Link href={`/courses/course-details?ref=${item.id}`}>
-									<a>{item.title}</a>
+									<a>
+										<EllipsisText text={item.title} length={50} />
+									</a>
 								</Link>
 							</h4>
+
 							<div className='ratting-price'>
 								{item.price.discount ? (
 									<>
@@ -97,14 +101,6 @@ const CourseCard = ({ courses }) => {
 					</div>
 				</div>
 			))}
-
-			{!courses && (
-				<div className='d-flex justify-content-between align-items-center'>
-					<span className='loader'></span>
-					<span className='loader'></span>
-					<span className='loader'></span>
-				</div>
-			)}
 		</>
 	);
 };

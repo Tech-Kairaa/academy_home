@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { NumericFormat } from 'react-number-format';
 import useCartItems from '@/hooks/useCartItems';
-import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
+import EllipsisText from 'react-ellipsis-text';
 import { removeItem, removePrice, clearCart } from '@/services/cart';
 
 const CartContainer = () => {
@@ -59,7 +59,7 @@ export const CartList = ({ cartItems, dispatch }) => {
 	const handleClearCart = () => dispatch(clearCart());
 
 	return (
-		<>
+		<div className='d-flex flex-column gap-3'>
 			{cartItems.map((item, index) => (
 				<div
 					className='row align-items-center justify-content-between border-bottom pb-2'
@@ -69,12 +69,14 @@ export const CartList = ({ cartItems, dispatch }) => {
 						<EllipsisText text={item.title} length={35} />
 						<p className='m-0'>
 							<strong>PRICE : </strong>
-							<span className='lead fw-bold text-theme-green ms-2'>
-								₹
-								{item.price.discount
-									? item.price.discountPrice
-									: item.price.currentPrice}
-							</span>
+							<NumericFormat
+								value={item.price.discountPrice}
+								displayType='text'
+								thousandSeparator
+								decimalScale={0}
+								prefix='₹'
+								className='lead fw-bold text-theme-green ms-2'
+							/>
 						</p>
 					</div>
 					<div className='col-md-2'>
@@ -97,7 +99,7 @@ export const CartList = ({ cartItems, dispatch }) => {
 					<em className='fas fa-trash me-2'></em> Remove All
 				</button>
 			)}
-		</>
+		</div>
 	);
 };
 

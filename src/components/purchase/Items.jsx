@@ -9,11 +9,11 @@ const Items = ({ cartItems }) => {
 	const handleClearCart = () => dispatch(clearCart());
 
 	return (
-		<div className='container mb-50'>
+		<>
 			{cartItems?.map((item, index) => (
 				<div
 					key={index}
-					className='row large-gap justify-content-between align-items-center border py-3 rounded-2'
+					className='row large-gap justify-content-between align-items-center border py-3 rounded-2 mb-3'
 				>
 					<div className='col-auto'>
 						<span className='fs-4 text-secondary'>{index + 1}</span>
@@ -83,7 +83,7 @@ const Items = ({ cartItems }) => {
 					</button>
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 

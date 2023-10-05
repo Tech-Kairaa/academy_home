@@ -11,6 +11,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { NumericFormat } from 'react-number-format';
+import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -59,6 +60,28 @@ const CourseDetails = ({ cid }) => {
 		toast.success('Added into cart');
 	};
 
+	const [classInfo, setClassInfo] = useState(false);
+
+	const handleClassInfo = (content) => {
+		let totalDuration = 0;
+		let totalVideos = 0;
+
+		content.forEach((section) => {
+			totalVideos += section.videos.length;
+			section.videos.forEach((video) => {
+				totalDuration += video.duration;
+			});
+		});
+
+		setClassInfo({
+			duration: moment.utc(totalDuration * 1000).format('HH:mm:s'),
+			videos: totalVideos,
+			sections: content.length,
+		});
+	};
+
+	useEffect(() => course && handleClassInfo(course?.content), [course]);
+
 	return (
 		<ProtectedRoute>
 			<Head>
@@ -71,7 +94,12 @@ const CourseDetails = ({ cid }) => {
 					<section className='mt-150 pb-100 position-relative'>
 						<div className='container'>
 							<div className='row large-gap'>
-								<CourseContent id={cid} course={course} coupon={coupon} />
+								<CourseContent
+									id={cid}
+									course={course}
+									coupon={coupon}
+									classInfo={classInfo}
+								/>
 								<div className='col-4'>
 									<div
 										className='card position-fixed border-light'
@@ -145,7 +173,13 @@ const CourseDetails = ({ cid }) => {
 														Language <span>{course?.language}</span>
 													</li>
 													<li className='list-group-item d-flex justify-content-between align-items-center'>
-														Sections <span>{course?.content.length}</span>
+														Sections <span>{classInfo.sections}</span>
+													</li>
+													<li className='list-group-item d-flex justify-content-between align-items-center'>
+														Videos <span>{classInfo.videos}</span>
+													</li>
+													<li className='list-group-item d-flex justify-content-between align-items-center'>
+														Duration <span>{classInfo.duration}</span>
 													</li>
 												</ul>
 											</div>

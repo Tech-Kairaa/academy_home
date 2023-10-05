@@ -32,15 +32,20 @@ const Courses = () => {
 								</div>
 							</div>
 						</div>
-						<div className='row'>
-							<CourseCard courses={courses} />
-						</div>
-						<ul className='pagination flex-wrap mt-20'>
-							<Pagination
-								paginationCls={'.course-grids .row .col-md-6'}
-								sort={4}
-							/>
-						</ul>
+						{!courses && <div className='loader w-50 mx-auto'></div>}
+						{courses && (
+							<>
+								<div className='row'>
+									<CourseCard courses={courses} />
+								</div>
+								<ul className='pagination flex-wrap mt-20'>
+									<Pagination
+										paginationCls={'.course-grids .row .col-md-6'}
+										sort={4}
+									/>
+								</ul>
+							</>
+						)}
 					</div>
 				</section>
 				<CartContainer />

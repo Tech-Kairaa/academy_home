@@ -1,22 +1,13 @@
+import { useState } from 'react';
 import Accordion from '../elements/Accordion';
 import UseImage from './UseImage';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
-const CourseContent = ({ id, course, coupon }) => {
-	const countVideos = (data) => {
-		let videoCount = 0;
-
-		data.forEach((item) => {
-			if (item.videos) videoCount += item.videos.length;
-			if (item.sections) videoCount += countVideos(item.sections);
-		});
-
-		return videoCount;
-	};
-
+const CourseContent = ({ id, course, coupon, classInfo }) => {
 	const handlePlayButton = () => toast.info('Play after purchased!');
-
+	
 	return (
 		<div className='col-8'>
 			<div className='course-details-content'>
@@ -46,10 +37,13 @@ const CourseContent = ({ id, course, coupon }) => {
 				<div className='mt-30'>
 					<div className='d-inline-flex gap-3 mb-30'>
 						<span className='badge rounded-pill text-bg-secondary'>
-							Sections : {course?.content.length}
+							Sections : {classInfo.sections}
 						</span>
 						<span className='badge rounded-pill text-bg-secondary'>
-							Videos : {countVideos(course?.content)}
+							Videos : {classInfo.videos}
+						</span>
+						<span className='badge rounded-pill text-bg-secondary'>
+							Duration : {classInfo.duration}
 						</span>
 					</div>
 					<Accordion>
@@ -60,10 +54,13 @@ const CourseContent = ({ id, course, coupon }) => {
 										<li className='d-flex justify-content-between align-items-center py-2'>
 											{video.title}
 											<button
-												className='bg-transparent'
+												className='bg-transparent text-secondary'
 												onClick={handlePlayButton}
 											>
-												<em className='bi bi-play-circle'></em>
+												<em className='bi bi-play-circle me-2'></em>
+												<span>
+													{moment.utc(video.duration * 1000).format('mm:ss')}
+												</span>
 											</button>
 										</li>
 									</ul>

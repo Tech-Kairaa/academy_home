@@ -78,8 +78,8 @@ const Checkout = () => {
 		const handleFailure = async (status) => {
 			try {
 				await server.post(
-					'http://localhost:3003/api/v1/orders/checkout/verification',
-					{ status, orderId }
+					'http://localhost:5002/api/v1/orders/checkout/verification',
+					{ status, orderId, cartItems, userId: userProfile._id }
 				);
 			} catch (error) {
 				toast.error(`Payment process ${status}`);
@@ -113,10 +113,12 @@ const Checkout = () => {
 			<Layout header footer>
 				<PageBanner pageName={'banner'} pageTitle={'Checkout'} />
 				<section className='checkout-area my-100'>
-					<Items cartItems={cartItems} />
-
 					<div className='container'>
-						<div className='row large-gap'>
+						{!cartItems && (
+							<div className='loader w-50 mx-auto row mb-10'></div>
+						)}
+						{cartItems && <Items cartItems={cartItems} />}
+						<div className='row large-gap mt-50'>
 							<div className='col-md-4 order-md-2 mb-4 pe-0'>
 								<CouponCode
 									handlePricing={handlePricing}

@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '@/services/cart';
+import server from '@/providers/server';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 export async function getServerSideProps(context) {
 	const { ref } = context.query;
@@ -12,10 +15,25 @@ export async function getServerSideProps(context) {
 }
 const Success = ({ paymentId }) => {
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.auth.userProfile);
+	const cartItems = useSelector((state) => state.cart.cartItems);
 
 	useEffect(() => {
-		dispatch(clearCart());
-	}, [dispatch]);
+		const createClassroom = async () => {
+			try {
+				await server.post('/classroom/create', {
+					cartItems,
+					userId: user?._id,
+				});
+				dispatch(clearCart());
+			} catch (error) {
+				console.log(error);
+				toast.error(error?.response?.data?.message);
+			}
+		};
+
+		if (user) createClassroom();
+	}, [user, dispatch]);
 
 	return (
 		<ProtectedRoute>
