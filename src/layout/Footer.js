@@ -121,7 +121,7 @@ const FollowIcon = () => (
 											<a href='callto:+0123456789'>+91-709-277-4077</a>
 										</li>
 										<li>
-											<i className='bi bi-geo-alt-fill mt-0' /> 131, 2nd floor, DB Road, RS Puram, Coimbatore.
+											<i className='bi bi-geo-alt-fill mt-0' /> 131, 2nd floor, DB Road, RS Puram, Coimbatore - 641002.
 										</li>
 									</ul>
 								</div>

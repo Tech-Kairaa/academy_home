@@ -68,7 +68,7 @@ const ContactUs = () => {
 												<i className='bi bi-geo-alt-fill' />
 												<h4>Head Office</h4>
 												<span>
-													No 10, Eswari Nagar, Gowrivakkam, Chennai - 73.
+													No 131, 2nd floor, DB Road, RS Puram, CBE - 641002.
 												</span>
 											</div>
 										</div>
@@ -101,27 +101,31 @@ const ContactUs = () => {
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
-												<h4>Trichy Branch</h4>
+												<h4>Sub-Branch</h4>
 												<span>
-													No 76-O, Sri jothi complex, 3rd floor, N.E.E Complex,
-													Thillai nagar.
+													20/14, Kalaivanar Street, Jafferkhanpet, Chennai -
+													600083.
 												</span>
 											</div>
 										</div>
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
-												<h4>Coimbatore Branch</h4>
-												<span>No 131, 2nd floor, DB Road, RS Puram.</span>
+												<h4>Trichy Branch</h4>
+												<span>
+													No 76-O, Jothi complex, Thillai nagar, Pincode -
+													620018.
+												</span>
 											</div>
 										</div>
+
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
 												<h4>Tirunelveli Branch</h4>
 												<span>
-													No 12, Shanthi complex, Near new bus stand, Vasanth
-													nagar.
+													No 12, Shanthi complex, Vasanth nagar, Pincode -
+													627005.
 												</span>
 											</div>
 										</div>
@@ -134,8 +138,8 @@ const ContactUs = () => {
 												<i className='bi bi-geo-alt' />
 												<h4>Ranipet Branch</h4>
 												<span>
-													No 117, Annadhanachatram road,Amaravathi nagar,
-													Kondapalayam, Sholinghur.
+													No 117, Amaravathi nagar, Sholinghur, Pincode -
+													631102.
 												</span>
 											</div>
 										</div>
@@ -144,8 +148,8 @@ const ContactUs = () => {
 												<i className='bi bi-geo-alt' />
 												<h4>Salem Branch</h4>
 												<span>
-													Sairam complex, Veeranganur main road, Mummadi,
-													Thalaivasal.
+													Sairam complex, Veeranganur main road, Thalaivasal.
+													Pincode - 636112.
 												</span>
 											</div>
 										</div>

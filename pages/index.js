@@ -23,11 +23,8 @@ const Index = () => {
 					<div className='container'>
 						<div className='row large-gap'>
 							<div className='col-lg-6 align-self-end'>
-								<div className='hero-three-image-part'>
-									<img
-										src='/assets/images/hero/hero-three-man.png'
-										alt='Hero'
-									/>
+								<div className='hero-three-image-part ps-0'>
+									<img src='/assets/images/hero.png' alt='Hero' />
 									{/* <div className='hero-chart wow fadeInUp delay-0-2s'>
 										<img src='/assets/images/hero/hero-chart.png' alt='Chart' />
 										<h5>95% Success Results</h5>
@@ -565,7 +562,10 @@ const Index = () => {
 											Worth of 1,000 Rs
 										</span>
 									</div>
-									<button className='btn theme-btn' onClick={() => toast.info('Will preparing for you!')}>
+									<button
+										className='btn theme-btn'
+										onClick={() => toast.info('Will preparing for you!')}
+									>
 										Coming soon! <i className='fas fa-arrow-right' />
 									</button>
 								</div>
@@ -573,8 +573,8 @@ const Index = () => {
 						</div>
 					</div>
 				</section>
-				{/* Newsletter Section End */ }
-				
+				{/* Newsletter Section End */}
+
 				{/* Blog Section Start */}
 				<section className='blog-section pb-100'>
 					<div className='container'>
