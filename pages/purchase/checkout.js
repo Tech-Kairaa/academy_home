@@ -6,13 +6,14 @@ import Items from '@/components/purchase/Items';
 import useCartItems from '@/hooks/useCartItems';
 import Layout from '@/layouts/Layout';
 import server from '@/providers/server';
+import { updateProductInfo } from '@/services/cart';
 import { razorpayOptions } from '@/utils/paymentOptions';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 export async function getServerSideProps(context) {
@@ -22,8 +23,10 @@ export async function getServerSideProps(context) {
 
 const Checkout = () => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const userProfile = useSelector((state) => state.auth.userProfile);
 	const store = useSelector((state) => state.cart.cartItems);
+	const productInfo = useSelector((state) => state.cart.productInfo);
 	const { data: cart } = useCartItems();
 	const cartItems = cart && cart?.cartItems;
 	const totalPrice = cart && cart?.totalPrice;
@@ -47,8 +50,6 @@ const Checkout = () => {
 
 	const handleCountry = (value) => setValues({ ...values, country: value });
 	const handleRegion = (value) => setValues({ ...values, region: value });
-	const [pricing, setPricing] = useState({ orderItems: store });
-	const handlePricing = (values) => setPricing({ ...pricing, ...values });
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -61,7 +62,7 @@ const Checkout = () => {
 		const { key } = (await server.get('/orders/checkout/key')).data;
 		const response = await server.post('/orders/checkout', {
 			billingAddress: values,
-			productInfo: pricing,
+			productInfo: productInfo,
 			userId: userProfile._id,
 		});
 		const {productInfo: { finalPrice },	orderId	} = response.data; //prettier-ignore
@@ -79,7 +80,12 @@ const Checkout = () => {
 			try {
 				await server.post(
 					'http://localhost:5002/api/v1/orders/checkout/verification',
-					{ status, orderId, cartItems, userId: userProfile._id }
+					{
+						status,
+						orderId,
+						cartItems: productInfo.cartItems,
+						userId: userProfile._id,
+					}
 				);
 			} catch (error) {
 				toast.error(`Payment process ${status}`);
@@ -101,7 +107,19 @@ const Checkout = () => {
 		if (!store.length) {
 			router.replace('/courses');
 		}
-	}, [router, store]);
+
+		const totalCartItems = [];
+		for (let key in cartItems) {
+			totalCartItems[key] = {
+				courseId: cartItems[key].id,
+				price:
+					cartItems[key].price.discountPrice ||
+					cartItems[key].price.currentPrice,
+			};
+		}
+
+		dispatch(updateProductInfo({ totalItems: totalCartItems }));
+	}, [router, store, dispatch, cartItems]);
 
 	return (
 		<ProtectedRoute>
@@ -117,14 +135,10 @@ const Checkout = () => {
 						{!cartItems && (
 							<div className='loader w-50 mx-auto row mb-10'></div>
 						)}
-						{cartItems && <Items cartItems={cartItems} />}
+						{cartItems && <Items cartItems={cartItems} key={Math.random()} />}
 						<div className='row large-gap mt-50'>
 							<div className='col-md-4 order-md-2 mb-4 pe-0'>
-								<CouponCode
-									handlePricing={handlePricing}
-									totalItems={totalItems}
-									totalPrice={totalPrice}
-								/>
+								<CouponCode totalItems={totalItems} totalPrice={totalPrice} />
 							</div>
 
 							<CheckoutForm
@@ -133,6 +147,7 @@ const Checkout = () => {
 								handleCountry={handleCountry}
 								handleRegion={handleRegion}
 								handleValues={handleValues}
+								key={Math.random()}
 							/>
 						</div>
 					</div>

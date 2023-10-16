@@ -764,16 +764,16 @@ a.theme-btn.style-five:hover {
 .pagination li .page-link {
 	padding: 0;
 	border: none;
-	font-size: 18px;
+	font-size: 15px;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	font-weight: 600;
 	color: #262d3d;
 	font-family: 'Raleway', sans-serif;
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	background: rgba(32, 78, 207, 0.1);
-	line-height: 50px;
+	line-height: 40px;
 	border-radius: 50%;
 	text-align: center;
 }
@@ -4280,7 +4280,6 @@ h6,
 .main-menu .navbar-collapse li.current-menu-item > a,
 .main-menu .navbar-collapse li > a:hover {
 	color: #204ecf;
-	text-decoration: underline;
 }
 
 .main-menu .navbar-collapse li li {
@@ -6963,22 +6962,21 @@ h6,
 	top: 0;
 	right: 30px;
 	color: white;
-	font-size: 32px;
+	font-size: 22px;
 	font-weight: 800;
 	position: absolute;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	width: 75px;
-	height: 75px;
+	width: 110px;
+	height: 50px;
 	background: #00cc83;
-	line-height: 75px;
-	border-radius: 50%;
+	line-height: 55px;
 	text-align: center;
 }
 
 .coach-item.style-two .ratting-price .price:before {
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .coach-item.style-two .coach-footer {
@@ -6995,7 +6993,7 @@ h6,
 	transition: 0.5s;
 	margin: 0 0 40px;
 	position: relative;
-	padding: 33px 65px;
+	padding: 33px 45px;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -7025,8 +7023,8 @@ h6,
 	-webkit-box-flex: 0;
 	-ms-flex: none;
 	flex: none;
-	width: 33%;
-	margin-left: 30px;
+	width: 30%;
+	margin-left: 25px;
 	margin-right: 30px;
 }
 
@@ -7054,8 +7052,8 @@ h6,
 }
 
 .coach-item.style-two.coach-list .price {
-	top: 90px;
-	left: 65px;
+	top: 25px;
+	left: 0px;
 	right: auto;
 }
 

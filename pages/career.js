@@ -61,7 +61,7 @@ const Career = () => {
 				<title> Career | Kairaa Blockchain Academy</title>
 			</Head>
 			<Layout header footer newsletter={false} topbar={false}>
-				<PageBanner pageName={'career'} pageTitle={'Career'} />
+				<PageBanner pageName={'career'} pageTitle={'Start your career'} />
 				<section className='join-our-team-area pt-120 rpt-90'>
 					<div className='container'>
 						<div className='row align-items-center large-gap'>
@@ -69,17 +69,17 @@ const Career = () => {
 								<div className='join-our-team-image-part pt-5 wow fadeInRight delay-0-2s'>
 									<div className='image-two'>
 										<img
-											src='/assets/images/instructor/join-team2.jpg'
+											src='/assets/images/career/join-team1.jpg'
 											alt='Join Our Team'
 										/>
 										<img
-											src='/assets/images/instructor/join-team3.jpg'
+											src='/assets/images/career/join-team3.jpg'
 											alt='Join Our Team'
 										/>
 									</div>
 									<div className='image-one'>
 										<img
-											src='/assets/images/instructor/join-team1.jpg'
+											src='/assets/images/career/career_2.png'
 											alt='Join Our Team'
 										/>
 									</div>

@@ -33,6 +33,8 @@ const Success = ({ paymentId }) => {
 		};
 
 		if (user) createClassroom();
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, dispatch]);
 
 	return (

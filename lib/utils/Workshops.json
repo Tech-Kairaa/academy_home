@@ -1,0 +1,68 @@
+[
+    {
+        "workshopId": 1,
+        "title" : "blockchain developer workshop",
+        "price" : 199,
+        "certificate" : 1,
+        "hours" : "6 hours (2h/d)",
+        "timing" : "7pm to 9pm",
+        "date" : "Nov 04, 2023 & Nov 05, 2023",
+        "modules" : 6,
+        "courseContent": "/workshop/modules/"
+    },
+    {
+        "workshopId": 2,
+        "title" : "blockchain developer fundamental",
+        "price" : 9999,
+        "certificate" : 1,
+        "hours" : "32 hours (4h/d)",
+        "timing" : "9.30am to 1.30pm",
+        "date" : "Nov 01, 2023 to Nov 09, 2023",
+        "modules" : 9,
+        "courseContent": "/workshop/modules/"
+    },
+    {
+        "workshopId": 3,
+        "title" : "blockchain developer professional",
+        "price" : 24999,
+        "certificate" : 1,
+        "hours" : "90 hours (2h/d)",
+        "timing" : "7pm to 9pm",
+        "date" : "Nov 01, 2023 to Dec 15, 2023",
+        "modules" : 9,
+        "courseContent": "/workshop/modules/"
+    },
+    {
+        "workshopId": 4,
+        "title" : "blockchain developer expert",
+        "price" : 39999,
+        "certificate" : 1,
+        "hours" : "90 hours (2h/d)",
+        "timing" : "7pm to 9pm",
+        "date" : "Nov 01, 2023 to Dec 15, 2023",
+        "modules" : 7,
+        "courseContent": "/workshop/modules/"
+    },
+    {
+        "workshopId": 5,
+        "title" : "complete solidity for smart contract",
+        "price" : 5999,
+        "certificate" : 1,
+        "hours" : "32 hours (4h/d)",
+        "timing" : "9.30am to 1.30pm",
+        "date" : "Nov 01, 2023 to Nov 09, 2023",
+        "modules" : 8,
+        "courseContent": "/workshop/modules/"
+    },
+    {
+        "workshopId": 6,
+        "title" : "became a blockchain instructor",
+        "price" : 9999,
+        "certificate" : 1,
+        "hours" : "36 hours (4h/d)",
+        "timing" : "9.30am to 1.30pm",
+        "date" : "Nov 01, 2023 to Nov 10, 2023",
+        "modules" : 8,
+        "courseContent": "/workshop/modules/"
+    }
+]

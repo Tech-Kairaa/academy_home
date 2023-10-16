@@ -23,11 +23,11 @@ const Items = ({ cartItems }) => {
 
 						<p className='m-0 gap-3 d-flex align-items-center'>
 							<strong>PRICE : </strong>
-							{item.price.discount ? (
+							{item?.price?.discount ? (
 								<>
 									<span className='text-theme-green fw-bold fs-5'>
 										<NumericFormat
-											value={item.price.discountPrice}
+											value={item?.price?.discountPrice}
 											displayType='text'
 											thousandSeparator
 											decimalScale={0}
@@ -35,7 +35,7 @@ const Items = ({ cartItems }) => {
 										/>
 										<strike className='text-secondary fw-normal ms-2 fs-7'>
 											<NumericFormat
-												value={item.price.currentPrice}
+												value={item?.price?.currentPrice}
 												displayType='text'
 												thousandSeparator
 												decimalScale={0}
@@ -51,7 +51,7 @@ const Items = ({ cartItems }) => {
 								<>
 									<span className='text-theme-green fw-bold fs-5'>
 										<NumericFormat
-											value={item.price.currentPrice}
+											value={item?.price?.currentPrice}
 											displayType='text'
 											thousandSeparator
 											decimalScale={0}

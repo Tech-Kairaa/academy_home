@@ -21,7 +21,7 @@ const Pagination = ({ paginationCls, sort }) => {
 						setActive(active === 1 ? 1 : active - 1);
 					}}
 				>
-					<i className='fas fa-angle-double-left' />
+					<em className='bi bi-chevron-left' />
 				</a>
 			</li>
 			{state &&
@@ -49,7 +49,7 @@ const Pagination = ({ paginationCls, sort }) => {
 						setActive(active === state.length ? state.length : active + 1);
 					}}
 				>
-					<i className='fas fa-angle-double-right' />
+					<em className='bi bi-chevron-right' />
 				</a>
 			</li>
 		</Fragment>

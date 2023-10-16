@@ -4,6 +4,24 @@
 	color: #00cc83 !important;
 }
 
+.modal-bg {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.bg-theme-primary {
+	background: #00cc83 !important;
+	color: #fff !important;
+}
+
+.bg-theme-secondary {
+	background: #204ecf !important;
+	color: #fff !important;
+}
+
 .text-theme-blue {
 	color: #204ecf !important;
 }

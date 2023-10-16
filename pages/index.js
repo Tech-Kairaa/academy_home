@@ -52,7 +52,7 @@ const Index = () => {
 										Master blockchain skills for success
 									</span>
 									<h1 className='mb-25 wow fadeInUp delay-0-4s'>
-										Discover Blockchain Technology with{' '}
+										Discover Blockchain Technology with
 										<span>Kairaa Academy&apos;s</span> Online Courses.
 									</h1>
 									<p className='lead'>
@@ -218,14 +218,8 @@ const Index = () => {
 							<div className='col-lg-6'>
 								<div className='about-two-left rmb-75 wow fadeInLeft delay-0-2s'>
 									<div className='about-two-images'>
-										<img
-											src='/assets/images/about/about-two1.jpg'
-											alt='About'
-										/>
-										<img
-											src='/assets/images/about/about-two2.jpg'
-											alt='About'
-										/>
+										<img src='/assets/images/about/about_3.png' alt='About' />
+										<img src='/assets/images/about/about_2.png' alt='About' />
 									</div>
 									{/* <div className='about-image-over'>
 										<div className='about-image-over-item'>

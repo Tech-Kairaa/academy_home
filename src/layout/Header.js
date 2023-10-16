@@ -186,6 +186,11 @@ const Menus = () => {
 					<a>About us</a>
 				</Link>
 			</li>
+			<li className={activeItem === '/workshops' ? 'current' : ''}>
+				<Link href='/workshops'>
+					<a className='bg-theme-primary px-3 rounded-5'>Exclusive workshops</a>
+				</Link>
+			</li>
 			<li className={activeItem === '/courses' ? 'current' : ''}>
 				<Link href='/courses'>
 					<a>Courses</a>

@@ -17,7 +17,7 @@ const Courses = () => {
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer>
-				<PageBanner pageName={'courses'} pageTitle={'Courses'} />
+				<PageBanner pageName={'courses'} pageTitle={'Our Best Courses'} />
 				<section
 					className='coach-section-three bg-lighter rel z-1 pt-100 rpt-150 pb-130 rpb-100'
 					id='courses'

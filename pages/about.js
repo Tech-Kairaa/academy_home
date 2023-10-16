@@ -18,7 +18,7 @@ const About = () => {
 				<link rel='shortcut icon' href='/assets/images/favicon.png' />
 			</Head>
 			<Layout header footer newsletter={true}>
-				<PageBanner pageName={'about_us'} />
+				<PageBanner pageName={'about_us'} pageTitle={'About Kairaa Academy'} />
 				{/* Page Banner End */}
 				{/* About Section Start */}
 				<section className='about-page-section pt-120 rpt-90'>
@@ -61,7 +61,7 @@ const About = () => {
 							</div>
 							<div className='col-lg-6'>
 								<div className='about-page-middle rpt-55 rpb-30 wow fadeInRight delay-0-2s'>
-									<img src='/assets/images/about/about.jpg' alt='About' />
+									<img src='/assets/images/about/about_1.png' className='rounded-3' alt='About' />
 								</div>
 							</div>
 							{/* <div className='col-lg-2'>
@@ -94,7 +94,7 @@ const About = () => {
 						<div className='row large-gap align-items-center'>
 							<div className='col-lg-6'>
 								<div className='about-three-image rmb-65 wow fadeInUp delay-0-2s'>
-									<img src='/assets/images/about/about-three.jpg' alt='About' />
+									<img src='/assets/images/about/about_4.jpg' className='rounded-3' alt='About' />
 									<div className='about-three-image-content bg-light-blue rel text-white br-10 p-30'>
 										<p className='lead'>
 											<i className='fas fa-quote-left mr-3'></i>
@@ -205,13 +205,13 @@ const About = () => {
 									<div className='row align-items-center'>
 										<div className='col-5'>
 											<img
-												src='assets/images/about/rules-condition2.jpg'
+												src='assets/images/about/about_6.png'
 												alt='Rules'
 											/>
 										</div>
 										<div className='col-7'>
 											<img
-												src='assets/images/about/rules-condition1.jpg'
+												src='assets/images/about/about_5.png'
 												alt='Rules'
 											/>
 										</div>
