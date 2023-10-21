@@ -17,9 +17,7 @@ const ProtectedRoute = ({ children, redirectOnLogout }) => {
 			}
 
 			if (user) {
-				if (user?.role === 'learner') {
-					dispatch(updateProfile(user));
-				}
+				dispatch(updateProfile(user));				
 			}
 		} catch (error) {}
 	}, [error, user, router, dispatch, redirectOnLogout]);

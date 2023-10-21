@@ -7,3 +7,5 @@ kairaa_acadamy.code-workspace
 package-lock.json
 .vscode/settings.json
 .env
+pages/courses_offline
+pages/purchase

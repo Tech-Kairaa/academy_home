@@ -138,7 +138,7 @@ const Header = ({ header, topbar }) => {
 												</p>
 											</div>
 										)}
-										<Link
+										{/* <Link
 											href={{
 												pathname: 'https://learner.kairaaacademy.com/',
 												query: loadState('AUTH'),
@@ -150,7 +150,7 @@ const Header = ({ header, topbar }) => {
 											>
 												Dashboard
 											</a>
-										</Link>
+										</Link> */}
 										<button
 											onClick={logout}
 											className='theme-btn style-three mt-10 w-100'
@@ -186,11 +186,11 @@ const Menus = () => {
 					<a>About us</a>
 				</Link>
 			</li>
-			<li className={activeItem === '/workshops' ? 'current' : ''}>
+			{/* <li className={activeItem === '/workshops' ? 'current' : ''}>
 				<Link href='/workshops'>
 					<a className='bg-theme-primary px-3 rounded-5'>Exclusive workshops</a>
 				</Link>
-			</li>
+			</li> */}
 			<li className={activeItem === '/courses' ? 'current' : ''}>
 				<Link href='/courses'>
 					<a>Courses</a>

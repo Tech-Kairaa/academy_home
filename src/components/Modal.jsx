@@ -13,7 +13,7 @@ const BootstrapModal = ({ show, handleClose, children }) => {
 					style={{ right: '15px', top: '5px' }}
 				></span>
 					<div className='modal-body pt-0'>
-						<div className='px-3 py-4'>{children}</div>
+						<div className='px-3 pt-4 py-3'>{children}</div>
 					</div>
 				</div>
 			</div>

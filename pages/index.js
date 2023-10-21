@@ -3,15 +3,23 @@ import Link from 'next/link';
 import Advertise from '@/components/Advertise';
 import Layout from '@/layouts/Layout';
 import Founder from '@/components/Founder';
-import Team from '@/components/Team';
 import CourseGallery from '@/components/CourseGallery';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
+import Modal from '@/components/Modal';
+import { useEffect, useState } from 'react';
 
 const Index = () => {
 	const auth = useSelector((state) => state.auth.loginState);
+	const [showModal, setShowModal] = useState(false);
+	const handleCloseModal = () => setShowModal(false);
+	const triggerModal = () => setShowModal(true);
+
+	useEffect(() => triggerModal(), []);
+
 	return (
 		<ProtectedRoute>
 			<Head>
@@ -682,6 +690,19 @@ const Index = () => {
 					</div>
 				</section>
 				{/* Blog Section End */}
+				{showModal && (
+					<Modal show={showModal} handleClose={handleCloseModal}>
+						<div className='d-flex justify-content-center'>
+							<Image
+								src={'/event.jpeg'}
+								alt='Event'
+								className='w-100 h-100'
+								height={550}
+								width={550}
+							/>
+						</div>
+					</Modal>
+				)}
 			</Layout>
 		</ProtectedRoute>
 	);

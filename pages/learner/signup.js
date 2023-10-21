@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Layout from '../../src/layout/Layout';
 import Link from 'next/link';
 import Head from 'next/head';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import server from '@/providers/server';
@@ -22,7 +21,6 @@ const Signup = () => {
 				name,
 				email,
 				password,
-				role: 'learner',
 			});
 			toast.success(response?.data?.message);
 			router.push('/learner/login');

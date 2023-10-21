@@ -19,7 +19,6 @@ const LogIn = () => {
 			const response = await server.post('/auth/login', {
 				email,
 				password,
-				role: 'learner',
 			});
 
 			const verified = response?.data?.verified;
@@ -31,7 +30,6 @@ const LogIn = () => {
 				toast.success('Successfully logged in');
 				router.push('/');
 			}
-			
 		} catch (error) {
 			console.log(error);
 			toast.error(error?.response?.data?.message);
