@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
-const NavTabs = ({ tabs, defaultActiveTab, content }) => {
+const NavTabs = ({ tabs, defaultActiveTab, content, onChange }) => {
 	const [activeTab, setActiveTab] = useState(defaultActiveTab);
 
-	const handleTabClick = (tabId) => setActiveTab(tabId);
+	const handleTabClick = (tabId) => {
+		setActiveTab(tabId);
+		onChange(tabId);
+	};
 
 	return (
 		<div>

@@ -9,6 +9,7 @@ import WorkShops from '@/utils/Workshops.json';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import NavTabs from '@/components/NavTabs';
+import server from '@/providers/server';
 
 const CourseList = () => {
 	const user = useSelector((state) => state.auth.userProfile);
@@ -20,11 +21,9 @@ const CourseList = () => {
 	const [submitted, setIsSubmitted] = useState(false);
 
 	const [values, setValues] = useState({
-		name: user?.name || '',
-		email: user?.email || '',
-		mobile: user?.mobile || '',
-		education: user?.education || '',
 		refId: '',
+		mobile: user?.mobile || '',
+		paymentMethod: 'via_upi',
 	});
 
 	const handleValues = (e) => {
@@ -34,8 +33,13 @@ const CourseList = () => {
 		});
 	};
 
+	const setPaymentMethod = (method) => {
+		setValues({ ...values, paymentMethod: method });
+	};
+
 	const triggerModal = (id) => {
 		if (!user) {
+			mongoose.Types.ObjectId;
 			toast.warning('Please login and continue');
 			return;
 		}
@@ -43,12 +47,28 @@ const CourseList = () => {
 		setShowModal(id);
 	};
 
+	const workshop = WorkShops.filter((item) => item.workshopId === showModal)[0];
+
 	const bookWorkshop = async (e) => {
 		e.preventDefault();
-		setIsSubmitted(true);
-	};
+		const formValues = {
+			...values,
+			userId: user?._id,
+			classId: workshop?.workshopId,
+			classTitle: workshop?.title,
+		};
 
-	const workshop = WorkShops.filter((item) => item.workshopId === showModal)[0];
+		try {
+			await server.post('/public/liveclass', formValues);
+			toast.success('updated successfully');
+			setIsSubmitted(true);
+			setValues({ ...values, refId: '' });
+		} catch (error) {
+			console.log(error?.response);
+			setIsSubmitted(false);
+			toast.error(error?.response?.data?.message);
+		}
+	};
 
 	const tabs = [
 		{ id: 'via_upi', label: 'UPI' },
@@ -161,6 +181,7 @@ const CourseList = () => {
 											tabs={tabs}
 											defaultActiveTab='via_upi'
 											content={tabContent}
+											onChange={setPaymentMethod}
 										/>
 									</div>
 								</div>
@@ -213,35 +234,42 @@ const CourseList = () => {
 
 						{!workshop.price && (
 							<>
-								<p className='my-4'>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kairaa Academy
-									offers a wide range of free courses and workshops just like
-									this one. Follow Kairaa Academy to unlock even more benefits!
-								</p>
-								<form onSubmit={bookWorkshop}>
-									<div className='row'>
-										<div className='col-md-6'>
-											<div className='form-group mb-20'>
-												<input
-													type='text'
-													style={{ padding: '11px 35px' }}
-													placeholder='Mobile'
-													minLength={10}
-													maxLength={10}
-													required
-													value={values.mobile}
-													name='mobile'
-													onChange={(e) => handleValues(e)}
-												/>
+								{!submitted && (
+									<>
+										<p className='my-4'>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kairaa Academy
+											offers a wide range of free courses and workshops just
+											like this one. Follow Kairaa Academy to unlock even more
+											benefits!
+										</p>
+										<form onSubmit={bookWorkshop}>
+											<div className='row'>
+												<div className='col-md-6'>
+													<div className='form-group mb-20'>
+														<input
+															type='text'
+															style={{ padding: '11px 35px' }}
+															placeholder='Mobile'
+															minLength={10}
+															maxLength={10}
+															required
+															value={values.mobile}
+															name='mobile'
+															onChange={(e) => handleValues(e)}
+														/>
+													</div>
+												</div>
+												<div className='col-md-6'>
+													<div className='form-group mb-20'>
+														<button className='theme-btn style-one'>
+															Proceed
+														</button>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div className='col-md-6'>
-											<div className='form-group mb-20'>
-												<button className='theme-btn style-one'>Proceed</button>
-											</div>
-										</div>
-									</div>
-								</form>
+										</form>
+									</>
+								)}
 							</>
 						)}
 
