@@ -33,12 +33,12 @@ const Checkout = () => {
 	const totalItems = cart && cart?.totalItems;
 
 	const [values, setValues] = useState({
-		name: 'pushparaj',
-		email: 'work.gpraj@gmail.com',
-		mobile: '8883335430',
-		country: 'India',
-		region: 'Tamil Nadu',
-		pincode: '603402',
+		name: '',
+		email: '',
+		mobile: '',
+		country: '',
+		region: '',
+		pincode: '',
 	});
 
 	const handleValues = (e) => {

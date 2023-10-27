@@ -39,7 +39,6 @@ const CourseList = () => {
 
 	const triggerModal = (id) => {
 		if (!user) {
-			mongoose.Types.ObjectId;
 			toast.warning('Please login and continue');
 			return;
 		}
@@ -54,6 +53,7 @@ const CourseList = () => {
 		const formValues = {
 			...values,
 			userId: user?._id,
+			userEmail: user?.email,
 			classId: workshop?.workshopId,
 			classTitle: workshop?.title,
 		};
@@ -80,15 +80,35 @@ const CourseList = () => {
 		via_upi: (
 			<div>
 				<ul className='pt-4'>
-					<li className='fw-bold'>Name : Kairaa Techserve</li>
-					<li className='font-monospace mb-2'>ID : kairaatechserve@okaxis</li>
 					<li className='fw-bold'>Name : Kairaa</li>
-					<li className='font-monospace'>ID : kairaa@idfcfirst</li>
+					<li className='font-monospace mb-2'>ID : KAIRAA.06@cmsidfc</li>
 				</ul>
 			</div>
 		),
-		via_qr_code: <p>Content for Tab 2</p>,
-		via_bank_account: <p>Content for Tab 3</p>,
+		via_qr_code: (
+			<div className='mt-10'>
+				<img
+					src='/assets/images/payments/academy_qr.png'
+					alt=''
+					className='w-25 h-25'
+				/>
+			</div>
+		),
+		via_bank_account: (
+			<div>
+				<ul className='pt-4'>
+					<li className='fw-bold'>
+						Account Name : KAIRAA TECH SERVE PRIVATE LIMITED
+					</li>
+					<li className='font-monospace'>Bank Name : IDFC FIRST</li>
+					<li className='font-monospace'>Account Number : 10086889222</li>
+					<li className='font-monospace'>IFSC Code : IDFB0080123</li>
+					<li className='font-monospace'>
+						Branch : Gandhi Nagar- Adyar Bridge Road.
+					</li>
+				</ul>
+			</div>
+		),
 	};
 
 	return (
@@ -186,7 +206,7 @@ const CourseList = () => {
 									</div>
 								</div>
 								<form onSubmit={bookWorkshop}>
-									<div className='row mt-10'>
+									<div className='row mt-0'>
 										<div className='col-md-6'>
 											<div className='form-group'>
 												<input
@@ -194,6 +214,7 @@ const CourseList = () => {
 													style={{ padding: '11px 35px' }}
 													placeholder='Reference Id'
 													required
+													autoComplete='off'
 													value={values.refId}
 													name='refId'
 													onChange={(e) => handleValues(e)}
@@ -207,7 +228,8 @@ const CourseList = () => {
 													style={{ padding: '11px 35px' }}
 													placeholder='Mobile'
 													minLength={10}
-													maxLength={10}
+													maxLength={ 10 }
+													autoComplete='off'
 													required
 													value={values.mobile}
 													name='mobile'
@@ -223,7 +245,7 @@ const CourseList = () => {
 											</p>
 										</div>
 										<div className='col-md-6'>
-											<div className='form-group'>
+											<div className='form-group mb-0'>
 												<button className='theme-btn style-one'>Proceed</button>
 											</div>
 										</div>

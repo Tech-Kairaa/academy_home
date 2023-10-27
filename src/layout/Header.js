@@ -20,7 +20,7 @@ const Header = ({ header, topbar }) => {
 		const isTrue = confirm('Do you want to logout?');
 		if (!isTrue) return;
 		try {
-			await server.get('/auth/logout/learner');
+			await server.get('/auth/logout');
 			toast.success('Logged out safely');
 			router.reload();
 		} catch (error) {

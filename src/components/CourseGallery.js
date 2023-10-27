@@ -58,7 +58,7 @@ const Course = ({ title, tag, description, cid, image, lessons }) => {
 const CourseSlider = () => {
 	return (
 		<section
-			className='coach-section-three bg-lighter rel z-1 pt-100 rpt-150 pb-130 rpb-100'
+			className='coach-section-three bg-lighter rel z-1 pt-100 rpt-150 rpb-100'
 			id='courses'
 		>
 			<div className='container'>

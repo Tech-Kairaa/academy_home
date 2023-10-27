@@ -373,7 +373,7 @@ const Index = () => {
 				{/* Courses Section End */}
 
 				{/* Kairaa Section Start */}
-				<section className='blog-section pb-100 pt-100'>
+				{/* <section className='blog-section pb-100 pt-100'>
 					<div className='container'>
 						<div className='row justify-content-center'>
 							<div className='col-xl-6 col-lg-7 col-md-8'>
@@ -516,7 +516,7 @@ const Index = () => {
 							</div>
 						</div>
 					</div>
-				</section>
+				</section> */}
 				{/* Kairaa Section End */}
 
 				{/*Founder Section Start*/}

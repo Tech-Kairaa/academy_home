@@ -66,38 +66,12 @@ const ContactUs = () => {
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt-fill' />
-												<h4>Head Office</h4>
+												<h4>Corporate Office</h4>
 												<span>
 													No 131, 2nd floor, DB Road, RS Puram, CBE - 641002.
 												</span>
 											</div>
 										</div>
-										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box h-100'>
-												<i className='bi bi-envelope-fill' />
-												<h4>Email Us</h4>
-												<span>
-													<a href='mailto:support@kairaaacademy.com'>
-														support@kairaaacademy.com
-													</a>
-													<br />
-													<a href='mailto:support@kairaaacademy.com'>
-														team@kairaaacademy.com
-													</a>
-												</span>
-											</div>
-										</div>
-										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box h-100'>
-												<i className='bi bi-telephone-fill' />
-												<h4>Helpline</h4>
-												<span>+91 7092 771133</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
-									<div className='row mt-50'>
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
@@ -118,17 +92,6 @@ const ContactUs = () => {
 												</span>
 											</div>
 										</div>
-
-										<div className='col-md-4 col-sm-6'>
-											<div className='contact-info-box h-100'>
-												<i className='bi bi-geo-alt' />
-												<h4>Tirunelveli Branch</h4>
-												<span>
-													No 12, Shanthi complex, Vasanth nagar, Pincode -
-													627005.
-												</span>
-											</div>
-										</div>
 									</div>
 								</div>
 								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
@@ -136,10 +99,10 @@ const ContactUs = () => {
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
-												<h4>Ranipet Branch</h4>
+												<h4>Tirunelveli Branch</h4>
 												<span>
-													No 117, Amaravathi nagar, Sholinghur, Pincode -
-													631102.
+													No 12, Shanthi complex, Vasanth nagar, Pincode -
+													627005.
 												</span>
 											</div>
 										</div>
@@ -151,6 +114,32 @@ const ContactUs = () => {
 													Sairam complex, Veeranganur main road, Thalaivasal.
 													Pincode - 636112.
 												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
+									<div className='row mt-50'>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-envelope-fill' />
+												<h4>Email Us</h4>
+												<span>
+													<a href='mailto:support@kairaaacademy.com'>
+														support@kairaaacademy.com
+													</a>
+													<br />
+													<a href='mailto:support@kairaaacademy.com'>
+														team@kairaaacademy.com
+													</a>
+												</span>
+											</div>
+										</div>
+										<div className='col-md-4 col-sm-6'>
+											<div className='contact-info-box h-100'>
+												<i className='bi bi-telephone-fill' />
+												<h4>Helpline</h4>
+												<span>+91 7092 771133</span>
 											</div>
 										</div>
 									</div>

@@ -17,6 +17,7 @@ const Career = () => {
 		experience: '',
 		city: '',
 		resume: null,
+		linkedIn: '',
 	});
 
 	const handleInputChange = (e) => {
@@ -95,13 +96,15 @@ const Career = () => {
 										<h2>Start your career</h2>
 									</div>
 									<p>
-										Kairaa Academy is a leading provider of online blockchain
-										and technology courses. We are on a mission to empower the
-										future of education by making high-quality education
-										accessible and affordable htmlFor everyone. We are looking
-										htmlFor talented and passionate individuals to join our team
-										and help us achieve our mission. We offer a variety of
-										roles.
+										<strong className='lead'>
+											Kairaa Academy is a leading provider of online blockchain
+											and technology courses. We are on a mission to empower the
+											future of education by making high-quality education
+											accessible and affordable htmlFor everyone. We are looking
+											htmlFor talented and passionate individuals to join our
+											team and help us achieve our mission. We offer a variety
+											of roles.
+										</strong>
 									</p>
 									<p>
 										<strong className='lead'>Why Join Kairaa Academy?</strong>
@@ -195,6 +198,20 @@ const Career = () => {
 										/>
 									</div>
 									<div className='col-md-5'>
+										<label htmlFor='inputAddress' className='form-label'>
+											Your city
+										</label>
+										<input
+											className='form-control'
+											placeholder='Your current city'
+											type='text'
+											name='city'
+											value={formData.city}
+											onChange={handleInputChange}
+											required
+										/>
+									</div>
+									<div className='col-md-5 mb-3'>
 										<label className='form-label'>Position</label>
 										<select
 											name='position'
@@ -215,20 +232,6 @@ const Career = () => {
 											<option value='customer-support'>Customer Support</option>
 										</select>
 									</div>
-									<div className='col-md-5 mb-3'>
-										<label htmlFor='inputAddress' className='form-label'>
-											Your city
-										</label>
-										<input
-											className='form-control'
-											placeholder='Your current city'
-											type='text'
-											name='city'
-											value={formData.city}
-											onChange={handleInputChange}
-											required
-										/>
-									</div>
 
 									<div className='col-md-7'>
 										<label htmlFor='inputAddress' className='form-label'>
@@ -242,21 +245,24 @@ const Career = () => {
 											className='bg-light'
 										/>
 									</div>
+									<div className='col-md-5'>
+										<label htmlFor='inputAddress' className='form-label'>
+											LinkedIn Link
+										</label>
+										<input
+											className='form-control'
+											placeholder='Your Linkedin profile'
+											type='text'
+											name='linkedIn'
+											value={formData.linkedIn}
+											onChange={handleInputChange}
+										/>
+									</div>
 
-									<div className='col-md-6'>
-										<button
-											type='submit'
-											className='theme-btn mt-3 mb-10 w-100'
-										>
+									<div className='col-md-6 pt-3'>
+										<button type='submit' className='theme-btn mt-30 w-100'>
 											Submit Details
 										</button>
-									</div>
-									<div className='col-md-4 ms-auto'>
-										<Link href='/courses'>
-											<a className='theme-btn style-three mt-3 mb-10 w-100'>
-												Buy Course
-											</a>
-										</Link>
 									</div>
 								</form>
 							</div>
