@@ -691,7 +691,7 @@ const Index = () => {
 				</section>
 				{/* Blog Section End */}
 				{showModal && (
-					<Modal show={showModal} handleClose={handleCloseModal}>
+					<Modal show={showModal} handleClose={handleCloseModal} transparent>
 						<div className='d-flex justify-content-center'>
 							<Image
 								src={'/event.jpeg'}
