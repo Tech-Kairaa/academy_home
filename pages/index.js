@@ -18,7 +18,7 @@ const Index = () => {
 	const handleCloseModal = () => setShowModal(false);
 	const triggerModal = () => setShowModal(true);
 
-	useEffect(() => triggerModal(), []);
+	// useEffect(() => triggerModal(), []);
 
 	return (
 		<ProtectedRoute>
