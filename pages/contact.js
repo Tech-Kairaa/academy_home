@@ -55,9 +55,10 @@ const ContactUs = () => {
 									<h2>Contact For Information</h2>
 								</div>
 								<p className='text-center'>
-									Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-									accusantium doloremque laudantium totam rem aperiam eaque ipsa
-									quae abillo inventore veritatis et quasi architecto
+									Questions, feedback, or just want to chat? We&apos;re all
+									ears! Whether it&apos;s a query about our services, a
+									partnership opportunity, or you simply want to say hello,
+									don&apos;t hesitate to reach out.
 								</p>
 							</div>
 							<div className='col-lg-12'>
@@ -75,7 +76,7 @@ const ContactUs = () => {
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-geo-alt' />
-												<h4>Sub-Branch</h4>
+												<h4>Chennai Branch</h4>
 												<span>
 													20/14, Kalaivanar Street, Jafferkhanpet, Chennai -
 													600083.
@@ -116,10 +117,6 @@ const ContactUs = () => {
 												</span>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
-									<div className='row mt-50'>
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-envelope-fill' />
@@ -135,6 +132,10 @@ const ContactUs = () => {
 												</span>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div className='contact-info-wrap rmb-75 wow fadeInUp delay-0-2s'>
+									<div className='row mt-50'>
 										<div className='col-md-4 col-sm-6'>
 											<div className='contact-info-box h-100'>
 												<i className='bi bi-telephone-fill' />
