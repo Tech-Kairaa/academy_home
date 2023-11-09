@@ -33,20 +33,6 @@ const Index = () => {
 							<div className='col-lg-6 align-self-end'>
 								<div className='hero-three-image-part ps-0'>
 									<img src='/assets/images/hero.png' alt='Hero' />
-									{/* <div className='hero-chart wow fadeInUp delay-0-2s'>
-										<img src='/assets/images/hero/hero-chart.png' alt='Chart' />
-										<h5>95% Success Results</h5>
-									</div>
-									<div className='hero-over-text'>
-										<div className='about-image-over-item wow fadeInRight delay-0-2s'>
-											<img src='/assets/images/about/icon1.png' alt='Icon' />
-											<h5>Experience Advisor</h5>
-										</div>
-										<div className='about-image-over-item wow fadeInLeft delay-0-2s'>
-											<img src='/assets/images/about/icon2.png' alt='Icon' />
-											<h5>Quality Video Tutorials</h5>
-										</div>
-									</div> */}
 									<img
 										className='hero-circle'
 										src='/assets/images/shapes/circle-dots-two.png'
