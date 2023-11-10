@@ -506,7 +506,7 @@ const Index = () => {
 				{/* Kairaa Section End */}
 
 				{/*Founder Section Start*/}
-				<Founder />
+				{/*<Founder />*/}
 				{/*Founder Section End*/}
 
 				{/* <Team /> */}
