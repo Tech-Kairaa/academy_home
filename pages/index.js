@@ -493,11 +493,11 @@ const Index = () => {
 										Kairaa offers a wide range of services to meet the needs of
 										its customers businesses.
 									</p>
-									<Link href='http://www.kairaatechserve.com'>
+									<dLink href='http://www.kairaatechserve.com'>
 										<a className='theme-btn style-two my-15' target='_blank'>
 											Learn more <i className='fas fa-arrow-right' />
 										</a>
-									</Link>
+									</dLink>
 								</div>
 							</div>
 						</div>
