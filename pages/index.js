@@ -493,11 +493,11 @@ const Index = () => {
 										Kairaa offers a wide range of services to meet the needs of
 										its customers businesses.
 									</p>
-									<dLink href='http://www.kairaatechserve.com'>
+									<Link href='http://www.kairaatechserve.com'>
 										<a className='theme-btn style-two my-15' target='_blank'>
 											Learn more <i className='fas fa-arrow-right' />
 										</a>
-									</dLink>
+									</Link>
 								</div>
 							</div>
 						</div>
@@ -506,7 +506,7 @@ const Index = () => {
 				{/* Kairaa Section End */}
 
 				{/*Founder Section Start*/}
-				{/*<Founder />*/}
+				<Founder />
 				{/*Founder Section End*/}
 
 				{/* <Team /> */}
