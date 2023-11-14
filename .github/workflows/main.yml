@@ -6,7 +6,7 @@ name: 🚀 Academy Home
 jobs:
   web-deploy:
     name: 🎉 Deploy
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
@@ -14,7 +14,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: www.kairaablockchainacademy.com
+          server: kairaablockchainacademy.com
           username: ${{ secrets.home_ftp_username }}
           password: ${{ secrets.home_ftp_password }}
-          server-dir: /
+          server-dir: /public_html/
