@@ -14,7 +14,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: kairaablockchainacademy.com
+          server: www.kairaablockchainacademy.com
           username: ${{ secrets.home_ftp_username }}
           password: ${{ secrets.home_ftp_password }}
           server-dir: /
