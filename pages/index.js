@@ -196,7 +196,7 @@ const Index = () => {
 										<h5>Cost Efficiency</h5>
 										<p>
 											Save money on blockchain education with Kairaa blockchain
-											academy&apos;s cost-effective online courses.
+											academys cost-effective online courses.
 										</p>
 									</div>
 								</div>
