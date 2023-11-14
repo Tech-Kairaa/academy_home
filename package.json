@@ -5,8 +5,8 @@
 	"scripts": {
 		"dev": "next dev -p 3001",
 		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"start": "NODE_ENV=production node server.js"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.5",
