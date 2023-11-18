@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Advertise from '../src/components/Advertise';
-import Founder from '../src/components/Founder';
 import PageBanner from '../src/components/PageBanner';
-import Team from '../src/components/Team';
 import Layout from '../src/layout/Layout';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
@@ -61,7 +59,11 @@ const About = () => {
 							</div>
 							<div className='col-lg-6'>
 								<div className='about-page-middle rpt-55 rpb-30 wow fadeInRight delay-0-2s'>
-									<img src='/assets/images/about/about_1.png' className='rounded-3' alt='About' />
+									<img
+										src='/assets/images/about/about_1.png'
+										className='rounded-3'
+										alt='About'
+									/>
 								</div>
 							</div>
 							{/* <div className='col-lg-2'>
@@ -94,7 +96,11 @@ const About = () => {
 						<div className='row large-gap align-items-center'>
 							<div className='col-lg-6'>
 								<div className='about-three-image rmb-65 wow fadeInUp delay-0-2s'>
-									<img src='/assets/images/about/about_4.jpg' className='rounded-3' alt='About' />
+									<img
+										src='/assets/images/about/about_4.jpg'
+										className='rounded-3'
+										alt='About'
+									/>
 									<div className='about-three-image-content bg-light-blue rel text-white br-10 p-30'>
 										<p className='lead'>
 											<i className='fas fa-quote-left mr-3'></i>
@@ -204,16 +210,10 @@ const About = () => {
 								<div className='rules-condition-image-part wow fadeInRight delay-0-2s'>
 									<div className='row align-items-center'>
 										<div className='col-5'>
-											<img
-												src='assets/images/about/about_6.png'
-												alt='Rules'
-											/>
+											<img src='assets/images/about/about_6.png' alt='Rules' />
 										</div>
 										<div className='col-7'>
-											<img
-												src='assets/images/about/about_5.png'
-												alt='Rules'
-											/>
+											<img src='assets/images/about/about_5.png' alt='Rules' />
 										</div>
 									</div>
 								</div>
@@ -222,121 +222,7 @@ const About = () => {
 					</div>
 				</section>
 				{/* Rules & Conditions Area End */}
-				{/* Features Section Start */}
-				<section className='features-section-three rel z-1 pt-50 rpt-85 pb-100 rpb-70'>
-					<div className='container'>
-						<div className='section-title text-center mb-55'>
-							<span className='sub-title-two'>Our other products</span>
-							<h2>Discover our innovative idea&apos;s</h2>
-						</div>
-						<div className='row justify-content-center'>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-2s'>
-									<h4>KAIT Coin</h4>
-									<p>
-										Consider KAIT Coin as a promising cryptocurrency for your
-										investment portfolio
-									</p>
-									<Link href='https://kaitcoin.com/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-4s'>
-									<h4>Kairaa Exchange</h4>
-									<p>
-										Explore the features of Kairaa Exchange for seamless
-										cryptocurrency trading.
-									</p>
-									<Link href='https://kairaaexchange.com/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-6s'>
-									<h4>KAIT Stacking</h4>
-									<p>
-										Grow your KAIT holdings with KAIT Stacking, the premier
-										platform for stacking.
-									</p>
-									<Link href='https://play.google.com/store/apps/details?id=com.Kaitstaking.kait&pcampaignid=web_share'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-8s'>
-									<h4>Kairaachain</h4>
-									<p>
-										Our Innovative Blockchain Ecosystem, Pioneering the Future
-										of Decentralization.
-									</p>
-									<Link href='https://kairaachain.io/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-8s'>
-									<h4>VPay</h4>
-									<p>
-										Simplify your payments with VPay, the best payment app for
-										seamless transactions.
-									</p>
-									<Link href='https://vairaapay.com/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-8s'>
-									<h4>NFT Kairaa</h4>
-									<p>
-										Stay tuned for NFT Kairaa, the upcoming NFT platform for the
-										digital art world.
-									</p>
-									<Link href='https://nftkairaa.com/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-							<div className='col-lg-3 col-sm-6'>
-								<div className='feature-three-item wow fadeInUp delay-0-8s'>
-									<h4>Coincore</h4>
-									<p>
-										Get ready for CoinCore, the upcoming cryptocurrency listing
-										platform.
-									</p>
-									<Link href='https://coincore.in/'>
-										<a className='details-btn' target='_blank'>
-											<i className='fas fa-long-arrow-alt-right' />
-										</a>
-									</Link>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				{/* Features Section End */}
 
-				{/*Founder Section Start*/}
-				<Founder />
-				{/*Founder Section End*/}
-				
 				{/* Advertise Area Start */}
 				<section className='advertise-area pt-75 rpt-100 pb-50 rpb-60'>
 					<div className='container'>

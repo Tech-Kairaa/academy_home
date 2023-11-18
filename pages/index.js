@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from 'next/link';
 import Advertise from '@/components/Advertise';
-import Layout from '@/layouts/Layout';
-import Founder from '@/components/Founder';
+import ChatBox from '@/components/ChatBox';
 import CourseGallery from '@/components/CourseGallery';
-import Head from 'next/head';
-import { useSelector } from 'react-redux';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import { toast } from 'react-toastify';
-import Image from 'next/image';
 import Modal from '@/components/Modal';
-import { useEffect, useState } from 'react';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import Layout from '@/layouts/Layout';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const Index = () => {
 	const auth = useSelector((state) => state.auth.loginState);
@@ -689,6 +689,8 @@ const Index = () => {
 						</div>
 					</Modal>
 				)}
+
+				<ChatBox />
 			</Layout>
 		</ProtectedRoute>
 	);
