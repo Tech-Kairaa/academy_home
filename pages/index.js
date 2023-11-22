@@ -690,7 +690,7 @@ const Index = () => {
 					</Modal>
 				)}
 
-				<ChatBox />
+				{/* <ChatBox /> */}
 			</Layout>
 		</ProtectedRoute>
 	);

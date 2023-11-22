@@ -77,31 +77,24 @@ const ToMessage = ({ message }) => {
 };
 
 const CreateNewChat = ({ handleNewChat }) => {
-	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 
 	return (
-		<form onSubmit={(e) => handleNewChat(e, name, email)}>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				handleNewChat(email);
+			}}
+		>
 			<div className='row justify-content-center'>
 				<div className='col-12'>
 					<div className='form-group'>
 						<input
-							type='text'
-							style={{ padding: '11px 35px' }}
-							placeholder='Full Name'
-							required
-							onChange={(e) => setName(e.target.value)}
-						/>
-					</div>
-				</div>
-				<div className='col-12'>
-					<div className='form-group'>
-						<input
 							type='email'
-							style={{ padding: '11px 35px' }}
 							placeholder='Email Id'
 							required
 							onChange={(e) => setEmail(e.target.value)}
+							className='chat-input'
 						/>
 					</div>
 				</div>
@@ -121,37 +114,31 @@ const ChatBox = () => {
 	const [chat, openChat] = useState(false);
 	const [status, setStatus] = useState(false);
 	const [message, setMessage] = useState('');
-	const [chatExist, setChatExist] = useState(false);
+	const [senderId, setSenderId] = useState('');
 
-	const [response, setResponse] = useState([]);
+	const [chatHistory, setChatHistory] = useState([]);
 
 	const toggleChat = () => openChat(!chat);
-
 	const updateStatus = (status) => setStatus(status);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		updateStatus('connecting...');
-		socket.emit('join', { email: 'test@test.com' });
-		socket.emit('response', { message });
-	};
-
-	const contactSupport = async (e, name, email) => {
-		e.preventDefault();
-		saveState({ name: 'chat', value: { name, email } });
-		setChatExist(true);
+		socket.emit('userResponse', { message, senderId });
 	};
 
 	useEffect(() => {
-		// const isChatExist = loadState('chat');
-		// if (isChatExist) {
-		// 	setResponse(true);
-		// }
+		//join-in-chatroom
+		if (senderId.length) {
+			socket.emit('join', { senderId });
+		}
 
-		socket.on('response', ({ message }) => {
-			console.log(message);
+		//chat-response
+		socket.on('userResponse', ({ chatHistory }) => {
+			console.log(chatHistory);
 		});
-	}, [response]);
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className='position-fixed bottom-0 mb-4 me-3 end-0 z-5 d-flex justify-content-end align-items-end chat-box flex-lg-row flex-column'>
@@ -161,9 +148,11 @@ const ChatBox = () => {
 					<div className='card-body d-flex flex-column pb-0 pt-3 h-75 w-100'>
 						<div className='container d-flex flex-column justify-content-end p-0 ps-1 pe-2 mb-3 h-100 overflow-x-hidden'></div>
 						<div className='row'>
-							{/* {!chatExist && <CreateNewChat handleNewChat={contactSupport} />} */}
+							{!senderId.length && (
+								<CreateNewChat handleNewChat={(id) => setSenderId(id)} />
+							)}
 
-							{!chatExist && (
+							{senderId && (
 								<div className='col-12'>
 									<form onSubmit={handleSubmit} className='input-group mb-3'>
 										<input
