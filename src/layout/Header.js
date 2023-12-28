@@ -42,7 +42,7 @@ const Header = ({ header, topbar }) => {
 										<Link href='/'>
 											<a>
 												<img
-													src='/assets/images/logos/logo.png'
+													src='/assets/images/logos/Blockchain-Academy-Logo copy.png'
 													alt='Logo'
 													title='Logo'
 												/>
@@ -58,7 +58,7 @@ const Header = ({ header, topbar }) => {
 												<Link href='/'>
 													<a>
 														<img
-															src='/assets/images/logos/logo.png'
+															src='/assets/images/logos/Blockchain-Academy-Logo copy.png'
 															alt='Logo'
 															title='Logo'
 															width='80%'
