@@ -120,7 +120,7 @@ footer:after {
 }
 
 .logo > a > img {
-	max-width: 50px;
+	max-width: 100px;
 }
 
 /*======= Input Styles =======*/
@@ -3987,7 +3987,7 @@ h6,
 
 @media only screen and (max-width: 1500px) {
 	.main-header .logo {
-		padding: 15px;
+		padding: 50px;
 		max-width: 75px;
 	}
 }
