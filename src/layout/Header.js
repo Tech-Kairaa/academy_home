@@ -61,7 +61,7 @@ const Header = ({ header, topbar }) => {
 															src='/assets/images/logos/Blockchain-Academy-Logo copy.png'
 															alt='Logo'
 															title='Logo'
-															width='100s%'
+															width='100%'
 														/>
 													</a>
 												</Link>
