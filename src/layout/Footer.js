@@ -61,7 +61,7 @@ const FollowIcon = () => (
 				<Link href='/faq'>FAQ&apos;s</Link>
 			</li>
 			<li>
-				<Link href='/privacy-policy.html'>Privacy Policy</Link>
+				<Link href='/about'>Privacy Policy</Link>
 			</li>
 			<li>
 				<Link href='/terms-condition'>Our Terms</Link>
