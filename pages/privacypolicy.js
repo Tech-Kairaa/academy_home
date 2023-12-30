@@ -27,20 +27,20 @@ const privacypolicy = () => {
                       information in a number of ways, such as when they visit
                       our website, complete a form, or interact with any other
                       features, services, activities, or resources we make
-                      available on our site. Users' name, email address, and
+                      available on our site. Users name, email address, and
                       phone number may be requested when appropriate. However,
                       users are free to browse our site anonymously. Users'
                       personal identification information will only be gathered
                       by us if they voluntarily provide it to us. Users always
                       have the option to withhold personally identifiable
                       information, albeit doing so can make it impossible for
-                      them to participate in some site-related activities.
+                      them to participate in some site related activities.
                     </p>
                     <h2 style={{fontSize:"35px",marginTop:"20px" ,fontFamily:"'Font Awesome 5 Free'"}}>Non-personal identification information</h2>
                     <p>
                       Every time a User interacts with our site, we might get
-                      non-personal identification information about them.
-                      Non-personally identifiable information could include the
+                      non personal identification information about them.
+                      Non personally identifiable information could include the
                       name of the user's browser, the kind of machine they are
                       using, and technical details about how they connected to
                       our website, including the operating system and ISP they
@@ -63,7 +63,7 @@ const privacypolicy = () => {
                       support We can more quickly and effectively handle your
                       support requirements and customer care requests thanks to
                       the information you supply.To Send recurring emailsWe
-                      might reply to their queries, questions, and/or other
+                      might reply to their queries, questions, and other
                       requests using the email address.
                     </p>
                     <h2 style={{fontSize:"35px",marginTop:"20px" ,fontFamily:"'Font Awesome 5 Free'"}}> How we protect your information</h2>
