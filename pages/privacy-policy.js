@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
-const  privacy = () => {
+export const  privacy = () => {
 	const auth = useSelector((state) => state.auth.loginState);
 	return (
 		<ProtectedRoute>
@@ -234,4 +234,4 @@ const  privacy = () => {
 		</ProtectedRoute>
 	);
 };
-export default privacy;
+
