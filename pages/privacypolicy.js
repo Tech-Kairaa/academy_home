@@ -59,10 +59,10 @@ const privacypolicy = () => {
                     <h2 style={{fontSize:"35px",marginTop:"20px" ,fontFamily:"'Font Awesome 5 Free'"}}>How we use collected information</h2>
                     <p>
                       The following uses of user personal information that
-                      kairaaacademy may gather and employ: • To enhance client
-                      supportWe can more quickly and effectively handle your
+                      kairaaacademy may gather and employ To enhance client
+                      support We can more quickly and effectively handle your
                       support requirements and customer care requests thanks to
-                      the information you supply.- To • Send recurring emailsWe
+                      the information you supply.To Send recurring emailsWe
                       might reply to their queries, questions, and/or other
                       requests using the email address.
                     </p>
