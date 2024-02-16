@@ -1,0 +1,8 @@
+node_modules
+.vscode
+.next
+package-lock.json
+.env
+pages/courses_offline
+pages/purchase
+build

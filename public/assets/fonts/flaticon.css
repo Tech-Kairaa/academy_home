@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "flaticon";
+  src: url("./flaticon.ttf?229421284b5284274ba98ecbe4bcbd1d") format("truetype"), url("./flaticon.woff?229421284b5284274ba98ecbe4bcbd1d") format("woff"), url("./flaticon.woff2?229421284b5284274ba98ecbe4bcbd1d") format("woff2"), url("./flaticon.eot?229421284b5284274ba98ecbe4bcbd1d#iefix") format("embedded-opentype"), url("./flaticon.svg?229421284b5284274ba98ecbe4bcbd1d#flaticon") format("svg"); }
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.flaticon-shape:before {
+  content: ""; }
+
+.flaticon-rating:before {
+  content: ""; }
+
+.flaticon-good-quality:before {
+  content: ""; }
+
+.flaticon-rating-1:before {
+  content: ""; }
+
+.flaticon-right-quote:before {
+  content: ""; }
+
+.flaticon-reading-book:before {
+  content: ""; }
+
+.flaticon-world:before {
+  content: ""; }
+
+.flaticon-mortarboard:before {
+  content: ""; }
+
+.flaticon-cheese-burger:before {
+  content: ""; }

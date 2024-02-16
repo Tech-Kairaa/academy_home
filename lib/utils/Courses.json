@@ -1,0 +1,309 @@
+[
+	{
+		"cid": "KA0001",
+		"title": "Decentralizing Finance: Mastering the DeFi",
+		"description": "The DeFi Expert Certification Course is an essential program for anyone interested in gaining a deep understanding of the emerging field of decentralized finance. This certification is designed to provide you with a strong foundation in the fundamental principles of DeFi, including its processes, tools, and applications. Through this course, you will develop a comprehensive understanding of the various lending protocols and use cases of DeFi. You will learn about the different services and apps that make up the DeFi ecosystem, and gain valuable insight into the rapidly evolving field of decentralized finance. This exam-based certification program is designed to equip you with the skills and knowledge necessary to excel in the field of DeFi. By earning this certification, you will be able to make informed decisions about your professional future and take advantage of the many exciting opportunities available in the world of decentralized finance. Whether you are a seasoned finance professional or just starting out in your career, the DeFi Expert Certification Course is the perfect way to stay ahead of the curve and position yourself for success in this rapidly growing industry.",
+		"image": "defi_1.png",
+		"level": "Intermediate",
+		"duration": "5 Hours",
+		"totalModules": 5,
+		"tag": "DeFi",
+		"modules": [
+			{
+				"title": "Introduction to CDE",
+				"topics": ["Introduction to CDE Course"]
+			},
+			{
+				"title": "Understanding the Basics",
+				"topics": [
+					"Blockchain",
+					"Ethereum",
+					"Smart Contract",
+					"Decentralized Apps",
+					"Decentralized Autonomous Organizations"
+				]
+			},
+			{
+				"title": "Introduction to DeFi Technology",
+				"topics": ["Introduction to DeFi", "DeFi Key Metrics"]
+			},
+			{
+				"title": "DeFi: Use-Cases",
+				"topics": [
+					"Stablecoins",
+					"Lending and Borrowing",
+					"Trading on DEXes and Liquidity",
+					"Synthetic Assets (Derivatives)",
+					"Prediction Markets",
+					"Staking",
+					"Asset Management and Wallets",
+					"Insurance and Risk Hedging",
+					"Oracles"
+				]
+			},
+			{
+				"title": "Risks and Challenges",
+				"topics": ["Risks", "Significant Measures to Deal with DeFi Risks"]
+			}
+		]
+	},
+	{
+		"cid": "KA0002",
+		"title": "Hyperledger Mastery: Becoming a Certified Expert",
+		"description": "The Hyperledger Expert Certification Course is a comprehensive program designed to equip you with the skills and knowledge needed to become an expert in the world's most popular blockchain platform for enterprise applications. As the demand for Hyperledger expertise continues to grow in the business world, this certification will provide you with an in-depth understanding of Hyperledger frameworks, tools, and libraries for creating enterprise blockchain-based applications. You will gain valuable insight into the features and use-cases of different Hyperledger platforms such as Fabric, Sawtooth, Indy, Besu, Iroha, Aries, Transact, Ursa, Bevel, Cactus, Caliper, Cello, Firefly and Grid.<br/> <br/>This certification program is designed to provide you with hands-on experience working with Hyperledger tools and technologies, including developing smart contracts, implementing security protocols, and building decentralized applications. By earning this certification, you will demonstrate to employers that you have the skills and expertise needed to build and manage enterprise-level blockchain solutions. Whether you are a blockchain enthusiast, a software developer, or a business professional, the Hyperledger Expert Certification Course is the perfect way to take your career to the next level and become a leader in the rapidly evolving field of enterprise blockchain technology.",
+		"image": "hyperledger_1.png",
+		"level": "Intermediate",
+		"duration": "9 Hours",
+		"totalModules": 17,
+		"tag": "Hyperledger",
+		"modules": [
+			{
+				"title": "Introduction to Certified Hyperledger Expert Course",
+				"topics": ["Introduction to Hyperledger Expert Course"]
+			},
+			{
+				"title": "Blockchain - A Quick Overview",
+				"topics": [
+					"What is Blockchain?",
+					"Why is Blockchain a Distributed, P2P Network?",
+					"Types of Blockchain"
+				]
+			},
+			{
+				"title": "Private/Permissioned Blockchain",
+				"topics": [
+					"Permissioned Blockchain Overview & Comparison",
+					"Role of Permissioned Blockchains in the Systems Engineering Lifecycle",
+					"Architecture of Permissioned Blockchain",
+					"Examples of Permissioned Blockchain"
+				]
+			},
+			{
+				"title": "Hyperledger - Blockchain Technologies for Business",
+				"topics": ["The Linux Foundation", "Hyperledger – Overview"]
+			},
+			{
+				"title": "Hyperledger - An Umbrella of Projects",
+				"topics": [
+					"The Hyperledger Ecosystem: DLT, Libraries, and Tools",
+					"Hyperledger Project Life Cycle",
+					"The Hyperledger Ecosystem: DLT, Libraries, and Tools",
+					"Hyperledger Project Life Cycle"
+				]
+			},
+			{
+				"title": "DLT – Hyperledger Fabric",
+				"topics": [
+					"Introduction to Hyperledger Fabric",
+					"Hyperledger Fabric – Model",
+					"Hyperledger Fabric – Component",
+					"Hyperledger Fabric – Architecture",
+					"Hyperledger Fabric – Transaction Flow",
+					"Hyperledger Fabric – Endorsement Flow",
+					"Hyperledger Fabric – Endorsement Policies",
+					"Hyperledger Fabric – Data Distribution Protocol",
+					"Hyperledger Fabric – Chaincode",
+					"Structure of Chaincode",
+					"Hyperledger Fabric – Certificate Authority",
+					"Hyperledger Fabric – Membership Service Provider"
+				]
+			},
+			{
+				"title": "DLT - Hyperledger Sawtooth",
+				"topics": [
+					"Introduction to DLT",
+					"Hyperledger Sawtooth - Introduction",
+					"Hyperledger Sawtooth - Features",
+					"Hyperledger Sawtooth - Architecture"
+				]
+			},
+			{
+				"title": "DLT - Hyperledger Indy",
+				"topics": [
+					"Hyperledger Indy – Introduction and features",
+					"Identity Management Overview",
+					"Identity Management – Hyperledger Indy"
+				]
+			},
+			{
+				"title": "DLT - Hyperledger Besu",
+				"topics": [
+					"Hyperledger Besu – Introduction",
+					"Hyperledger Besu – Characteristics"
+				]
+			},
+			{
+				"title": "DLT - Hyperledger Iroha",
+				"topics": [
+					"Hyperledger Iroha – Overview, its Features, and use-cases",
+					"Hyperledger Iroha – Concepts and Architecture"
+				]
+			},
+			{
+				"title": "Libraries - Hyperledger Aries",
+				"topics": [
+					"Hyperledger Aries – Introduction",
+					"Identity Management Using Hyperledger Aries"
+				]
+			},
+			{
+				"title": "Libraries - Hyperledger Transact",
+				"topics": [
+					"Hyperledger Transact: Overview and features",
+					"Hyperledger Transact: Architecture"
+				]
+			},
+			{
+				"title": "Libraries - Hyperledger Ursa",
+				"topics": [
+					"Hyperledger Ursa: Introduction and features",
+					"Libraries of Hyperledger Ursa & Usage in Blockchain Applications",
+					"Use Case: Decentralized Identity"
+				]
+			},
+			{
+				"title": "Tools - Hyperledger Bevel",
+				"topics": [
+					"Hyperledger Bevel: Introduction",
+					"Hyperledger Bevel: Features"
+				]
+			},
+			{
+				"title": "Tools - Hyperledger Cactus",
+				"topics": [
+					"Hyperledger Cactus: Introduction",
+					"Blockchain Interoperability"
+				]
+			},
+			{
+				"title": "Tools - Hyperledger Caliper",
+				"topics": [
+					"Hyperledger Caliper – Introduction and Its Need",
+					"Benchmarking Criteria in Hyperledger Caliper",
+					"Hyperledger Caliper – Architecture"
+				]
+			},
+			{
+				"title": "Tools - Hyperledger Cello",
+				"topics": ["Hyperledger Cello: Overview"]
+			},
+			{
+				"title": "Tools - Hyperledger Firefly",
+				"topics": [
+					"Hyperledger Firefly: Introduction",
+					"FireFly Usage Patterns",
+					"Firefly Features"
+				]
+			},
+			{
+				"title": "Domain Specific - Hyperledger Grid",
+				"topics": [
+					"Blockchain in food supply chain",
+					"Hyperledger Grid: Introduction and Features"
+				]
+			}
+		]
+	},
+	{
+		"cid": "KA0003",
+		"title": "Blockchain Revolution: From Basics to Mastery",
+		"description": "The Hyperledger Expert Certification Course is a comprehensive training program that will provide you with a deep understanding of Hyperledger technology and its applications in various industries. This certification program is designed to equip you with the skills and knowledge needed to become a Hyperledger expert.Through this course, you will learn about the various components of Hyperledger technology and how they can be used to solve real-world business problems. You will gain practical experience working with business executives and matching their needs with effective, decentralized solutions. <br /> The Hyperledger Expert Certification Course is perfect for anyone looking to gain a competitive advantage in their career. Whether you are an experienced professional or just starting out, this course will provide you with the tools and knowledge needed to succeed in the rapidly growing field of Hyperledger technology. By earning this certification, you will have the skills and expertise needed to work with Hyperledger technology and implement it in your chosen industry. This certification is ideal for anyone who wants to learn everything there is to know about enterprise blockchains and how they can be used to transform business operations. Join the Hyperledger Expert Certification Course today and take the first step towards becoming a Hyperledger expert.",
+		"image": "blockchain_1.png",
+		"level": "Beginner",
+		"duration": "8 Hours",
+		"totalModules": 12,
+		"tag": "Blockchain",
+		"modules": [
+			{
+				"title": "Introduction to Course",
+				"topics": ["Introduction to Blockchain Course"]
+			},
+			{
+				"title": "Origin of Blockchain Technology",
+				"topics": [
+					"Electronic Systems and Trust",
+					"Bitcoin Predecessors",
+					"The Bitcoin Experiment",
+					"Bringing Bitcoin to Life"
+				]
+			},
+			{
+				"title": "Introduction to Blockchain",
+				"topics": [
+					"What is Blockchain?",
+					"Why is Blockchain a Distributed, P2P Network?",
+					"Blockchain Vs Cryptocurrency",
+					"Types of Blockchain",
+					"What Are different Blockchain Technologies?",
+					"Benefits of using Blockchain Technology"
+				]
+			},
+			{
+				"title": "Tokenize Everything",
+				"topics": ["Tokens on Ethereum Platform", "Ethereum Token Standards"]
+			},
+			{
+				"title": "Blockchain Ecosystem",
+				"topics": [
+					"Merkle Tree and Hashing",
+					"Blocks, Wallets and Addresses",
+					"Public and Private Key",
+					"Cryptography and Cryptographic Algorithms",
+					"Transaction Execution and Distribution",
+					"Components of Blockchain Ecosystem",
+					"Blockchain Architecture"
+				]
+			},
+			{
+				"title": "Blockchain Mining",
+				"topics": [
+					"What is Blockchain Mining?",
+					"Types of Mining",
+					"Who are Miners?"
+				]
+			},
+			{
+				"title": "Transactions UTXO Vs Account Model",
+				"topics": ["Transactions UTXO Vs Account Model"]
+			},
+			{
+				"title": "Security and Privacy",
+				"topics": [
+					"What are Smart Contracts?",
+					"What is Consensus?",
+					"Types of Consensus Algorithms"
+				]
+			},
+			{
+				"title": "Blockchain Solutions – Steps and measures",
+				"topics": ["Blockchain Solutions – Steps and measures"]
+			},
+			{
+				"title": "Use-Cases of Blockchain",
+				"topics": [
+					"Blockchain use cases in Financial Sector",
+					"Blockchain use cases in Business Sector",
+					"Blockchain use cases in Government & Public Sector",
+					"Blockchain use cases in other Industries"
+				]
+			},
+			{
+				"title": "Other Use-Cases of Blockchain",
+				"topics": [
+					"Blockchain in IoT",
+					"Blockchain in CBDC",
+					"Blockchain in Retail Fashion & Luxury",
+					"Blockchain in sports and E-sports",
+					"Blockchain in Legal Industry",
+					"Social Impact of Blockchain",
+					"DeFi Use Cases in Blockchain Part 1",
+					"DeFi Use Cases in Blockchain Part 2"
+				]
+			},
+			{
+				"title": "Bonus",
+				"topics": ["Directed Acyclic Graph (DAG)"]
+			}
+		]
+	}
+]
